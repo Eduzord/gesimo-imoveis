@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional, ApiPropertyOptions } from "@nestjs/swagger";
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive, Max, Min } from 'class-validator';
 import { inspect } from "util";
 
 export class CriarContratoDto {
@@ -43,4 +43,11 @@ export class CriarContratoDto {
     @IsPositive()
     @IsNotEmpty()
     valorAluguel: number;
+
+    @ApiProperty({ example: 0.07, description: 'Percentual de comissão do corretor sobre o contrato (decimal, ex: 0.07 = 7%)'})
+    @IsNumber()
+    @Min(0)
+    @Max(1)
+    @IsNotEmpty()
+    comissao: number;
 }

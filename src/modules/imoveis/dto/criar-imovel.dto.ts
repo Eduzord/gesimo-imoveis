@@ -1,7 +1,21 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, Max, Min, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { classificacao_enum, status_imovel_enum, tipologia_enum } from '../../../generated/prisma';
+
+//Aqui eu represento cada "dono" de um imóvel (posse partilhada entre locadores)
+export class ProprietarioImovelDto {
+    @ApiProperty({example: 5, description: 'ID do Locador já cadastrado no microsserviço de Locadores'})
+    @IsNumber()
+    @IsPositive()
+    idLocador: number;
+
+    @ApiProperty({example: 50, description: 'Percentual de participação do locador na posse do imóvel (0.01 a 100)'})
+    @IsNumber()
+    @Min(0.01)
+    @Max(100)
+    percentualParticipacao: number;
+}
 
 //Criei essa classe auxiliar para validar o bloco de endereço que vem aninhado no JSON
 class EnderecoDto {
@@ -70,4 +84,12 @@ export class CriarImovelDto {
     @ValidateNested()
     @Type(() => EnderecoDto)
     endereco: EnderecoDto;
+
+    //Lista de locadores donos do imóvel (posse partilhada). Opcional: pode ser preenchida depois via atualização.
+    @ApiPropertyOptional({type: [ProprietarioImovelDto], description: 'Locadores donos do imóvel e seus percentuais de participação'})
+    @IsOptional()
+    @IsArray()
+    @ValidateNested({each: true})
+    @Type(() => ProprietarioImovelDto)
+    proprietarios?: ProprietarioImovelDto[];
 }
