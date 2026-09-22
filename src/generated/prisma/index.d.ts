@@ -38,6 +38,16 @@ export type contratolocacao = $Result.DefaultSelection<Prisma.$contratolocacaoPa
  * 
  */
 export type despesa = $Result.DefaultSelection<Prisma.$despesaPayload>
+/**
+ * Model tabelairrf
+ * 
+ */
+export type tabelairrf = $Result.DefaultSelection<Prisma.$tabelairrfPayload>
+/**
+ * Model faixairrf
+ * 
+ */
+export type faixairrf = $Result.DefaultSelection<Prisma.$faixairrfPayload>
 
 /**
  * Enums
@@ -298,6 +308,26 @@ export class PrismaClient<
     * ```
     */
   get despesa(): Prisma.despesaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tabelairrf`: Exposes CRUD operations for the **tabelairrf** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tabelairrfs
+    * const tabelairrfs = await prisma.tabelairrf.findMany()
+    * ```
+    */
+  get tabelairrf(): Prisma.tabelairrfDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.faixairrf`: Exposes CRUD operations for the **faixairrf** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Faixairrfs
+    * const faixairrfs = await prisma.faixairrf.findMany()
+    * ```
+    */
+  get faixairrf(): Prisma.faixairrfDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -736,7 +766,9 @@ export namespace Prisma {
     imovel: 'imovel',
     propriedadeimovel: 'propriedadeimovel',
     contratolocacao: 'contratolocacao',
-    despesa: 'despesa'
+    despesa: 'despesa',
+    tabelairrf: 'tabelairrf',
+    faixairrf: 'faixairrf'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -752,7 +784,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "endereco" | "imovel" | "propriedadeimovel" | "contratolocacao" | "despesa"
+      modelProps: "endereco" | "imovel" | "propriedadeimovel" | "contratolocacao" | "despesa" | "tabelairrf" | "faixairrf"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1086,6 +1118,138 @@ export namespace Prisma {
           }
         }
       }
+      tabelairrf: {
+        payload: Prisma.$tabelairrfPayload<ExtArgs>
+        fields: Prisma.tabelairrfFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.tabelairrfFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.tabelairrfFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          findFirst: {
+            args: Prisma.tabelairrfFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.tabelairrfFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          findMany: {
+            args: Prisma.tabelairrfFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>[]
+          }
+          create: {
+            args: Prisma.tabelairrfCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          createMany: {
+            args: Prisma.tabelairrfCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.tabelairrfDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          update: {
+            args: Prisma.tabelairrfUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          deleteMany: {
+            args: Prisma.tabelairrfDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.tabelairrfUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.tabelairrfUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$tabelairrfPayload>
+          }
+          aggregate: {
+            args: Prisma.TabelairrfAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTabelairrf>
+          }
+          groupBy: {
+            args: Prisma.tabelairrfGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TabelairrfGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.tabelairrfCountArgs<ExtArgs>
+            result: $Utils.Optional<TabelairrfCountAggregateOutputType> | number
+          }
+        }
+      }
+      faixairrf: {
+        payload: Prisma.$faixairrfPayload<ExtArgs>
+        fields: Prisma.faixairrfFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.faixairrfFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.faixairrfFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          findFirst: {
+            args: Prisma.faixairrfFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.faixairrfFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          findMany: {
+            args: Prisma.faixairrfFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>[]
+          }
+          create: {
+            args: Prisma.faixairrfCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          createMany: {
+            args: Prisma.faixairrfCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.faixairrfDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          update: {
+            args: Prisma.faixairrfUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          deleteMany: {
+            args: Prisma.faixairrfDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.faixairrfUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.faixairrfUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$faixairrfPayload>
+          }
+          aggregate: {
+            args: Prisma.FaixairrfAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFaixairrf>
+          }
+          groupBy: {
+            args: Prisma.faixairrfGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FaixairrfGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.faixairrfCountArgs<ExtArgs>
+            result: $Utils.Optional<FaixairrfCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1199,6 +1363,8 @@ export namespace Prisma {
     propriedadeimovel?: propriedadeimovelOmit
     contratolocacao?: contratolocacaoOmit
     despesa?: despesaOmit
+    tabelairrf?: tabelairrfOmit
+    faixairrf?: faixairrfOmit
   }
 
   /* Types for Logging */
@@ -1373,6 +1539,37 @@ export namespace Prisma {
    */
   export type ContratolocacaoCountOutputTypeCountDespesaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: despesaWhereInput
+  }
+
+
+  /**
+   * Count Type TabelairrfCountOutputType
+   */
+
+  export type TabelairrfCountOutputType = {
+    faixairrf: number
+  }
+
+  export type TabelairrfCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faixairrf?: boolean | TabelairrfCountOutputTypeCountFaixairrfArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TabelairrfCountOutputType without action
+   */
+  export type TabelairrfCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TabelairrfCountOutputType
+     */
+    select?: TabelairrfCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TabelairrfCountOutputType without action
+   */
+  export type TabelairrfCountOutputTypeCountFaixairrfArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: faixairrfWhereInput
   }
 
 
@@ -4457,6 +4654,7 @@ export namespace Prisma {
     idLocador: number | null
     idLocatario: number | null
     valorAluguel: Decimal | null
+    comissao: Decimal | null
   }
 
   export type ContratolocacaoSumAggregateOutputType = {
@@ -4465,6 +4663,7 @@ export namespace Prisma {
     idLocador: bigint | null
     idLocatario: bigint | null
     valorAluguel: Decimal | null
+    comissao: Decimal | null
   }
 
   export type ContratolocacaoMinAggregateOutputType = {
@@ -4478,6 +4677,7 @@ export namespace Prisma {
     valorAluguel: Decimal | null
     status: $Enums.status_contrato_enum | null
     contratoDigitalizado: Bytes | null
+    comissao: Decimal | null
   }
 
   export type ContratolocacaoMaxAggregateOutputType = {
@@ -4491,6 +4691,7 @@ export namespace Prisma {
     valorAluguel: Decimal | null
     status: $Enums.status_contrato_enum | null
     contratoDigitalizado: Bytes | null
+    comissao: Decimal | null
   }
 
   export type ContratolocacaoCountAggregateOutputType = {
@@ -4504,6 +4705,7 @@ export namespace Prisma {
     valorAluguel: number
     status: number
     contratoDigitalizado: number
+    comissao: number
     _all: number
   }
 
@@ -4514,6 +4716,7 @@ export namespace Prisma {
     idLocador?: true
     idLocatario?: true
     valorAluguel?: true
+    comissao?: true
   }
 
   export type ContratolocacaoSumAggregateInputType = {
@@ -4522,6 +4725,7 @@ export namespace Prisma {
     idLocador?: true
     idLocatario?: true
     valorAluguel?: true
+    comissao?: true
   }
 
   export type ContratolocacaoMinAggregateInputType = {
@@ -4535,6 +4739,7 @@ export namespace Prisma {
     valorAluguel?: true
     status?: true
     contratoDigitalizado?: true
+    comissao?: true
   }
 
   export type ContratolocacaoMaxAggregateInputType = {
@@ -4548,6 +4753,7 @@ export namespace Prisma {
     valorAluguel?: true
     status?: true
     contratoDigitalizado?: true
+    comissao?: true
   }
 
   export type ContratolocacaoCountAggregateInputType = {
@@ -4561,6 +4767,7 @@ export namespace Prisma {
     valorAluguel?: true
     status?: true
     contratoDigitalizado?: true
+    comissao?: true
     _all?: true
   }
 
@@ -4661,6 +4868,7 @@ export namespace Prisma {
     valorAluguel: Decimal
     status: $Enums.status_contrato_enum
     contratoDigitalizado: Bytes | null
+    comissao: Decimal
     _count: ContratolocacaoCountAggregateOutputType | null
     _avg: ContratolocacaoAvgAggregateOutputType | null
     _sum: ContratolocacaoSumAggregateOutputType | null
@@ -4693,6 +4901,7 @@ export namespace Prisma {
     valorAluguel?: boolean
     status?: boolean
     contratoDigitalizado?: boolean
+    comissao?: boolean
     imovel?: boolean | imovelDefaultArgs<ExtArgs>
     despesa?: boolean | contratolocacao$despesaArgs<ExtArgs>
     _count?: boolean | ContratolocacaoCountOutputTypeDefaultArgs<ExtArgs>
@@ -4711,9 +4920,10 @@ export namespace Prisma {
     valorAluguel?: boolean
     status?: boolean
     contratoDigitalizado?: boolean
+    comissao?: boolean
   }
 
-  export type contratolocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idImovel" | "idLocador" | "idLocatario" | "dataInicio" | "dataFim" | "dataReajuste" | "valorAluguel" | "status" | "contratoDigitalizado", ExtArgs["result"]["contratolocacao"]>
+  export type contratolocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idImovel" | "idLocador" | "idLocatario" | "dataInicio" | "dataFim" | "dataReajuste" | "valorAluguel" | "status" | "contratoDigitalizado" | "comissao", ExtArgs["result"]["contratolocacao"]>
   export type contratolocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imovel?: boolean | imovelDefaultArgs<ExtArgs>
     despesa?: boolean | contratolocacao$despesaArgs<ExtArgs>
@@ -4737,6 +4947,7 @@ export namespace Prisma {
       valorAluguel: Prisma.Decimal
       status: $Enums.status_contrato_enum
       contratoDigitalizado: Prisma.Bytes | null
+      comissao: Prisma.Decimal
     }, ExtArgs["result"]["contratolocacao"]>
     composites: {}
   }
@@ -5118,6 +5329,7 @@ export namespace Prisma {
     readonly valorAluguel: FieldRef<"contratolocacao", 'Decimal'>
     readonly status: FieldRef<"contratolocacao", 'status_contrato_enum'>
     readonly contratoDigitalizado: FieldRef<"contratolocacao", 'Bytes'>
+    readonly comissao: FieldRef<"contratolocacao", 'Decimal'>
   }
     
 
@@ -6529,6 +6741,2089 @@ export namespace Prisma {
 
 
   /**
+   * Model tabelairrf
+   */
+
+  export type AggregateTabelairrf = {
+    _count: TabelairrfCountAggregateOutputType | null
+    _avg: TabelairrfAvgAggregateOutputType | null
+    _sum: TabelairrfSumAggregateOutputType | null
+    _min: TabelairrfMinAggregateOutputType | null
+    _max: TabelairrfMaxAggregateOutputType | null
+  }
+
+  export type TabelairrfAvgAggregateOutputType = {
+    id: number | null
+    deducaoDependente: Decimal | null
+    redutorLimiteIsencao: Decimal | null
+    redutorLimiteSuperior: Decimal | null
+    redutorConstante: Decimal | null
+    redutorCoeficiente: Decimal | null
+  }
+
+  export type TabelairrfSumAggregateOutputType = {
+    id: number | null
+    deducaoDependente: Decimal | null
+    redutorLimiteIsencao: Decimal | null
+    redutorLimiteSuperior: Decimal | null
+    redutorConstante: Decimal | null
+    redutorCoeficiente: Decimal | null
+  }
+
+  export type TabelairrfMinAggregateOutputType = {
+    id: number | null
+    vigenciaInicio: Date | null
+    descricao: string | null
+    deducaoDependente: Decimal | null
+    redutorLimiteIsencao: Decimal | null
+    redutorLimiteSuperior: Decimal | null
+    redutorConstante: Decimal | null
+    redutorCoeficiente: Decimal | null
+    criadoEm: Date | null
+    atualizadoEm: Date | null
+  }
+
+  export type TabelairrfMaxAggregateOutputType = {
+    id: number | null
+    vigenciaInicio: Date | null
+    descricao: string | null
+    deducaoDependente: Decimal | null
+    redutorLimiteIsencao: Decimal | null
+    redutorLimiteSuperior: Decimal | null
+    redutorConstante: Decimal | null
+    redutorCoeficiente: Decimal | null
+    criadoEm: Date | null
+    atualizadoEm: Date | null
+  }
+
+  export type TabelairrfCountAggregateOutputType = {
+    id: number
+    vigenciaInicio: number
+    descricao: number
+    deducaoDependente: number
+    redutorLimiteIsencao: number
+    redutorLimiteSuperior: number
+    redutorConstante: number
+    redutorCoeficiente: number
+    criadoEm: number
+    atualizadoEm: number
+    _all: number
+  }
+
+
+  export type TabelairrfAvgAggregateInputType = {
+    id?: true
+    deducaoDependente?: true
+    redutorLimiteIsencao?: true
+    redutorLimiteSuperior?: true
+    redutorConstante?: true
+    redutorCoeficiente?: true
+  }
+
+  export type TabelairrfSumAggregateInputType = {
+    id?: true
+    deducaoDependente?: true
+    redutorLimiteIsencao?: true
+    redutorLimiteSuperior?: true
+    redutorConstante?: true
+    redutorCoeficiente?: true
+  }
+
+  export type TabelairrfMinAggregateInputType = {
+    id?: true
+    vigenciaInicio?: true
+    descricao?: true
+    deducaoDependente?: true
+    redutorLimiteIsencao?: true
+    redutorLimiteSuperior?: true
+    redutorConstante?: true
+    redutorCoeficiente?: true
+    criadoEm?: true
+    atualizadoEm?: true
+  }
+
+  export type TabelairrfMaxAggregateInputType = {
+    id?: true
+    vigenciaInicio?: true
+    descricao?: true
+    deducaoDependente?: true
+    redutorLimiteIsencao?: true
+    redutorLimiteSuperior?: true
+    redutorConstante?: true
+    redutorCoeficiente?: true
+    criadoEm?: true
+    atualizadoEm?: true
+  }
+
+  export type TabelairrfCountAggregateInputType = {
+    id?: true
+    vigenciaInicio?: true
+    descricao?: true
+    deducaoDependente?: true
+    redutorLimiteIsencao?: true
+    redutorLimiteSuperior?: true
+    redutorConstante?: true
+    redutorCoeficiente?: true
+    criadoEm?: true
+    atualizadoEm?: true
+    _all?: true
+  }
+
+  export type TabelairrfAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which tabelairrf to aggregate.
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tabelairrfs to fetch.
+     */
+    orderBy?: tabelairrfOrderByWithRelationInput | tabelairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: tabelairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tabelairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tabelairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned tabelairrfs
+    **/
+    _count?: true | TabelairrfCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TabelairrfAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TabelairrfSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TabelairrfMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TabelairrfMaxAggregateInputType
+  }
+
+  export type GetTabelairrfAggregateType<T extends TabelairrfAggregateArgs> = {
+        [P in keyof T & keyof AggregateTabelairrf]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTabelairrf[P]>
+      : GetScalarType<T[P], AggregateTabelairrf[P]>
+  }
+
+
+
+
+  export type tabelairrfGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: tabelairrfWhereInput
+    orderBy?: tabelairrfOrderByWithAggregationInput | tabelairrfOrderByWithAggregationInput[]
+    by: TabelairrfScalarFieldEnum[] | TabelairrfScalarFieldEnum
+    having?: tabelairrfScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TabelairrfCountAggregateInputType | true
+    _avg?: TabelairrfAvgAggregateInputType
+    _sum?: TabelairrfSumAggregateInputType
+    _min?: TabelairrfMinAggregateInputType
+    _max?: TabelairrfMaxAggregateInputType
+  }
+
+  export type TabelairrfGroupByOutputType = {
+    id: number
+    vigenciaInicio: Date
+    descricao: string | null
+    deducaoDependente: Decimal
+    redutorLimiteIsencao: Decimal | null
+    redutorLimiteSuperior: Decimal | null
+    redutorConstante: Decimal | null
+    redutorCoeficiente: Decimal | null
+    criadoEm: Date
+    atualizadoEm: Date
+    _count: TabelairrfCountAggregateOutputType | null
+    _avg: TabelairrfAvgAggregateOutputType | null
+    _sum: TabelairrfSumAggregateOutputType | null
+    _min: TabelairrfMinAggregateOutputType | null
+    _max: TabelairrfMaxAggregateOutputType | null
+  }
+
+  type GetTabelairrfGroupByPayload<T extends tabelairrfGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TabelairrfGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TabelairrfGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TabelairrfGroupByOutputType[P]>
+            : GetScalarType<T[P], TabelairrfGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type tabelairrfSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vigenciaInicio?: boolean
+    descricao?: boolean
+    deducaoDependente?: boolean
+    redutorLimiteIsencao?: boolean
+    redutorLimiteSuperior?: boolean
+    redutorConstante?: boolean
+    redutorCoeficiente?: boolean
+    criadoEm?: boolean
+    atualizadoEm?: boolean
+    faixairrf?: boolean | tabelairrf$faixairrfArgs<ExtArgs>
+    _count?: boolean | TabelairrfCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tabelairrf"]>
+
+
+
+  export type tabelairrfSelectScalar = {
+    id?: boolean
+    vigenciaInicio?: boolean
+    descricao?: boolean
+    deducaoDependente?: boolean
+    redutorLimiteIsencao?: boolean
+    redutorLimiteSuperior?: boolean
+    redutorConstante?: boolean
+    redutorCoeficiente?: boolean
+    criadoEm?: boolean
+    atualizadoEm?: boolean
+  }
+
+  export type tabelairrfOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vigenciaInicio" | "descricao" | "deducaoDependente" | "redutorLimiteIsencao" | "redutorLimiteSuperior" | "redutorConstante" | "redutorCoeficiente" | "criadoEm" | "atualizadoEm", ExtArgs["result"]["tabelairrf"]>
+  export type tabelairrfInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    faixairrf?: boolean | tabelairrf$faixairrfArgs<ExtArgs>
+    _count?: boolean | TabelairrfCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $tabelairrfPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "tabelairrf"
+    objects: {
+      faixairrf: Prisma.$faixairrfPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vigenciaInicio: Date
+      descricao: string | null
+      deducaoDependente: Prisma.Decimal
+      redutorLimiteIsencao: Prisma.Decimal | null
+      redutorLimiteSuperior: Prisma.Decimal | null
+      redutorConstante: Prisma.Decimal | null
+      redutorCoeficiente: Prisma.Decimal | null
+      criadoEm: Date
+      atualizadoEm: Date
+    }, ExtArgs["result"]["tabelairrf"]>
+    composites: {}
+  }
+
+  type tabelairrfGetPayload<S extends boolean | null | undefined | tabelairrfDefaultArgs> = $Result.GetResult<Prisma.$tabelairrfPayload, S>
+
+  type tabelairrfCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<tabelairrfFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TabelairrfCountAggregateInputType | true
+    }
+
+  export interface tabelairrfDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['tabelairrf'], meta: { name: 'tabelairrf' } }
+    /**
+     * Find zero or one Tabelairrf that matches the filter.
+     * @param {tabelairrfFindUniqueArgs} args - Arguments to find a Tabelairrf
+     * @example
+     * // Get one Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends tabelairrfFindUniqueArgs>(args: SelectSubset<T, tabelairrfFindUniqueArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Tabelairrf that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {tabelairrfFindUniqueOrThrowArgs} args - Arguments to find a Tabelairrf
+     * @example
+     * // Get one Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends tabelairrfFindUniqueOrThrowArgs>(args: SelectSubset<T, tabelairrfFindUniqueOrThrowArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tabelairrf that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfFindFirstArgs} args - Arguments to find a Tabelairrf
+     * @example
+     * // Get one Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends tabelairrfFindFirstArgs>(args?: SelectSubset<T, tabelairrfFindFirstArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Tabelairrf that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfFindFirstOrThrowArgs} args - Arguments to find a Tabelairrf
+     * @example
+     * // Get one Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends tabelairrfFindFirstOrThrowArgs>(args?: SelectSubset<T, tabelairrfFindFirstOrThrowArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Tabelairrfs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tabelairrfs
+     * const tabelairrfs = await prisma.tabelairrf.findMany()
+     * 
+     * // Get first 10 Tabelairrfs
+     * const tabelairrfs = await prisma.tabelairrf.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tabelairrfWithIdOnly = await prisma.tabelairrf.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends tabelairrfFindManyArgs>(args?: SelectSubset<T, tabelairrfFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Tabelairrf.
+     * @param {tabelairrfCreateArgs} args - Arguments to create a Tabelairrf.
+     * @example
+     * // Create one Tabelairrf
+     * const Tabelairrf = await prisma.tabelairrf.create({
+     *   data: {
+     *     // ... data to create a Tabelairrf
+     *   }
+     * })
+     * 
+     */
+    create<T extends tabelairrfCreateArgs>(args: SelectSubset<T, tabelairrfCreateArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Tabelairrfs.
+     * @param {tabelairrfCreateManyArgs} args - Arguments to create many Tabelairrfs.
+     * @example
+     * // Create many Tabelairrfs
+     * const tabelairrf = await prisma.tabelairrf.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends tabelairrfCreateManyArgs>(args?: SelectSubset<T, tabelairrfCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Tabelairrf.
+     * @param {tabelairrfDeleteArgs} args - Arguments to delete one Tabelairrf.
+     * @example
+     * // Delete one Tabelairrf
+     * const Tabelairrf = await prisma.tabelairrf.delete({
+     *   where: {
+     *     // ... filter to delete one Tabelairrf
+     *   }
+     * })
+     * 
+     */
+    delete<T extends tabelairrfDeleteArgs>(args: SelectSubset<T, tabelairrfDeleteArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Tabelairrf.
+     * @param {tabelairrfUpdateArgs} args - Arguments to update one Tabelairrf.
+     * @example
+     * // Update one Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends tabelairrfUpdateArgs>(args: SelectSubset<T, tabelairrfUpdateArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Tabelairrfs.
+     * @param {tabelairrfDeleteManyArgs} args - Arguments to filter Tabelairrfs to delete.
+     * @example
+     * // Delete a few Tabelairrfs
+     * const { count } = await prisma.tabelairrf.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends tabelairrfDeleteManyArgs>(args?: SelectSubset<T, tabelairrfDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tabelairrfs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tabelairrfs
+     * const tabelairrf = await prisma.tabelairrf.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends tabelairrfUpdateManyArgs>(args: SelectSubset<T, tabelairrfUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Tabelairrf.
+     * @param {tabelairrfUpsertArgs} args - Arguments to update or create a Tabelairrf.
+     * @example
+     * // Update or create a Tabelairrf
+     * const tabelairrf = await prisma.tabelairrf.upsert({
+     *   create: {
+     *     // ... data to create a Tabelairrf
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tabelairrf we want to update
+     *   }
+     * })
+     */
+    upsert<T extends tabelairrfUpsertArgs>(args: SelectSubset<T, tabelairrfUpsertArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Tabelairrfs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfCountArgs} args - Arguments to filter Tabelairrfs to count.
+     * @example
+     * // Count the number of Tabelairrfs
+     * const count = await prisma.tabelairrf.count({
+     *   where: {
+     *     // ... the filter for the Tabelairrfs we want to count
+     *   }
+     * })
+    **/
+    count<T extends tabelairrfCountArgs>(
+      args?: Subset<T, tabelairrfCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TabelairrfCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tabelairrf.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TabelairrfAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TabelairrfAggregateArgs>(args: Subset<T, TabelairrfAggregateArgs>): Prisma.PrismaPromise<GetTabelairrfAggregateType<T>>
+
+    /**
+     * Group by Tabelairrf.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {tabelairrfGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends tabelairrfGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: tabelairrfGroupByArgs['orderBy'] }
+        : { orderBy?: tabelairrfGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, tabelairrfGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTabelairrfGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the tabelairrf model
+   */
+  readonly fields: tabelairrfFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for tabelairrf.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__tabelairrfClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    faixairrf<T extends tabelairrf$faixairrfArgs<ExtArgs> = {}>(args?: Subset<T, tabelairrf$faixairrfArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the tabelairrf model
+   */
+  interface tabelairrfFieldRefs {
+    readonly id: FieldRef<"tabelairrf", 'Int'>
+    readonly vigenciaInicio: FieldRef<"tabelairrf", 'DateTime'>
+    readonly descricao: FieldRef<"tabelairrf", 'String'>
+    readonly deducaoDependente: FieldRef<"tabelairrf", 'Decimal'>
+    readonly redutorLimiteIsencao: FieldRef<"tabelairrf", 'Decimal'>
+    readonly redutorLimiteSuperior: FieldRef<"tabelairrf", 'Decimal'>
+    readonly redutorConstante: FieldRef<"tabelairrf", 'Decimal'>
+    readonly redutorCoeficiente: FieldRef<"tabelairrf", 'Decimal'>
+    readonly criadoEm: FieldRef<"tabelairrf", 'DateTime'>
+    readonly atualizadoEm: FieldRef<"tabelairrf", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * tabelairrf findUnique
+   */
+  export type tabelairrfFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which tabelairrf to fetch.
+     */
+    where: tabelairrfWhereUniqueInput
+  }
+
+  /**
+   * tabelairrf findUniqueOrThrow
+   */
+  export type tabelairrfFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which tabelairrf to fetch.
+     */
+    where: tabelairrfWhereUniqueInput
+  }
+
+  /**
+   * tabelairrf findFirst
+   */
+  export type tabelairrfFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which tabelairrf to fetch.
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tabelairrfs to fetch.
+     */
+    orderBy?: tabelairrfOrderByWithRelationInput | tabelairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for tabelairrfs.
+     */
+    cursor?: tabelairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tabelairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tabelairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of tabelairrfs.
+     */
+    distinct?: TabelairrfScalarFieldEnum | TabelairrfScalarFieldEnum[]
+  }
+
+  /**
+   * tabelairrf findFirstOrThrow
+   */
+  export type tabelairrfFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which tabelairrf to fetch.
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tabelairrfs to fetch.
+     */
+    orderBy?: tabelairrfOrderByWithRelationInput | tabelairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for tabelairrfs.
+     */
+    cursor?: tabelairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tabelairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tabelairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of tabelairrfs.
+     */
+    distinct?: TabelairrfScalarFieldEnum | TabelairrfScalarFieldEnum[]
+  }
+
+  /**
+   * tabelairrf findMany
+   */
+  export type tabelairrfFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which tabelairrfs to fetch.
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of tabelairrfs to fetch.
+     */
+    orderBy?: tabelairrfOrderByWithRelationInput | tabelairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing tabelairrfs.
+     */
+    cursor?: tabelairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` tabelairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` tabelairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of tabelairrfs.
+     */
+    distinct?: TabelairrfScalarFieldEnum | TabelairrfScalarFieldEnum[]
+  }
+
+  /**
+   * tabelairrf create
+   */
+  export type tabelairrfCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * The data needed to create a tabelairrf.
+     */
+    data: XOR<tabelairrfCreateInput, tabelairrfUncheckedCreateInput>
+  }
+
+  /**
+   * tabelairrf createMany
+   */
+  export type tabelairrfCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many tabelairrfs.
+     */
+    data: tabelairrfCreateManyInput | tabelairrfCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * tabelairrf update
+   */
+  export type tabelairrfUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * The data needed to update a tabelairrf.
+     */
+    data: XOR<tabelairrfUpdateInput, tabelairrfUncheckedUpdateInput>
+    /**
+     * Choose, which tabelairrf to update.
+     */
+    where: tabelairrfWhereUniqueInput
+  }
+
+  /**
+   * tabelairrf updateMany
+   */
+  export type tabelairrfUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update tabelairrfs.
+     */
+    data: XOR<tabelairrfUpdateManyMutationInput, tabelairrfUncheckedUpdateManyInput>
+    /**
+     * Filter which tabelairrfs to update
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * Limit how many tabelairrfs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * tabelairrf upsert
+   */
+  export type tabelairrfUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * The filter to search for the tabelairrf to update in case it exists.
+     */
+    where: tabelairrfWhereUniqueInput
+    /**
+     * In case the tabelairrf found by the `where` argument doesn't exist, create a new tabelairrf with this data.
+     */
+    create: XOR<tabelairrfCreateInput, tabelairrfUncheckedCreateInput>
+    /**
+     * In case the tabelairrf was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<tabelairrfUpdateInput, tabelairrfUncheckedUpdateInput>
+  }
+
+  /**
+   * tabelairrf delete
+   */
+  export type tabelairrfDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+    /**
+     * Filter which tabelairrf to delete.
+     */
+    where: tabelairrfWhereUniqueInput
+  }
+
+  /**
+   * tabelairrf deleteMany
+   */
+  export type tabelairrfDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which tabelairrfs to delete
+     */
+    where?: tabelairrfWhereInput
+    /**
+     * Limit how many tabelairrfs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * tabelairrf.faixairrf
+   */
+  export type tabelairrf$faixairrfArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    where?: faixairrfWhereInput
+    orderBy?: faixairrfOrderByWithRelationInput | faixairrfOrderByWithRelationInput[]
+    cursor?: faixairrfWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FaixairrfScalarFieldEnum | FaixairrfScalarFieldEnum[]
+  }
+
+  /**
+   * tabelairrf without action
+   */
+  export type tabelairrfDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tabelairrf
+     */
+    select?: tabelairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tabelairrf
+     */
+    omit?: tabelairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tabelairrfInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model faixairrf
+   */
+
+  export type AggregateFaixairrf = {
+    _count: FaixairrfCountAggregateOutputType | null
+    _avg: FaixairrfAvgAggregateOutputType | null
+    _sum: FaixairrfSumAggregateOutputType | null
+    _min: FaixairrfMinAggregateOutputType | null
+    _max: FaixairrfMaxAggregateOutputType | null
+  }
+
+  export type FaixairrfAvgAggregateOutputType = {
+    id: number | null
+    idTabela: number | null
+    ordem: number | null
+    valorDe: Decimal | null
+    valorAte: Decimal | null
+    aliquota: Decimal | null
+    parcelaADeduzir: Decimal | null
+  }
+
+  export type FaixairrfSumAggregateOutputType = {
+    id: number | null
+    idTabela: number | null
+    ordem: number | null
+    valorDe: Decimal | null
+    valorAte: Decimal | null
+    aliquota: Decimal | null
+    parcelaADeduzir: Decimal | null
+  }
+
+  export type FaixairrfMinAggregateOutputType = {
+    id: number | null
+    idTabela: number | null
+    ordem: number | null
+    valorDe: Decimal | null
+    valorAte: Decimal | null
+    aliquota: Decimal | null
+    parcelaADeduzir: Decimal | null
+  }
+
+  export type FaixairrfMaxAggregateOutputType = {
+    id: number | null
+    idTabela: number | null
+    ordem: number | null
+    valorDe: Decimal | null
+    valorAte: Decimal | null
+    aliquota: Decimal | null
+    parcelaADeduzir: Decimal | null
+  }
+
+  export type FaixairrfCountAggregateOutputType = {
+    id: number
+    idTabela: number
+    ordem: number
+    valorDe: number
+    valorAte: number
+    aliquota: number
+    parcelaADeduzir: number
+    _all: number
+  }
+
+
+  export type FaixairrfAvgAggregateInputType = {
+    id?: true
+    idTabela?: true
+    ordem?: true
+    valorDe?: true
+    valorAte?: true
+    aliquota?: true
+    parcelaADeduzir?: true
+  }
+
+  export type FaixairrfSumAggregateInputType = {
+    id?: true
+    idTabela?: true
+    ordem?: true
+    valorDe?: true
+    valorAte?: true
+    aliquota?: true
+    parcelaADeduzir?: true
+  }
+
+  export type FaixairrfMinAggregateInputType = {
+    id?: true
+    idTabela?: true
+    ordem?: true
+    valorDe?: true
+    valorAte?: true
+    aliquota?: true
+    parcelaADeduzir?: true
+  }
+
+  export type FaixairrfMaxAggregateInputType = {
+    id?: true
+    idTabela?: true
+    ordem?: true
+    valorDe?: true
+    valorAte?: true
+    aliquota?: true
+    parcelaADeduzir?: true
+  }
+
+  export type FaixairrfCountAggregateInputType = {
+    id?: true
+    idTabela?: true
+    ordem?: true
+    valorDe?: true
+    valorAte?: true
+    aliquota?: true
+    parcelaADeduzir?: true
+    _all?: true
+  }
+
+  export type FaixairrfAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which faixairrf to aggregate.
+     */
+    where?: faixairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of faixairrfs to fetch.
+     */
+    orderBy?: faixairrfOrderByWithRelationInput | faixairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: faixairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` faixairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` faixairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned faixairrfs
+    **/
+    _count?: true | FaixairrfCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FaixairrfAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FaixairrfSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FaixairrfMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FaixairrfMaxAggregateInputType
+  }
+
+  export type GetFaixairrfAggregateType<T extends FaixairrfAggregateArgs> = {
+        [P in keyof T & keyof AggregateFaixairrf]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFaixairrf[P]>
+      : GetScalarType<T[P], AggregateFaixairrf[P]>
+  }
+
+
+
+
+  export type faixairrfGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: faixairrfWhereInput
+    orderBy?: faixairrfOrderByWithAggregationInput | faixairrfOrderByWithAggregationInput[]
+    by: FaixairrfScalarFieldEnum[] | FaixairrfScalarFieldEnum
+    having?: faixairrfScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FaixairrfCountAggregateInputType | true
+    _avg?: FaixairrfAvgAggregateInputType
+    _sum?: FaixairrfSumAggregateInputType
+    _min?: FaixairrfMinAggregateInputType
+    _max?: FaixairrfMaxAggregateInputType
+  }
+
+  export type FaixairrfGroupByOutputType = {
+    id: number
+    idTabela: number
+    ordem: number
+    valorDe: Decimal
+    valorAte: Decimal | null
+    aliquota: Decimal
+    parcelaADeduzir: Decimal
+    _count: FaixairrfCountAggregateOutputType | null
+    _avg: FaixairrfAvgAggregateOutputType | null
+    _sum: FaixairrfSumAggregateOutputType | null
+    _min: FaixairrfMinAggregateOutputType | null
+    _max: FaixairrfMaxAggregateOutputType | null
+  }
+
+  type GetFaixairrfGroupByPayload<T extends faixairrfGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FaixairrfGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FaixairrfGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FaixairrfGroupByOutputType[P]>
+            : GetScalarType<T[P], FaixairrfGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type faixairrfSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idTabela?: boolean
+    ordem?: boolean
+    valorDe?: boolean
+    valorAte?: boolean
+    aliquota?: boolean
+    parcelaADeduzir?: boolean
+    tabelairrf?: boolean | tabelairrfDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["faixairrf"]>
+
+
+
+  export type faixairrfSelectScalar = {
+    id?: boolean
+    idTabela?: boolean
+    ordem?: boolean
+    valorDe?: boolean
+    valorAte?: boolean
+    aliquota?: boolean
+    parcelaADeduzir?: boolean
+  }
+
+  export type faixairrfOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idTabela" | "ordem" | "valorDe" | "valorAte" | "aliquota" | "parcelaADeduzir", ExtArgs["result"]["faixairrf"]>
+  export type faixairrfInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tabelairrf?: boolean | tabelairrfDefaultArgs<ExtArgs>
+  }
+
+  export type $faixairrfPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "faixairrf"
+    objects: {
+      tabelairrf: Prisma.$tabelairrfPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      idTabela: number
+      ordem: number
+      valorDe: Prisma.Decimal
+      valorAte: Prisma.Decimal | null
+      aliquota: Prisma.Decimal
+      parcelaADeduzir: Prisma.Decimal
+    }, ExtArgs["result"]["faixairrf"]>
+    composites: {}
+  }
+
+  type faixairrfGetPayload<S extends boolean | null | undefined | faixairrfDefaultArgs> = $Result.GetResult<Prisma.$faixairrfPayload, S>
+
+  type faixairrfCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<faixairrfFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FaixairrfCountAggregateInputType | true
+    }
+
+  export interface faixairrfDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['faixairrf'], meta: { name: 'faixairrf' } }
+    /**
+     * Find zero or one Faixairrf that matches the filter.
+     * @param {faixairrfFindUniqueArgs} args - Arguments to find a Faixairrf
+     * @example
+     * // Get one Faixairrf
+     * const faixairrf = await prisma.faixairrf.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends faixairrfFindUniqueArgs>(args: SelectSubset<T, faixairrfFindUniqueArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Faixairrf that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {faixairrfFindUniqueOrThrowArgs} args - Arguments to find a Faixairrf
+     * @example
+     * // Get one Faixairrf
+     * const faixairrf = await prisma.faixairrf.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends faixairrfFindUniqueOrThrowArgs>(args: SelectSubset<T, faixairrfFindUniqueOrThrowArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Faixairrf that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfFindFirstArgs} args - Arguments to find a Faixairrf
+     * @example
+     * // Get one Faixairrf
+     * const faixairrf = await prisma.faixairrf.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends faixairrfFindFirstArgs>(args?: SelectSubset<T, faixairrfFindFirstArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Faixairrf that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfFindFirstOrThrowArgs} args - Arguments to find a Faixairrf
+     * @example
+     * // Get one Faixairrf
+     * const faixairrf = await prisma.faixairrf.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends faixairrfFindFirstOrThrowArgs>(args?: SelectSubset<T, faixairrfFindFirstOrThrowArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Faixairrfs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Faixairrfs
+     * const faixairrfs = await prisma.faixairrf.findMany()
+     * 
+     * // Get first 10 Faixairrfs
+     * const faixairrfs = await prisma.faixairrf.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const faixairrfWithIdOnly = await prisma.faixairrf.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends faixairrfFindManyArgs>(args?: SelectSubset<T, faixairrfFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Faixairrf.
+     * @param {faixairrfCreateArgs} args - Arguments to create a Faixairrf.
+     * @example
+     * // Create one Faixairrf
+     * const Faixairrf = await prisma.faixairrf.create({
+     *   data: {
+     *     // ... data to create a Faixairrf
+     *   }
+     * })
+     * 
+     */
+    create<T extends faixairrfCreateArgs>(args: SelectSubset<T, faixairrfCreateArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Faixairrfs.
+     * @param {faixairrfCreateManyArgs} args - Arguments to create many Faixairrfs.
+     * @example
+     * // Create many Faixairrfs
+     * const faixairrf = await prisma.faixairrf.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends faixairrfCreateManyArgs>(args?: SelectSubset<T, faixairrfCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Faixairrf.
+     * @param {faixairrfDeleteArgs} args - Arguments to delete one Faixairrf.
+     * @example
+     * // Delete one Faixairrf
+     * const Faixairrf = await prisma.faixairrf.delete({
+     *   where: {
+     *     // ... filter to delete one Faixairrf
+     *   }
+     * })
+     * 
+     */
+    delete<T extends faixairrfDeleteArgs>(args: SelectSubset<T, faixairrfDeleteArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Faixairrf.
+     * @param {faixairrfUpdateArgs} args - Arguments to update one Faixairrf.
+     * @example
+     * // Update one Faixairrf
+     * const faixairrf = await prisma.faixairrf.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends faixairrfUpdateArgs>(args: SelectSubset<T, faixairrfUpdateArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Faixairrfs.
+     * @param {faixairrfDeleteManyArgs} args - Arguments to filter Faixairrfs to delete.
+     * @example
+     * // Delete a few Faixairrfs
+     * const { count } = await prisma.faixairrf.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends faixairrfDeleteManyArgs>(args?: SelectSubset<T, faixairrfDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Faixairrfs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Faixairrfs
+     * const faixairrf = await prisma.faixairrf.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends faixairrfUpdateManyArgs>(args: SelectSubset<T, faixairrfUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Faixairrf.
+     * @param {faixairrfUpsertArgs} args - Arguments to update or create a Faixairrf.
+     * @example
+     * // Update or create a Faixairrf
+     * const faixairrf = await prisma.faixairrf.upsert({
+     *   create: {
+     *     // ... data to create a Faixairrf
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Faixairrf we want to update
+     *   }
+     * })
+     */
+    upsert<T extends faixairrfUpsertArgs>(args: SelectSubset<T, faixairrfUpsertArgs<ExtArgs>>): Prisma__faixairrfClient<$Result.GetResult<Prisma.$faixairrfPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Faixairrfs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfCountArgs} args - Arguments to filter Faixairrfs to count.
+     * @example
+     * // Count the number of Faixairrfs
+     * const count = await prisma.faixairrf.count({
+     *   where: {
+     *     // ... the filter for the Faixairrfs we want to count
+     *   }
+     * })
+    **/
+    count<T extends faixairrfCountArgs>(
+      args?: Subset<T, faixairrfCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FaixairrfCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Faixairrf.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FaixairrfAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FaixairrfAggregateArgs>(args: Subset<T, FaixairrfAggregateArgs>): Prisma.PrismaPromise<GetFaixairrfAggregateType<T>>
+
+    /**
+     * Group by Faixairrf.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {faixairrfGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends faixairrfGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: faixairrfGroupByArgs['orderBy'] }
+        : { orderBy?: faixairrfGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, faixairrfGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFaixairrfGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the faixairrf model
+   */
+  readonly fields: faixairrfFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for faixairrf.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__faixairrfClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tabelairrf<T extends tabelairrfDefaultArgs<ExtArgs> = {}>(args?: Subset<T, tabelairrfDefaultArgs<ExtArgs>>): Prisma__tabelairrfClient<$Result.GetResult<Prisma.$tabelairrfPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the faixairrf model
+   */
+  interface faixairrfFieldRefs {
+    readonly id: FieldRef<"faixairrf", 'Int'>
+    readonly idTabela: FieldRef<"faixairrf", 'Int'>
+    readonly ordem: FieldRef<"faixairrf", 'Int'>
+    readonly valorDe: FieldRef<"faixairrf", 'Decimal'>
+    readonly valorAte: FieldRef<"faixairrf", 'Decimal'>
+    readonly aliquota: FieldRef<"faixairrf", 'Decimal'>
+    readonly parcelaADeduzir: FieldRef<"faixairrf", 'Decimal'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * faixairrf findUnique
+   */
+  export type faixairrfFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which faixairrf to fetch.
+     */
+    where: faixairrfWhereUniqueInput
+  }
+
+  /**
+   * faixairrf findUniqueOrThrow
+   */
+  export type faixairrfFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which faixairrf to fetch.
+     */
+    where: faixairrfWhereUniqueInput
+  }
+
+  /**
+   * faixairrf findFirst
+   */
+  export type faixairrfFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which faixairrf to fetch.
+     */
+    where?: faixairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of faixairrfs to fetch.
+     */
+    orderBy?: faixairrfOrderByWithRelationInput | faixairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for faixairrfs.
+     */
+    cursor?: faixairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` faixairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` faixairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of faixairrfs.
+     */
+    distinct?: FaixairrfScalarFieldEnum | FaixairrfScalarFieldEnum[]
+  }
+
+  /**
+   * faixairrf findFirstOrThrow
+   */
+  export type faixairrfFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which faixairrf to fetch.
+     */
+    where?: faixairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of faixairrfs to fetch.
+     */
+    orderBy?: faixairrfOrderByWithRelationInput | faixairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for faixairrfs.
+     */
+    cursor?: faixairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` faixairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` faixairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of faixairrfs.
+     */
+    distinct?: FaixairrfScalarFieldEnum | FaixairrfScalarFieldEnum[]
+  }
+
+  /**
+   * faixairrf findMany
+   */
+  export type faixairrfFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter, which faixairrfs to fetch.
+     */
+    where?: faixairrfWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of faixairrfs to fetch.
+     */
+    orderBy?: faixairrfOrderByWithRelationInput | faixairrfOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing faixairrfs.
+     */
+    cursor?: faixairrfWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` faixairrfs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` faixairrfs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of faixairrfs.
+     */
+    distinct?: FaixairrfScalarFieldEnum | FaixairrfScalarFieldEnum[]
+  }
+
+  /**
+   * faixairrf create
+   */
+  export type faixairrfCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * The data needed to create a faixairrf.
+     */
+    data: XOR<faixairrfCreateInput, faixairrfUncheckedCreateInput>
+  }
+
+  /**
+   * faixairrf createMany
+   */
+  export type faixairrfCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many faixairrfs.
+     */
+    data: faixairrfCreateManyInput | faixairrfCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * faixairrf update
+   */
+  export type faixairrfUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * The data needed to update a faixairrf.
+     */
+    data: XOR<faixairrfUpdateInput, faixairrfUncheckedUpdateInput>
+    /**
+     * Choose, which faixairrf to update.
+     */
+    where: faixairrfWhereUniqueInput
+  }
+
+  /**
+   * faixairrf updateMany
+   */
+  export type faixairrfUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update faixairrfs.
+     */
+    data: XOR<faixairrfUpdateManyMutationInput, faixairrfUncheckedUpdateManyInput>
+    /**
+     * Filter which faixairrfs to update
+     */
+    where?: faixairrfWhereInput
+    /**
+     * Limit how many faixairrfs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * faixairrf upsert
+   */
+  export type faixairrfUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * The filter to search for the faixairrf to update in case it exists.
+     */
+    where: faixairrfWhereUniqueInput
+    /**
+     * In case the faixairrf found by the `where` argument doesn't exist, create a new faixairrf with this data.
+     */
+    create: XOR<faixairrfCreateInput, faixairrfUncheckedCreateInput>
+    /**
+     * In case the faixairrf was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<faixairrfUpdateInput, faixairrfUncheckedUpdateInput>
+  }
+
+  /**
+   * faixairrf delete
+   */
+  export type faixairrfDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+    /**
+     * Filter which faixairrf to delete.
+     */
+    where: faixairrfWhereUniqueInput
+  }
+
+  /**
+   * faixairrf deleteMany
+   */
+  export type faixairrfDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which faixairrfs to delete
+     */
+    where?: faixairrfWhereInput
+    /**
+     * Limit how many faixairrfs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * faixairrf without action
+   */
+  export type faixairrfDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the faixairrf
+     */
+    select?: faixairrfSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the faixairrf
+     */
+    omit?: faixairrfOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: faixairrfInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6590,7 +8885,8 @@ export namespace Prisma {
     dataReajuste: 'dataReajuste',
     valorAluguel: 'valorAluguel',
     status: 'status',
-    contratoDigitalizado: 'contratoDigitalizado'
+    contratoDigitalizado: 'contratoDigitalizado',
+    comissao: 'comissao'
   };
 
   export type ContratolocacaoScalarFieldEnum = (typeof ContratolocacaoScalarFieldEnum)[keyof typeof ContratolocacaoScalarFieldEnum]
@@ -6609,6 +8905,35 @@ export namespace Prisma {
   };
 
   export type DespesaScalarFieldEnum = (typeof DespesaScalarFieldEnum)[keyof typeof DespesaScalarFieldEnum]
+
+
+  export const TabelairrfScalarFieldEnum: {
+    id: 'id',
+    vigenciaInicio: 'vigenciaInicio',
+    descricao: 'descricao',
+    deducaoDependente: 'deducaoDependente',
+    redutorLimiteIsencao: 'redutorLimiteIsencao',
+    redutorLimiteSuperior: 'redutorLimiteSuperior',
+    redutorConstante: 'redutorConstante',
+    redutorCoeficiente: 'redutorCoeficiente',
+    criadoEm: 'criadoEm',
+    atualizadoEm: 'atualizadoEm'
+  };
+
+  export type TabelairrfScalarFieldEnum = (typeof TabelairrfScalarFieldEnum)[keyof typeof TabelairrfScalarFieldEnum]
+
+
+  export const FaixairrfScalarFieldEnum: {
+    id: 'id',
+    idTabela: 'idTabela',
+    ordem: 'ordem',
+    valorDe: 'valorDe',
+    valorAte: 'valorAte',
+    aliquota: 'aliquota',
+    parcelaADeduzir: 'parcelaADeduzir'
+  };
+
+  export type FaixairrfScalarFieldEnum = (typeof FaixairrfScalarFieldEnum)[keyof typeof FaixairrfScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6653,6 +8978,13 @@ export namespace Prisma {
   };
 
   export type despesaOrderByRelevanceFieldEnum = (typeof despesaOrderByRelevanceFieldEnum)[keyof typeof despesaOrderByRelevanceFieldEnum]
+
+
+  export const tabelairrfOrderByRelevanceFieldEnum: {
+    descricao: 'descricao'
+  };
+
+  export type tabelairrfOrderByRelevanceFieldEnum = (typeof tabelairrfOrderByRelevanceFieldEnum)[keyof typeof tabelairrfOrderByRelevanceFieldEnum]
 
 
   /**
@@ -6972,6 +9304,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFilter<"contratolocacao"> | $Enums.status_contrato_enum
     contratoDigitalizado?: BytesNullableFilter<"contratolocacao"> | Bytes | null
+    comissao?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
     despesa?: DespesaListRelationFilter
   }
@@ -6987,6 +9320,7 @@ export namespace Prisma {
     valorAluguel?: SortOrder
     status?: SortOrder
     contratoDigitalizado?: SortOrderInput | SortOrder
+    comissao?: SortOrder
     imovel?: imovelOrderByWithRelationInput
     despesa?: despesaOrderByRelationAggregateInput
   }
@@ -7005,6 +9339,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFilter<"contratolocacao"> | $Enums.status_contrato_enum
     contratoDigitalizado?: BytesNullableFilter<"contratolocacao"> | Bytes | null
+    comissao?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
     despesa?: DespesaListRelationFilter
   }, "id">
@@ -7020,6 +9355,7 @@ export namespace Prisma {
     valorAluguel?: SortOrder
     status?: SortOrder
     contratoDigitalizado?: SortOrderInput | SortOrder
+    comissao?: SortOrder
     _count?: contratolocacaoCountOrderByAggregateInput
     _avg?: contratolocacaoAvgOrderByAggregateInput
     _max?: contratolocacaoMaxOrderByAggregateInput
@@ -7041,6 +9377,7 @@ export namespace Prisma {
     valorAluguel?: DecimalWithAggregatesFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumWithAggregatesFilter<"contratolocacao"> | $Enums.status_contrato_enum
     contratoDigitalizado?: BytesNullableWithAggregatesFilter<"contratolocacao"> | Bytes | null
+    comissao?: DecimalWithAggregatesFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
   }
 
   export type despesaWhereInput = {
@@ -7119,6 +9456,157 @@ export namespace Prisma {
     dataPagamento?: DateTimeNullableWithAggregatesFilter<"despesa"> | Date | string | null
     status?: Enumstatus_despesa_enumWithAggregatesFilter<"despesa"> | $Enums.status_despesa_enum
     comprovantePagamento?: BytesNullableWithAggregatesFilter<"despesa"> | Bytes | null
+  }
+
+  export type tabelairrfWhereInput = {
+    AND?: tabelairrfWhereInput | tabelairrfWhereInput[]
+    OR?: tabelairrfWhereInput[]
+    NOT?: tabelairrfWhereInput | tabelairrfWhereInput[]
+    id?: IntFilter<"tabelairrf"> | number
+    vigenciaInicio?: DateTimeFilter<"tabelairrf"> | Date | string
+    descricao?: StringNullableFilter<"tabelairrf"> | string | null
+    deducaoDependente?: DecimalFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFilter<"tabelairrf"> | Date | string
+    atualizadoEm?: DateTimeFilter<"tabelairrf"> | Date | string
+    faixairrf?: FaixairrfListRelationFilter
+  }
+
+  export type tabelairrfOrderByWithRelationInput = {
+    id?: SortOrder
+    vigenciaInicio?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrderInput | SortOrder
+    redutorLimiteSuperior?: SortOrderInput | SortOrder
+    redutorConstante?: SortOrderInput | SortOrder
+    redutorCoeficiente?: SortOrderInput | SortOrder
+    criadoEm?: SortOrder
+    atualizadoEm?: SortOrder
+    faixairrf?: faixairrfOrderByRelationAggregateInput
+    _relevance?: tabelairrfOrderByRelevanceInput
+  }
+
+  export type tabelairrfWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    vigenciaInicio?: Date | string
+    AND?: tabelairrfWhereInput | tabelairrfWhereInput[]
+    OR?: tabelairrfWhereInput[]
+    NOT?: tabelairrfWhereInput | tabelairrfWhereInput[]
+    descricao?: StringNullableFilter<"tabelairrf"> | string | null
+    deducaoDependente?: DecimalFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: DecimalNullableFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFilter<"tabelairrf"> | Date | string
+    atualizadoEm?: DateTimeFilter<"tabelairrf"> | Date | string
+    faixairrf?: FaixairrfListRelationFilter
+  }, "id" | "vigenciaInicio">
+
+  export type tabelairrfOrderByWithAggregationInput = {
+    id?: SortOrder
+    vigenciaInicio?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrderInput | SortOrder
+    redutorLimiteSuperior?: SortOrderInput | SortOrder
+    redutorConstante?: SortOrderInput | SortOrder
+    redutorCoeficiente?: SortOrderInput | SortOrder
+    criadoEm?: SortOrder
+    atualizadoEm?: SortOrder
+    _count?: tabelairrfCountOrderByAggregateInput
+    _avg?: tabelairrfAvgOrderByAggregateInput
+    _max?: tabelairrfMaxOrderByAggregateInput
+    _min?: tabelairrfMinOrderByAggregateInput
+    _sum?: tabelairrfSumOrderByAggregateInput
+  }
+
+  export type tabelairrfScalarWhereWithAggregatesInput = {
+    AND?: tabelairrfScalarWhereWithAggregatesInput | tabelairrfScalarWhereWithAggregatesInput[]
+    OR?: tabelairrfScalarWhereWithAggregatesInput[]
+    NOT?: tabelairrfScalarWhereWithAggregatesInput | tabelairrfScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"tabelairrf"> | number
+    vigenciaInicio?: DateTimeWithAggregatesFilter<"tabelairrf"> | Date | string
+    descricao?: StringNullableWithAggregatesFilter<"tabelairrf"> | string | null
+    deducaoDependente?: DecimalWithAggregatesFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: DecimalNullableWithAggregatesFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: DecimalNullableWithAggregatesFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: DecimalNullableWithAggregatesFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: DecimalNullableWithAggregatesFilter<"tabelairrf"> | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeWithAggregatesFilter<"tabelairrf"> | Date | string
+    atualizadoEm?: DateTimeWithAggregatesFilter<"tabelairrf"> | Date | string
+  }
+
+  export type faixairrfWhereInput = {
+    AND?: faixairrfWhereInput | faixairrfWhereInput[]
+    OR?: faixairrfWhereInput[]
+    NOT?: faixairrfWhereInput | faixairrfWhereInput[]
+    id?: IntFilter<"faixairrf"> | number
+    idTabela?: IntFilter<"faixairrf"> | number
+    ordem?: IntFilter<"faixairrf"> | number
+    valorDe?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    valorAte?: DecimalNullableFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    tabelairrf?: XOR<TabelairrfScalarRelationFilter, tabelairrfWhereInput>
+  }
+
+  export type faixairrfOrderByWithRelationInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrderInput | SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+    tabelairrf?: tabelairrfOrderByWithRelationInput
+  }
+
+  export type faixairrfWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    idTabela_ordem?: faixairrfIdTabelaOrdemCompoundUniqueInput
+    AND?: faixairrfWhereInput | faixairrfWhereInput[]
+    OR?: faixairrfWhereInput[]
+    NOT?: faixairrfWhereInput | faixairrfWhereInput[]
+    idTabela?: IntFilter<"faixairrf"> | number
+    ordem?: IntFilter<"faixairrf"> | number
+    valorDe?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    valorAte?: DecimalNullableFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    tabelairrf?: XOR<TabelairrfScalarRelationFilter, tabelairrfWhereInput>
+  }, "id" | "idTabela_ordem">
+
+  export type faixairrfOrderByWithAggregationInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrderInput | SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+    _count?: faixairrfCountOrderByAggregateInput
+    _avg?: faixairrfAvgOrderByAggregateInput
+    _max?: faixairrfMaxOrderByAggregateInput
+    _min?: faixairrfMinOrderByAggregateInput
+    _sum?: faixairrfSumOrderByAggregateInput
+  }
+
+  export type faixairrfScalarWhereWithAggregatesInput = {
+    AND?: faixairrfScalarWhereWithAggregatesInput | faixairrfScalarWhereWithAggregatesInput[]
+    OR?: faixairrfScalarWhereWithAggregatesInput[]
+    NOT?: faixairrfScalarWhereWithAggregatesInput | faixairrfScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"faixairrf"> | number
+    idTabela?: IntWithAggregatesFilter<"faixairrf"> | number
+    ordem?: IntWithAggregatesFilter<"faixairrf"> | number
+    valorDe?: DecimalWithAggregatesFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    valorAte?: DecimalNullableWithAggregatesFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalWithAggregatesFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalWithAggregatesFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
   }
 
   export type enderecoCreateInput = {
@@ -7335,6 +9823,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
     imovel: imovelCreateNestedOneWithoutContratolocacaoInput
     despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
   }
@@ -7350,6 +9839,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
   }
 
@@ -7363,6 +9853,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
     despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
   }
@@ -7378,6 +9869,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
   }
 
@@ -7392,6 +9884,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
   }
 
   export type contratolocacaoUpdateManyMutationInput = {
@@ -7404,6 +9897,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type contratolocacaoUncheckedUpdateManyInput = {
@@ -7417,6 +9911,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type despesaCreateInput = {
@@ -7500,6 +9995,164 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+  }
+
+  export type tabelairrfCreateInput = {
+    vigenciaInicio: Date | string
+    descricao?: string | null
+    deducaoDependente: Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: Decimal | DecimalJsLike | number | string | null
+    criadoEm?: Date | string
+    atualizadoEm?: Date | string
+    faixairrf?: faixairrfCreateNestedManyWithoutTabelairrfInput
+  }
+
+  export type tabelairrfUncheckedCreateInput = {
+    id?: number
+    vigenciaInicio: Date | string
+    descricao?: string | null
+    deducaoDependente: Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: Decimal | DecimalJsLike | number | string | null
+    criadoEm?: Date | string
+    atualizadoEm?: Date | string
+    faixairrf?: faixairrfUncheckedCreateNestedManyWithoutTabelairrfInput
+  }
+
+  export type tabelairrfUpdateInput = {
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixairrf?: faixairrfUpdateManyWithoutTabelairrfNestedInput
+  }
+
+  export type tabelairrfUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    faixairrf?: faixairrfUncheckedUpdateManyWithoutTabelairrfNestedInput
+  }
+
+  export type tabelairrfCreateManyInput = {
+    id?: number
+    vigenciaInicio: Date | string
+    descricao?: string | null
+    deducaoDependente: Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: Decimal | DecimalJsLike | number | string | null
+    criadoEm?: Date | string
+    atualizadoEm?: Date | string
+  }
+
+  export type tabelairrfUpdateManyMutationInput = {
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type tabelairrfUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type faixairrfCreateInput = {
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+    tabelairrf: tabelairrfCreateNestedOneWithoutFaixairrfInput
+  }
+
+  export type faixairrfUncheckedCreateInput = {
+    id?: number
+    idTabela: number
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUpdateInput = {
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tabelairrf?: tabelairrfUpdateOneRequiredWithoutFaixairrfNestedInput
+  }
+
+  export type faixairrfUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idTabela?: IntFieldUpdateOperationsInput | number
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfCreateManyInput = {
+    id?: number
+    idTabela: number
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUpdateManyMutationInput = {
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idTabela?: IntFieldUpdateOperationsInput | number
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7947,6 +10600,7 @@ export namespace Prisma {
     valorAluguel?: SortOrder
     status?: SortOrder
     contratoDigitalizado?: SortOrder
+    comissao?: SortOrder
   }
 
   export type contratolocacaoAvgOrderByAggregateInput = {
@@ -7955,6 +10609,7 @@ export namespace Prisma {
     idLocador?: SortOrder
     idLocatario?: SortOrder
     valorAluguel?: SortOrder
+    comissao?: SortOrder
   }
 
   export type contratolocacaoMaxOrderByAggregateInput = {
@@ -7968,6 +10623,7 @@ export namespace Prisma {
     valorAluguel?: SortOrder
     status?: SortOrder
     contratoDigitalizado?: SortOrder
+    comissao?: SortOrder
   }
 
   export type contratolocacaoMinOrderByAggregateInput = {
@@ -7981,6 +10637,7 @@ export namespace Prisma {
     valorAluguel?: SortOrder
     status?: SortOrder
     contratoDigitalizado?: SortOrder
+    comissao?: SortOrder
   }
 
   export type contratolocacaoSumOrderByAggregateInput = {
@@ -7989,6 +10646,7 @@ export namespace Prisma {
     idLocador?: SortOrder
     idLocatario?: SortOrder
     valorAluguel?: SortOrder
+    comissao?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8116,6 +10774,166 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumstatus_despesa_enumFilter<$PrismaModel>
     _max?: NestedEnumstatus_despesa_enumFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type FaixairrfListRelationFilter = {
+    every?: faixairrfWhereInput
+    some?: faixairrfWhereInput
+    none?: faixairrfWhereInput
+  }
+
+  export type faixairrfOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type tabelairrfOrderByRelevanceInput = {
+    fields: tabelairrfOrderByRelevanceFieldEnum | tabelairrfOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type tabelairrfCountOrderByAggregateInput = {
+    id?: SortOrder
+    vigenciaInicio?: SortOrder
+    descricao?: SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrder
+    redutorLimiteSuperior?: SortOrder
+    redutorConstante?: SortOrder
+    redutorCoeficiente?: SortOrder
+    criadoEm?: SortOrder
+    atualizadoEm?: SortOrder
+  }
+
+  export type tabelairrfAvgOrderByAggregateInput = {
+    id?: SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrder
+    redutorLimiteSuperior?: SortOrder
+    redutorConstante?: SortOrder
+    redutorCoeficiente?: SortOrder
+  }
+
+  export type tabelairrfMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vigenciaInicio?: SortOrder
+    descricao?: SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrder
+    redutorLimiteSuperior?: SortOrder
+    redutorConstante?: SortOrder
+    redutorCoeficiente?: SortOrder
+    criadoEm?: SortOrder
+    atualizadoEm?: SortOrder
+  }
+
+  export type tabelairrfMinOrderByAggregateInput = {
+    id?: SortOrder
+    vigenciaInicio?: SortOrder
+    descricao?: SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrder
+    redutorLimiteSuperior?: SortOrder
+    redutorConstante?: SortOrder
+    redutorCoeficiente?: SortOrder
+    criadoEm?: SortOrder
+    atualizadoEm?: SortOrder
+  }
+
+  export type tabelairrfSumOrderByAggregateInput = {
+    id?: SortOrder
+    deducaoDependente?: SortOrder
+    redutorLimiteIsencao?: SortOrder
+    redutorLimiteSuperior?: SortOrder
+    redutorConstante?: SortOrder
+    redutorCoeficiente?: SortOrder
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type TabelairrfScalarRelationFilter = {
+    is?: tabelairrfWhereInput
+    isNot?: tabelairrfWhereInput
+  }
+
+  export type faixairrfIdTabelaOrdemCompoundUniqueInput = {
+    idTabela: number
+    ordem: number
+  }
+
+  export type faixairrfCountOrderByAggregateInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+  }
+
+  export type faixairrfAvgOrderByAggregateInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+  }
+
+  export type faixairrfMaxOrderByAggregateInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+  }
+
+  export type faixairrfMinOrderByAggregateInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
+  }
+
+  export type faixairrfSumOrderByAggregateInput = {
+    id?: SortOrder
+    idTabela?: SortOrder
+    ordem?: SortOrder
+    valorDe?: SortOrder
+    valorAte?: SortOrder
+    aliquota?: SortOrder
+    parcelaADeduzir?: SortOrder
   }
 
   export type imovelCreateNestedManyWithoutEnderecoInput = {
@@ -8408,6 +11226,70 @@ export namespace Prisma {
     upsert?: contratolocacaoUpsertWithoutDespesaInput
     connect?: contratolocacaoWhereUniqueInput
     update?: XOR<XOR<contratolocacaoUpdateToOneWithWhereWithoutDespesaInput, contratolocacaoUpdateWithoutDespesaInput>, contratolocacaoUncheckedUpdateWithoutDespesaInput>
+  }
+
+  export type faixairrfCreateNestedManyWithoutTabelairrfInput = {
+    create?: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput> | faixairrfCreateWithoutTabelairrfInput[] | faixairrfUncheckedCreateWithoutTabelairrfInput[]
+    connectOrCreate?: faixairrfCreateOrConnectWithoutTabelairrfInput | faixairrfCreateOrConnectWithoutTabelairrfInput[]
+    createMany?: faixairrfCreateManyTabelairrfInputEnvelope
+    connect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+  }
+
+  export type faixairrfUncheckedCreateNestedManyWithoutTabelairrfInput = {
+    create?: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput> | faixairrfCreateWithoutTabelairrfInput[] | faixairrfUncheckedCreateWithoutTabelairrfInput[]
+    connectOrCreate?: faixairrfCreateOrConnectWithoutTabelairrfInput | faixairrfCreateOrConnectWithoutTabelairrfInput[]
+    createMany?: faixairrfCreateManyTabelairrfInputEnvelope
+    connect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUpdateManyWithoutTabelairrfNestedInput = {
+    create?: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput> | faixairrfCreateWithoutTabelairrfInput[] | faixairrfUncheckedCreateWithoutTabelairrfInput[]
+    connectOrCreate?: faixairrfCreateOrConnectWithoutTabelairrfInput | faixairrfCreateOrConnectWithoutTabelairrfInput[]
+    upsert?: faixairrfUpsertWithWhereUniqueWithoutTabelairrfInput | faixairrfUpsertWithWhereUniqueWithoutTabelairrfInput[]
+    createMany?: faixairrfCreateManyTabelairrfInputEnvelope
+    set?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    disconnect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    delete?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    connect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    update?: faixairrfUpdateWithWhereUniqueWithoutTabelairrfInput | faixairrfUpdateWithWhereUniqueWithoutTabelairrfInput[]
+    updateMany?: faixairrfUpdateManyWithWhereWithoutTabelairrfInput | faixairrfUpdateManyWithWhereWithoutTabelairrfInput[]
+    deleteMany?: faixairrfScalarWhereInput | faixairrfScalarWhereInput[]
+  }
+
+  export type faixairrfUncheckedUpdateManyWithoutTabelairrfNestedInput = {
+    create?: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput> | faixairrfCreateWithoutTabelairrfInput[] | faixairrfUncheckedCreateWithoutTabelairrfInput[]
+    connectOrCreate?: faixairrfCreateOrConnectWithoutTabelairrfInput | faixairrfCreateOrConnectWithoutTabelairrfInput[]
+    upsert?: faixairrfUpsertWithWhereUniqueWithoutTabelairrfInput | faixairrfUpsertWithWhereUniqueWithoutTabelairrfInput[]
+    createMany?: faixairrfCreateManyTabelairrfInputEnvelope
+    set?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    disconnect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    delete?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    connect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
+    update?: faixairrfUpdateWithWhereUniqueWithoutTabelairrfInput | faixairrfUpdateWithWhereUniqueWithoutTabelairrfInput[]
+    updateMany?: faixairrfUpdateManyWithWhereWithoutTabelairrfInput | faixairrfUpdateManyWithWhereWithoutTabelairrfInput[]
+    deleteMany?: faixairrfScalarWhereInput | faixairrfScalarWhereInput[]
+  }
+
+  export type tabelairrfCreateNestedOneWithoutFaixairrfInput = {
+    create?: XOR<tabelairrfCreateWithoutFaixairrfInput, tabelairrfUncheckedCreateWithoutFaixairrfInput>
+    connectOrCreate?: tabelairrfCreateOrConnectWithoutFaixairrfInput
+    connect?: tabelairrfWhereUniqueInput
+  }
+
+  export type tabelairrfUpdateOneRequiredWithoutFaixairrfNestedInput = {
+    create?: XOR<tabelairrfCreateWithoutFaixairrfInput, tabelairrfUncheckedCreateWithoutFaixairrfInput>
+    connectOrCreate?: tabelairrfCreateOrConnectWithoutFaixairrfInput
+    upsert?: tabelairrfUpsertWithoutFaixairrfInput
+    connect?: tabelairrfWhereUniqueInput
+    update?: XOR<XOR<tabelairrfUpdateToOneWithWhereWithoutFaixairrfInput, tabelairrfUpdateWithoutFaixairrfInput>, tabelairrfUncheckedUpdateWithoutFaixairrfInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8748,6 +11630,33 @@ export namespace Prisma {
     _max?: NestedEnumstatus_despesa_enumFilter<$PrismaModel>
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
   export type imovelCreateWithoutEnderecoInput = {
     inscricaoIPTU?: string | null
     inscricaoBombeiro?: string | null
@@ -8848,6 +11757,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
   }
 
@@ -8861,6 +11771,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
   }
 
@@ -8955,6 +11866,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFilter<"contratolocacao"> | $Enums.status_contrato_enum
     contratoDigitalizado?: BytesNullableFilter<"contratolocacao"> | Bytes | null
+    comissao?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
   }
 
   export type propriedadeimovelUpsertWithWhereUniqueWithoutImovelInput = {
@@ -9188,6 +12100,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
     imovel: imovelCreateNestedOneWithoutContratolocacaoInput
   }
 
@@ -9202,6 +12115,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
   }
 
   export type contratolocacaoCreateOrConnectWithoutDespesaInput = {
@@ -9230,6 +12144,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
   }
 
@@ -9244,6 +12159,129 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfCreateWithoutTabelairrfInput = {
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUncheckedCreateWithoutTabelairrfInput = {
+    id?: number
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfCreateOrConnectWithoutTabelairrfInput = {
+    where: faixairrfWhereUniqueInput
+    create: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput>
+  }
+
+  export type faixairrfCreateManyTabelairrfInputEnvelope = {
+    data: faixairrfCreateManyTabelairrfInput | faixairrfCreateManyTabelairrfInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type faixairrfUpsertWithWhereUniqueWithoutTabelairrfInput = {
+    where: faixairrfWhereUniqueInput
+    update: XOR<faixairrfUpdateWithoutTabelairrfInput, faixairrfUncheckedUpdateWithoutTabelairrfInput>
+    create: XOR<faixairrfCreateWithoutTabelairrfInput, faixairrfUncheckedCreateWithoutTabelairrfInput>
+  }
+
+  export type faixairrfUpdateWithWhereUniqueWithoutTabelairrfInput = {
+    where: faixairrfWhereUniqueInput
+    data: XOR<faixairrfUpdateWithoutTabelairrfInput, faixairrfUncheckedUpdateWithoutTabelairrfInput>
+  }
+
+  export type faixairrfUpdateManyWithWhereWithoutTabelairrfInput = {
+    where: faixairrfScalarWhereInput
+    data: XOR<faixairrfUpdateManyMutationInput, faixairrfUncheckedUpdateManyWithoutTabelairrfInput>
+  }
+
+  export type faixairrfScalarWhereInput = {
+    AND?: faixairrfScalarWhereInput | faixairrfScalarWhereInput[]
+    OR?: faixairrfScalarWhereInput[]
+    NOT?: faixairrfScalarWhereInput | faixairrfScalarWhereInput[]
+    id?: IntFilter<"faixairrf"> | number
+    idTabela?: IntFilter<"faixairrf"> | number
+    ordem?: IntFilter<"faixairrf"> | number
+    valorDe?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    valorAte?: DecimalNullableFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFilter<"faixairrf"> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type tabelairrfCreateWithoutFaixairrfInput = {
+    vigenciaInicio: Date | string
+    descricao?: string | null
+    deducaoDependente: Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: Decimal | DecimalJsLike | number | string | null
+    criadoEm?: Date | string
+    atualizadoEm?: Date | string
+  }
+
+  export type tabelairrfUncheckedCreateWithoutFaixairrfInput = {
+    id?: number
+    vigenciaInicio: Date | string
+    descricao?: string | null
+    deducaoDependente: Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: Decimal | DecimalJsLike | number | string | null
+    criadoEm?: Date | string
+    atualizadoEm?: Date | string
+  }
+
+  export type tabelairrfCreateOrConnectWithoutFaixairrfInput = {
+    where: tabelairrfWhereUniqueInput
+    create: XOR<tabelairrfCreateWithoutFaixairrfInput, tabelairrfUncheckedCreateWithoutFaixairrfInput>
+  }
+
+  export type tabelairrfUpsertWithoutFaixairrfInput = {
+    update: XOR<tabelairrfUpdateWithoutFaixairrfInput, tabelairrfUncheckedUpdateWithoutFaixairrfInput>
+    create: XOR<tabelairrfCreateWithoutFaixairrfInput, tabelairrfUncheckedCreateWithoutFaixairrfInput>
+    where?: tabelairrfWhereInput
+  }
+
+  export type tabelairrfUpdateToOneWithWhereWithoutFaixairrfInput = {
+    where?: tabelairrfWhereInput
+    data: XOR<tabelairrfUpdateWithoutFaixairrfInput, tabelairrfUncheckedUpdateWithoutFaixairrfInput>
+  }
+
+  export type tabelairrfUpdateWithoutFaixairrfInput = {
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type tabelairrfUncheckedUpdateWithoutFaixairrfInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vigenciaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    deducaoDependente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    redutorLimiteIsencao?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorLimiteSuperior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorConstante?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    redutorCoeficiente?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    atualizadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type imovelCreateManyEnderecoInput = {
@@ -9303,6 +12341,7 @@ export namespace Prisma {
     valorAluguel: Decimal | DecimalJsLike | number | string
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
   }
 
   export type propriedadeimovelCreateManyImovelInput = {
@@ -9321,6 +12360,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
   }
 
@@ -9334,6 +12374,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
   }
 
@@ -9347,6 +12388,7 @@ export namespace Prisma {
     valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type propriedadeimovelUpdateWithoutImovelInput = {
@@ -9408,6 +12450,41 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+  }
+
+  export type faixairrfCreateManyTabelairrfInput = {
+    id?: number
+    ordem: number
+    valorDe: Decimal | DecimalJsLike | number | string
+    valorAte?: Decimal | DecimalJsLike | number | string | null
+    aliquota: Decimal | DecimalJsLike | number | string
+    parcelaADeduzir: Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUpdateWithoutTabelairrfInput = {
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUncheckedUpdateWithoutTabelairrfInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type faixairrfUncheckedUpdateManyWithoutTabelairrfInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ordem?: IntFieldUpdateOperationsInput | number
+    valorDe?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAte?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    aliquota?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    parcelaADeduzir?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
 

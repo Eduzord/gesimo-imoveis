@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ContratosService } from '../services/contratos.service';
 import { CriarContratoDto } from '../dto/criar-contrato.dto';
 import { AtualizarContratoDto } from '../dto/atualizar-contrato.dto';
@@ -28,9 +28,16 @@ export class ContratosController{
 
     @Get()
     @Roles('USER', 'ADMIN')
-    @ApiOperation({summary: 'Listar todos os contratos da imobiliária'})
-    async listarContratos(){
-        return await this.contratosService.listarTodos();
+    @ApiOperation({summary: 'Listar os contratos da imobiliária', description: 'Aceita filtros opcionais por imóvel, locatário e locador.'})
+    @ApiQuery({name: 'idImovel', required: false, type: Number})
+    @ApiQuery({name: 'idLocatario', required: false, type: Number})
+    @ApiQuery({name: 'idLocador', required: false, type: Number})
+    async listarContratos(
+        @Query('idImovel', new ParseIntPipe({optional: true})) idImovel?: number,
+        @Query('idLocatario', new ParseIntPipe({optional: true})) idLocatario?: number,
+        @Query('idLocador', new ParseIntPipe({optional: true})) idLocador?: number,
+    ){
+        return await this.contratosService.listarTodos({idImovel, idLocatario, idLocador});
     }
 
     @Get(':id')

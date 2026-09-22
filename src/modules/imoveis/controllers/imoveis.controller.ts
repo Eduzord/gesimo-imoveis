@@ -39,6 +39,14 @@ export class ImoveisController {
         return await this.imoveisService.listarTodos()
     }
 
+    //Declarada antes de ':id' para que 'locador' não seja interpretado como ID
+    @Get('locador/:idLocador')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({summary: 'Listar imóveis em que o locador é proprietário', description: 'Cada imóvel traz a lista de proprietários com o percentual de participação.'})
+    async listarImoveisDoLocador(@Param('idLocador', ParseIntPipe) idLocador: number){
+        return await this.imoveisService.listarPorLocador(idLocador);
+    }
+
     @Get(':id')
     @Roles('USER', 'ADMIN')
     @ApiOperation({summary: 'Buscar imóvel específico por ID'})

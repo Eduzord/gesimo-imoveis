@@ -85,6 +85,7 @@ O banco de dados está hospedado no servidor da faculdade e é acessado através
 * **Upload de Comprovantes:** A liquidação de uma despesa exige o envio de um arquivo binário, que é convertido e armazenado diretamente no banco de dados.
 * **Robô de Aluguéis:** Uma rotina agendada roda diariamente verificando contratos `ATIVOS` e gerando as despesas de aluguel do mês atual de forma autônoma.
 * **Trava Financeira (Segurança):** O sistema impede a exclusão (`DELETE`) de qualquer despesa que já esteja com o status `PAGA`.
+* **IRRF por vigência:** O imposto é calculado com a tabela vigente na data de competência, cadastrada por um `ADMIN` (ver seção *IRRF* em Endpoints).
 
 ---
 
@@ -130,6 +131,39 @@ A documentação interativa com todos os DTOs e testes de upload de arquivos est
 | PATCH | `/despesas/:id/pagamento` | Sim | Liquida fatura (Exige `multipart/form-data` com arquivo) |
 | GET | `/despesas/:id/comprovante` | Sim | Download do comprovante em anexo |
 | DELETE | `/despesas/:id` | Sim | Exclui fatura (Bloqueado se estiver PAGA) |
+
+### IRRF (tabela progressiva versionada)
+
+> Explicação do cálculo para não técnicos, com exemplos, ressalvas e fontes: [`docs/calculo-do-irrf.md`](../docs/calculo-do-irrf.md).
+
+Consulta: qualquer usuário autenticado. Cadastro, edição e exclusão: somente `ADMIN`.
+
+| Método | Endpoint | Perfil | Descrição |
+| --- | --- | --- | --- |
+| GET | `/irrf/tabelas` | USER/ADMIN | Lista as versões (mais recente primeiro), com faixas, situação (`VIGENTE`, `FUTURA`, `ENCERRADA`) e fim de vigência derivado |
+| GET | `/irrf/tabelas/vigente?data=AAAA-MM-DD` | USER/ADMIN | Tabela vigente na data (padrão: hoje). `404` se não houver |
+| GET | `/irrf/tabelas/:id` | USER/ADMIN | Uma versão |
+| POST | `/irrf/tabelas` | ADMIN | Cadastra uma nova versão |
+| PATCH | `/irrf/tabelas/:id` | ADMIN | Substitui os dados e as faixas de uma versão |
+| DELETE | `/irrf/tabelas/:id` | ADMIN | Exclui uma versão |
+| POST | `/irrf/calcular` | USER/ADMIN | Calcula o IRRF: `{ baseCalculo, dataCompetencia, numeroDependentes?, rendimentoTributavel? }` |
+
+**Como funciona**
+
+* Uma versão vale a partir de `vigenciaInicio` até o dia anterior ao início da próxima. O fim **não é gravado**, é derivado, então não há sobreposição nem lacuna.
+* O cálculo usa a versão vigente na **data de competência** informada (nunca a de hoje). Sem versão vigente naquela data o cálculo é **recusado** (`404`) em vez de usar a tabela mais recente.
+* No cadastro só o limite "Até" de cada faixa é informado; o "De" é sempre o "Até" anterior + R$ 0,01 e a última faixa não tem limite. A alíquota é em percentual (`7.5` = 7,5%).
+* `POST /irrf/calcular` devolve, além do valor, o que deve ser gravado no recibo para auditoria: `idTabela`, `faixaAplicada`, `aliquotaEfetiva`, `baseCalculoLiquida` e o redutor aplicado. Ele apenas calcula: quem gera o recibo decide se a retenção se aplica ao caso.
+* **Redutor (Lei 15.270/2025, desde 01/2026):** opcional por versão. Os limites e a fórmula (`constante − coeficiente × rendimento`) valem para o **rendimento tributável bruto**, e não para a base de cálculo depois das deduções; a redução é subtraída do imposto já calculado pela tabela e nunca o deixa negativo. Por isso o cálculo aceita `rendimentoTributavel` (bruto); se omitido, assume a própria `baseCalculo` (nenhuma outra dedução). `calcular-irrf.oficial-2026.spec.ts` reproduz os exemplos oficiais da Receita Federal.
+* Nenhum valor fiscal fica no código nem em seed. O `ADMIN` cadastra as tabelas pela tela **Gerenciar IRRF** (confira sempre a fonte oficial da Receita Federal).
+* `editavel`: hoje toda versão pode ser corrigida, pois nenhum cálculo é gravado. Quando existir o model de recibo, `IrrfService.tabelaEstaEmUso` deve passar a bloquear a edição das versões já usadas.
+
+**Criar as tabelas no banco.** Este serviço não usa `prisma migrate`. Aplique uma vez, no `db_imoveis`:
+
+```bash
+npx prisma db execute --file prisma/sql/2026-irrf-tabelas.sql
+npx prisma generate
+```
 
 ---
 

@@ -10,19 +10,62 @@ export class ImoveisService {
     //Aqui é onde eu injeto o banco de dados
     constructor(private readonly prisma: PrismaService, private readonly httpService: HttpService) {}
 
+    //O Prisma traz idLocador da tabela propriedadeimovel como BigInt, o que quebra o JSON.
+    //Esse helper converte para string antes de devolver ao front-end.
+    private formatarImovel(imovel: any) {
+        return {
+            ...imovel,
+            ...(imovel.propriedadeimovel && {
+                propriedadeimovel: imovel.propriedadeimovel.map((p: any) => ({
+                    ...p,
+                    idLocador: p.idLocador.toString(),
+                })),
+            }),
+        };
+    }
+
+    //Regras da posse partilhada: o mesmo locador não pode aparecer duas vezes no imóvel
+    //e a soma dos percentuais não pode passar de 100%. Soma menor que 100% é permitida.
+    private validarPartilha(proprietarios: { idLocador: number; percentualParticipacao: number }[]) {
+        const ids = proprietarios.map((p) => String(p.idLocador));
+        if (new Set(ids).size !== ids.length) {
+            throw new BadRequestException('O mesmo locador não pode ser informado mais de uma vez no mesmo imóvel.');
+        }
+
+        //Trabalho em centésimos de ponto percentual para não sofrer com erro de ponto flutuante (Decimal(5,2) no banco)
+        const somaCentesimos = proprietarios.reduce((soma, p) => soma + Math.round(p.percentualParticipacao * 100), 0);
+        if (somaCentesimos > 10000) {
+            throw new BadRequestException(
+                `A soma dos percentuais de participação não pode exceder 100% (informado: ${(somaCentesimos / 100).toFixed(2)}%).`
+            );
+        }
+    }
+
+    async listarPorLocador(idLocador: number) {
+        const imoveis = await this.prisma.imovel.findMany({
+            where: { propriedadeimovel: { some: { idLocador: BigInt(idLocador) } } },
+            include: { endereco: true, propriedadeimovel: true }
+        });
+
+        return imoveis.map((imovel) => this.formatarImovel(imovel));
+    }
+
     async listarTodos() {
-        //Aqui eu faço uma busca de todos os imóveis, trazendo os dados do endereço relacionado
-        return await this.prisma.imovel.findMany({
+        //Aqui eu faço uma busca de todos os imóveis, trazendo os dados do endereço e dos proprietários relacionados
+        const imoveis = await this.prisma.imovel.findMany({
             include: {
-                endereco: true
+                endereco: true,
+                propriedadeimovel: true
             }
         });
+
+        return imoveis.map((imovel) => this.formatarImovel(imovel));
     }
 
     async buscarPorId(id: number) {
         const imovel = await this.prisma.imovel.findUnique({
             where: {id},
-            include: {endereco: true}
+            include: {endereco: true, propriedadeimovel: true}
         });
 
         //Se o banco não char o ID, vai ser disparado um erro 404 padronizado
@@ -30,7 +73,7 @@ export class ImoveisService {
             throw new NotFoundException(`Imóvel com ID {id} não encontrado no catálogo.`);
         }
 
-        return imovel;
+        return this.formatarImovel(imovel);
     }
 
     async buscarEnderecoPorCep(cep: string) {
@@ -81,48 +124,88 @@ export class ImoveisService {
         }
 
     async criar(dados: CriarImovelDto) {
-        //Utilizo o recurso de 'Nested Writes' do Prisma para salvar o endereço
-        //e o Imóvel na mesma transação
-        //Assim, se um falhar, o outro sofre o rollback automático
-        return await this.prisma.imovel.create({
+        //Utilizo o recurso de 'Nested Writes' do Prisma para salvar o endereço, os proprietários
+        //e o Imóvel na mesma transação. Assim, se um falhar, os outros sofrem rollback automático
+        const { proprietarios, ...dadosImovel } = dados;
+
+        if (proprietarios) {
+            this.validarPartilha(proprietarios);
+        }
+
+        const imovelCriado = await this.prisma.imovel.create({
             data: {
-                inscricaoIPTU: dados.inscricaoIPTU,
-                inscricaoBombeiro: dados.inscricaoBombeiro,
-                metragem: dados.metragem,
-                classificacao: dados.classificacao,
-                tipologia: dados.tipologia,
-                status: dados.status,
+                inscricaoIPTU: dadosImovel.inscricaoIPTU,
+                inscricaoBombeiro: dadosImovel.inscricaoBombeiro,
+                metragem: dadosImovel.metragem,
+                classificacao: dadosImovel.classificacao,
+                tipologia: dadosImovel.tipologia,
+                status: dadosImovel.status,
                 endereco: {
-                    create: dados.endereco 
+                    create: dadosImovel.endereco
                 }, //O Prisma cria o endereço e já vincula o ID automaticamente
+                //Se vieram proprietários, já cria os vínculos de posse partilhada junto
+                ...(proprietarios && proprietarios.length > 0 && {
+                    propriedadeimovel: {
+                        create: proprietarios.map((p) => ({
+                            idLocador: BigInt(p.idLocador),
+                            percentualParticipacao: p.percentualParticipacao,
+                        })),
+                    },
+                }),
             },
 
             include:{
-                endereco: true
+                endereco: true,
+                propriedadeimovel: true
             }, //Retorno o objeto completo montado para o front-end
         });
+
+        return this.formatarImovel(imovelCriado);
     }
 
     async atualizar(id: number, dados: AtualizarImovelDto) {
         //Primeiro, garanto que o imóvel existe (se ele não existir, o buscarPorId já trava aqui)
         await this.buscarPorId(id);
 
-        //Separo o bloco de endereço do resto dos dados para o Prisma atualizar corretamente
-        const { endereco, ...dadosImovel } = dados;
+        //Separo o bloco de endereço e a lista de proprietários do resto dos dados para o Prisma atualizar corretamente
+        const { endereco, proprietarios, ...dadosImovel } = dados;
 
-        return await this.prisma.imovel.update({
-            where: {id},
-            data: {
-                ...dadosImovel,
-                //Se o corretor enviou dados de endereço na atualização, o sistema atualiza também
-                ...(endereco && {
-                    endereco:{
-                        update: endereco
-                    }
-                })
-            },
-            include: { endereco: true }
+        if (proprietarios) {
+            this.validarPartilha(proprietarios);
+        }
+
+        const imovelAtualizado = await this.prisma.$transaction(async (prisma) => {
+            //Se o corretor reenviou a lista de proprietários, substituo o vínculo antigo pelo novo
+            if (proprietarios) {
+                await prisma.propriedadeimovel.deleteMany({ where: { idImovel: id } });
+
+                if (proprietarios.length > 0) {
+                    await prisma.propriedadeimovel.createMany({
+                        data: proprietarios.map((p) => ({
+                            idImovel: id,
+                            idLocador: BigInt(p.idLocador),
+                            percentualParticipacao: p.percentualParticipacao,
+                        })),
+                    });
+                }
+            }
+
+            return await prisma.imovel.update({
+                where: {id},
+                data: {
+                    ...dadosImovel,
+                    //Se o corretor enviou dados de endereço na atualização, o sistema atualiza também
+                    ...(endereco && {
+                        endereco:{
+                            update: endereco
+                        }
+                    })
+                },
+                include: { endereco: true, propriedadeimovel: true }
+            });
         });
+
+        return this.formatarImovel(imovelAtualizado);
     }
 
     async remover(id: number) {

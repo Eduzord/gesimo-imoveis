@@ -159,7 +159,8 @@ exports.Prisma.ContratolocacaoScalarFieldEnum = {
   dataReajuste: 'dataReajuste',
   valorAluguel: 'valorAluguel',
   status: 'status',
-  contratoDigitalizado: 'contratoDigitalizado'
+  contratoDigitalizado: 'contratoDigitalizado',
+  comissao: 'comissao'
 };
 
 exports.Prisma.DespesaScalarFieldEnum = {
@@ -172,6 +173,29 @@ exports.Prisma.DespesaScalarFieldEnum = {
   dataPagamento: 'dataPagamento',
   status: 'status',
   comprovantePagamento: 'comprovantePagamento'
+};
+
+exports.Prisma.TabelairrfScalarFieldEnum = {
+  id: 'id',
+  vigenciaInicio: 'vigenciaInicio',
+  descricao: 'descricao',
+  deducaoDependente: 'deducaoDependente',
+  redutorLimiteIsencao: 'redutorLimiteIsencao',
+  redutorLimiteSuperior: 'redutorLimiteSuperior',
+  redutorConstante: 'redutorConstante',
+  redutorCoeficiente: 'redutorCoeficiente',
+  criadoEm: 'criadoEm',
+  atualizadoEm: 'atualizadoEm'
+};
+
+exports.Prisma.FaixairrfScalarFieldEnum = {
+  id: 'id',
+  idTabela: 'idTabela',
+  ordem: 'ordem',
+  valorDe: 'valorDe',
+  valorAte: 'valorAte',
+  aliquota: 'aliquota',
+  parcelaADeduzir: 'parcelaADeduzir'
 };
 
 exports.Prisma.SortOrder = {
@@ -200,6 +224,10 @@ exports.Prisma.imovelOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.despesaOrderByRelevanceFieldEnum = {
+  descricao: 'descricao'
+};
+
+exports.Prisma.tabelairrfOrderByRelevanceFieldEnum = {
   descricao: 'descricao'
 };
 exports.classificacao_enum = exports.$Enums.classificacao_enum = {
@@ -249,7 +277,9 @@ exports.Prisma.ModelName = {
   imovel: 'imovel',
   propriedadeimovel: 'propriedadeimovel',
   contratolocacao: 'contratolocacao',
-  despesa: 'despesa'
+  despesa: 'despesa',
+  tabelairrf: 'tabelairrf',
+  faixairrf: 'faixairrf'
 };
 
 /**

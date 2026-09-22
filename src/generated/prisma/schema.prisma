@@ -124,6 +124,7 @@ model contratolocacao {
   status               status_contrato_enum @default(ATIVO)
   contratoDigitalizado Bytes?
   imovel               imovel               @relation(fields: [idImovel], references: [id], onUpdate: Restrict)
+  comissao             Decimal              @db.Decimal(10, 2)
   despesa              despesa[]
 
   @@index([idImovel], map: "idImovel")
@@ -143,4 +144,39 @@ model despesa {
   contratolocacao      contratolocacao     @relation(fields: [idContratoLocacao], references: [id], onDelete: Cascade, onUpdate: Restrict)
 
   @@index([idContratoLocacao], map: "idContratoLocacao")
+}
+
+model tabelairrf {
+  // Cada registro é uma VERSÃO da tabela progressiva do IRRF. Só o início da vigência é gravado:
+  // o fim é sempre "início da próxima versão - 1 dia", o que impede sobreposição ou lacuna entre versões.
+  // Nenhum valor fiscal fica no código: quem cadastra as versões é o ADMIN, pela tela de gerenciamento.
+  id                    Int         @id @default(autoincrement())
+  vigenciaInicio        DateTime    @unique(map: "uq_tabelairrf_vigenciaInicio") @db.Date
+  descricao             String?     @db.VarChar(255)
+  deducaoDependente     Decimal     @db.Decimal(10, 2)
+  // Redutor opcional (isenção até um teto e redução gradual acima dele). Os quatro campos são
+  // preenchidos juntos ou ficam todos nulos, quando o cálculo usa só as faixas + dependentes.
+  redutorLimiteIsencao  Decimal?    @db.Decimal(10, 2)
+  redutorLimiteSuperior Decimal?    @db.Decimal(10, 2)
+  redutorConstante      Decimal?    @db.Decimal(10, 2)
+  redutorCoeficiente    Decimal?    @db.Decimal(10, 6)
+  criadoEm              DateTime    @default(now()) @db.DateTime(0)
+  atualizadoEm          DateTime    @default(now()) @updatedAt @db.DateTime(0)
+  faixairrf             faixairrf[]
+}
+
+model faixairrf {
+  // valorDe e valorAte são inclusivos e em reais. Como na tabela oficial, o valorDe de uma faixa é
+  // o valorAte da anterior + 0,01. A última faixa não tem teto (valorAte nulo).
+  // A alíquota é guardada em percentual (7.50 = 7,5%), igual ao percentualParticipacao dos proprietários.
+  id              Int        @id @default(autoincrement())
+  idTabela        Int
+  ordem           Int
+  valorDe         Decimal    @db.Decimal(10, 2)
+  valorAte        Decimal?   @db.Decimal(10, 2)
+  aliquota        Decimal    @db.Decimal(5, 2)
+  parcelaADeduzir Decimal    @db.Decimal(10, 2)
+  tabelairrf      tabelairrf @relation(fields: [idTabela], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@unique([idTabela, ordem], map: "uq_faixairrf_tabela_ordem")
 }

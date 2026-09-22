@@ -21,7 +21,8 @@ export class ContratosService {
     async criar(dados: CriarContratoDto) {
         //Aqui é onde vamos buscar o imóvel no banco de dados para checar regras de negócios
         const imovel = await this.prisma.imovel.findUnique({
-            where: {id: dados.idImovel}
+            where: {id: dados.idImovel},
+            include: {propriedadeimovel: true}
         });
 
         //Se o imóvel não existir no banco, vamos travar a operação
@@ -32,6 +33,18 @@ export class ContratosService {
         //Se o imóvel existir, mas não estiver DISPONÍVEL, também iremos travar a operação
         if (imovel.status !== 'DISPONIVEL'){
             throw new BadRequestException(`Locação negada. O imóvel atual encontra-se com status: ${imovel.status}`)
+        }
+
+        //Se o imóvel já tem proprietários cadastrados (posse partilhada), o locador do contrato
+        //precisa ser um deles. Imóveis sem proprietários cadastrados seguem sem essa checagem.
+        if (imovel.propriedadeimovel.length > 0) {
+            const locadorEProprietario = imovel.propriedadeimovel.some(
+                (p) => p.idLocador === BigInt(dados.idLocador)
+            );
+
+            if (!locadorEProprietario) {
+                throw new BadRequestException(`O locador ${dados.idLocador} não é proprietário do imóvel ${dados.idImovel}.`)
+            }
         }
 
         //Aqui é onde realmente tem início a transição: Tudo aqui dentro PRECISA dar certo ou nada é salvo
@@ -48,6 +61,7 @@ export class ContratosService {
                     dataFim: dados.dataFim,
                     dataReajuste: dados.dataReajuste,
                     valorAluguel: dados.valorAluguel,
+                    comissao: dados.comissao,
                     status: 'ATIVO'
                 }
             });
@@ -65,8 +79,13 @@ export class ContratosService {
         });
     }
 
-    async listarTodos() {
+    async listarTodos(filtros: { idImovel?: number; idLocatario?: number; idLocador?: number } = {}) {
         const contratos = await this.prisma.contratolocacao.findMany({
+            where: {
+                ...(filtros.idImovel !== undefined && { idImovel: filtros.idImovel }),
+                ...(filtros.idLocatario !== undefined && { idLocatario: BigInt(filtros.idLocatario) }),
+                ...(filtros.idLocador !== undefined && { idLocador: BigInt(filtros.idLocador) }),
+            },
             include: {
                 imovel: {
                     include: { endereco: true } //Traz o imóvel e o endereço acoplados
