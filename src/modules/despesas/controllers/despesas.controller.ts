@@ -27,6 +27,17 @@ export class DespesasController {
         return await this.despesasService.listarDespesas(id);
     }
 
+    @Get('imovel/:idImovel')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({ summary: 'Listar despesas de um imóvel (todos os contratos, inclusive encerrados)' })
+    @ApiQuery({ name: 'emAberto', required: false, type: Boolean, description: 'Se true, traz só despesas EM_ABERTO (ou PAGA sem comprovante)' })
+    async listarPorImovel(
+        @Param('idImovel', ParseIntPipe) idImovel: number,
+        @Query('emAberto') emAberto?: string,
+    ) {
+        return await this.despesasService.listarPorImovel(idImovel, emAberto === 'true');
+    }
+
     @Post()
     @Roles('USER', 'ADMIN')
     @ApiOperation({ summary: 'Lançar uma despesa avulsa para um contrato' })

@@ -75,6 +75,28 @@ export class DespesasService {
         return this.formatarDespesa(despesaAtualizada);
     }
 
+    async buscarPorId(id: number) {
+        const despesa = await this.prisma.despesa.findUnique({
+            where: { id: BigInt(id) },
+            select: {
+                id: true,
+                idContratoLocacao: true,
+                descricao: true,
+                valor: true,
+                tipo: true,
+                status: true,
+                dataVencimento: true,
+                dataPagamento: true,
+            },
+        });
+
+        if (!despesa) {
+            throw new NotFoundException(`Despesa com ID ${id} não encontrada.`);
+        }
+
+        return this.formatarDespesa(despesa);
+    }
+
     async listarDespesas(idContratoLocacao?: number) {
         //Se o corretor passou um ID, filtramos. Se não, trazemos tudo
         const condicao = idContratoLocacao ? { idContratoLocacao: BigInt(idContratoLocacao) } : {};
@@ -102,6 +124,42 @@ export class DespesasService {
         return despesas.map(despesa => this.formatarDespesa(despesa));
     }
 
+
+    //Despesas de todos os contratos (histórico incluso) de um imóvel — usado para "quais despesas em
+    //aberto existem para este imóvel" na tela do imóvel e na geração da Memória de Cálculo.
+    //"emAberto": status EM_ABERTO, OU status PAGA sem comprovante anexado (não deveria acontecer pelo
+    //fluxo normal, que exige o arquivo para liquidar, mas fica como rede de segurança contra dados
+    //importados/editados por fora).
+    async listarPorImovel(idImovel: number, emAberto?: boolean) {
+        const contratosDoImovel = await this.prisma.contratolocacao.findMany({
+            where: { idImovel },
+            select: { id: true },
+        });
+
+        if (contratosDoImovel.length === 0) return [];
+
+        const despesas = await this.prisma.despesa.findMany({
+            where: {
+                idContratoLocacao: { in: contratosDoImovel.map((c) => c.id) },
+                ...(emAberto && {
+                    OR: [{ status: 'EM_ABERTO' }, { status: 'PAGA', comprovantePagamento: null }],
+                }),
+            },
+            select: {
+                id: true,
+                idContratoLocacao: true,
+                descricao: true,
+                valor: true,
+                tipo: true,
+                status: true,
+                dataVencimento: true,
+                dataPagamento: true,
+            },
+            orderBy: { dataVencimento: 'asc' },
+        });
+
+        return despesas.map((despesa) => this.formatarDespesa(despesa));
+    }
 
     async baixarComprovante(id: number) {
         //Buscamos a despesa trazendo APENAS a coluna do arquivo para poupar memória

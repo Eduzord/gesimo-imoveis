@@ -8,6 +8,7 @@ import { ImoveisService } from './services/imoveis.service';
     imports: [HttpModule],
     controllers: [ImoveisController],
     providers: [ImoveisService],
+    exports: [ImoveisService], //o módulo de memória de cálculo lê o imóvel e seus proprietários
 })
 
 export class ImoveisModule {}

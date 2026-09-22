@@ -163,6 +163,57 @@ exports.Prisma.ContratolocacaoScalarFieldEnum = {
   comissao: 'comissao'
 };
 
+exports.Prisma.ReajustecontratoScalarFieldEnum = {
+  id: 'id',
+  idContrato: 'idContrato',
+  dataReajuste: 'dataReajuste',
+  indice: 'indice',
+  percentual: 'percentual',
+  valorAnterior: 'valorAnterior',
+  valorNovo: 'valorNovo',
+  observacao: 'observacao',
+  criadoEm: 'criadoEm'
+};
+
+exports.Prisma.MemoriacalculoScalarFieldEnum = {
+  id: 'id',
+  idContrato: 'idContrato',
+  idImovel: 'idImovel',
+  competencia: 'competencia',
+  valorAluguelBase: 'valorAluguelBase',
+  idContaBancaria: 'idContaBancaria',
+  contaDescricao: 'contaDescricao',
+  contaBanco: 'contaBanco',
+  contaAgencia: 'contaAgencia',
+  contaNumero: 'contaNumero',
+  contaTipoChavePix: 'contaTipoChavePix',
+  contaChavePix: 'contaChavePix',
+  contaTitular: 'contaTitular',
+  contaDocumentoTitular: 'contaDocumentoTitular',
+  reajusteIndice: 'reajusteIndice',
+  reajustePercentual: 'reajustePercentual',
+  reajusteValorAnterior: 'reajusteValorAnterior',
+  totalAPagar: 'totalAPagar',
+  geradoPorUsuarioId: 'geradoPorUsuarioId',
+  criadoEm: 'criadoEm'
+};
+
+exports.Prisma.MemoriacalculoitemScalarFieldEnum = {
+  id: 'id',
+  idMemoriaCalculo: 'idMemoriaCalculo',
+  idLocador: 'idLocador',
+  nomeLocador: 'nomeLocador',
+  documentoLocador: 'documentoLocador',
+  percentualParticipacao: 'percentualParticipacao',
+  valorAluguel: 'valorAluguel',
+  valorReembolsos: 'valorReembolsos',
+  valorDescontos: 'valorDescontos',
+  baseCalculoIrrf: 'baseCalculoIrrf',
+  valorIrrf: 'valorIrrf',
+  valorAPagar: 'valorAPagar',
+  detalhesExtras: 'detalhesExtras'
+};
+
 exports.Prisma.DespesaScalarFieldEnum = {
   id: 'id',
   idContratoLocacao: 'idContratoLocacao',
@@ -203,6 +254,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -221,6 +277,37 @@ exports.Prisma.imovelOrderByRelevanceFieldEnum = {
   inscricaoIPTU: 'inscricaoIPTU',
   inscricaoBombeiro: 'inscricaoBombeiro',
   metragem: 'metragem'
+};
+
+exports.Prisma.reajustecontratoOrderByRelevanceFieldEnum = {
+  observacao: 'observacao'
+};
+
+exports.Prisma.memoriacalculoOrderByRelevanceFieldEnum = {
+  contaDescricao: 'contaDescricao',
+  contaBanco: 'contaBanco',
+  contaAgencia: 'contaAgencia',
+  contaNumero: 'contaNumero',
+  contaTipoChavePix: 'contaTipoChavePix',
+  contaChavePix: 'contaChavePix',
+  contaTitular: 'contaTitular',
+  contaDocumentoTitular: 'contaDocumentoTitular'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.memoriacalculoitemOrderByRelevanceFieldEnum = {
+  nomeLocador: 'nomeLocador',
+  documentoLocador: 'documentoLocador'
 };
 
 exports.Prisma.despesaOrderByRelevanceFieldEnum = {
@@ -258,11 +345,19 @@ exports.status_contrato_enum = exports.$Enums.status_contrato_enum = {
   CANCELADO: 'CANCELADO'
 };
 
+exports.indice_reajuste_enum = exports.$Enums.indice_reajuste_enum = {
+  IGPM: 'IGPM',
+  IPCA: 'IPCA',
+  INCC: 'INCC',
+  OUTRO: 'OUTRO'
+};
+
 exports.tipo_despesa_enum = exports.$Enums.tipo_despesa_enum = {
   ALUGUEL: 'ALUGUEL',
   CONDOMINIO: 'CONDOMINIO',
   IPTU: 'IPTU',
   TAXA_BOMBEIRO: 'TAXA_BOMBEIRO',
+  SEGURO_INCENDIO: 'SEGURO_INCENDIO',
   MANUTENCAO: 'MANUTENCAO',
   OUTRA: 'OUTRA'
 };
@@ -277,6 +372,9 @@ exports.Prisma.ModelName = {
   imovel: 'imovel',
   propriedadeimovel: 'propriedadeimovel',
   contratolocacao: 'contratolocacao',
+  reajustecontrato: 'reajustecontrato',
+  memoriacalculo: 'memoriacalculo',
+  memoriacalculoitem: 'memoriacalculoitem',
   despesa: 'despesa',
   tabelairrf: 'tabelairrf',
   faixairrf: 'faixairrf'

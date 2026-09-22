@@ -4,6 +4,7 @@ import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiQuery, ApiRespons
 import { ContratosService } from '../services/contratos.service';
 import { CriarContratoDto } from '../dto/criar-contrato.dto';
 import { AtualizarContratoDto } from '../dto/atualizar-contrato.dto';
+import { AplicarReajusteDto } from '../dto/aplicar-reajuste.dto';
 import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../common/guards/roles.guard';
 import { Roles } from '../../../common/decorators/roles.decorator';
@@ -89,6 +90,25 @@ export class ContratosController{
     @ApiResponse({status: 200, description: 'Contrato encerrado e imóvel liberado com o status DISPONIVEL'})
     async rescindirContrato(@Param('id', ParseIntPipe) id:number){
         return await this.contratosService.rescindir(id);
+    }
+
+    @Patch(':id/reajuste')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({summary: 'Aplicar um reajuste anual ao contrato', description: 'Grava o histórico e atualiza o valorAluguel vigente e a próxima data de reajuste (avança 1 ano). Informe "percentual" ou "valorNovo".'})
+    @ApiResponse({status: 200, description: 'Reajuste aplicado; devolve o registro histórico e o contrato atualizado.'})
+    @ApiResponse({status: 400, description: 'Contrato não está ATIVO, ou nenhum de percentual/valorNovo foi informado'})
+    async aplicarReajuste(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() aplicarReajusteDto: AplicarReajusteDto,
+    ) {
+        return await this.contratosService.aplicarReajuste(id, aplicarReajusteDto);
+    }
+
+    @Get(':id/reajustes')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({summary: 'Listar o histórico de reajustes de um contrato', description: 'Do mais recente para o mais antigo.'})
+    async listarReajustes(@Param('id', ParseIntPipe) id: number) {
+        return await this.contratosService.listarReajustes(id);
     }
 
     @Delete(':id/hard')

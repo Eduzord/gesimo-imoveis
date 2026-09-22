@@ -1,5 +1,6 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { ContratosService } from './contratos.service';
+import { IndiceReajuste } from '../dto/aplicar-reajuste.dto';
 
 describe('ContratosService - vínculo com a posse do imóvel', () => {
     let service: ContratosService;
@@ -23,10 +24,19 @@ describe('ContratosService - vínculo com a posse do imóvel', () => {
             contratolocacao: {
                 create: jest.fn().mockResolvedValue({ id: BigInt(1), idImovel: 1, idLocador: BigInt(10), idLocatario: BigInt(20) }),
                 findMany: jest.fn().mockResolvedValue([]),
+                findUnique: jest.fn(),
+                update: jest.fn(),
+            },
+            reajustecontrato: {
+                create: jest.fn(),
+                findMany: jest.fn().mockResolvedValue([]),
             },
             $transaction: jest.fn(),
         };
-        prisma.$transaction.mockImplementation((fn: any) => fn(prisma));
+        //aplicarReajuste usa a forma "array" do $transaction (promises já criadas); os demais usam a forma "callback"
+        prisma.$transaction.mockImplementation((arg: any) =>
+            typeof arg === 'function' ? arg(prisma) : Promise.all(arg),
+        );
 
         service = new ContratosService(prisma);
     });
@@ -76,5 +86,101 @@ describe('ContratosService - vínculo com a posse do imóvel', () => {
         expect(prisma.contratolocacao.findMany).toHaveBeenCalledWith(
             expect.objectContaining({ where: {} }),
         );
+    });
+});
+
+describe('ContratosService - reajuste', () => {
+    let service: ContratosService;
+    let prisma: any;
+
+    const contratoAtivo = {
+        id: BigInt(5),
+        idImovel: 1,
+        idLocador: BigInt(10),
+        idLocatario: BigInt(20),
+        status: 'ATIVO',
+        valorAluguel: 12000,
+        dataReajuste: new Date('2026-07-01T00:00:00.000Z'),
+    };
+
+    beforeEach(() => {
+        prisma = {
+            contratolocacao: {
+                findUnique: jest.fn().mockResolvedValue(contratoAtivo),
+                update: jest.fn().mockImplementation(({ data }: any) => ({ ...contratoAtivo, ...data })),
+            },
+            reajustecontrato: {
+                create: jest.fn().mockImplementation(({ data }: any) => ({ id: BigInt(1), ...data })),
+                findMany: jest.fn().mockResolvedValue([]),
+            },
+            $transaction: jest.fn(),
+        };
+        prisma.$transaction.mockImplementation((arg: any) =>
+            typeof arg === 'function' ? arg(prisma) : Promise.all(arg),
+        );
+
+        service = new ContratosService(prisma);
+    });
+
+    it('rejeita reajuste em contrato que não está ATIVO', async () => {
+        prisma.contratolocacao.findUnique.mockResolvedValue({ ...contratoAtivo, status: 'ENCERRADO' });
+
+        await expect(
+            service.aplicarReajuste(5, { indice: IndiceReajuste.IGPM, percentual: 3.18 } as any),
+        ).rejects.toThrow(BadRequestException);
+    });
+
+    it('404 quando o contrato não existe', async () => {
+        prisma.contratolocacao.findUnique.mockResolvedValue(null);
+
+        await expect(
+            service.aplicarReajuste(999, { indice: IndiceReajuste.IGPM, percentual: 3.18 } as any),
+        ).rejects.toThrow(NotFoundException);
+    });
+
+    it('rejeita quando nem percentual nem valorNovo são informados', async () => {
+        await expect(service.aplicarReajuste(5, { indice: IndiceReajuste.IGPM } as any)).rejects.toThrow(
+            BadRequestException,
+        );
+    });
+
+    it('calcula o novo valor a partir do percentual', async () => {
+        const resultado = await service.aplicarReajuste(5, { indice: IndiceReajuste.IGPM, percentual: 3.18 } as any);
+
+        expect(resultado.reajuste.valorAnterior).toBe(12000);
+        expect(resultado.reajuste.valorNovo).toBe(12381.6); // 12000 * 1.0318
+        expect(resultado.reajuste.percentual).toBe(3.18);
+        expect(resultado.contrato.valorAluguel).toBe(12381.6);
+    });
+
+    it('calcula o percentual equivalente a partir do valorNovo', async () => {
+        const resultado = await service.aplicarReajuste(5, { indice: IndiceReajuste.IPCA, valorNovo: 12381.32 } as any);
+
+        expect(resultado.reajuste.percentual).toBeCloseTo(3.1777, 3);
+    });
+
+    it('avança a próxima data de reajuste em exatamente 1 ano', async () => {
+        await service.aplicarReajuste(5, { indice: IndiceReajuste.IGPM, percentual: 5 } as any);
+
+        expect(prisma.contratolocacao.update).toHaveBeenCalledWith(
+            expect.objectContaining({
+                data: expect.objectContaining({ dataReajuste: new Date('2027-07-01T00:00:00.000Z') }),
+            }),
+        );
+    });
+
+    it('rejeita valorNovo menor ou igual a zero', async () => {
+        await expect(
+            service.aplicarReajuste(5, { indice: IndiceReajuste.IGPM, percentual: -100 } as any),
+        ).rejects.toThrow(BadRequestException);
+    });
+
+    it('listarReajustes devolve o histórico ordenado do mais recente ao mais antigo', async () => {
+        await service.listarReajustes(5);
+
+        expect(prisma.reajustecontrato.findMany).toHaveBeenCalledWith({
+            where: { idContrato: BigInt(5) },
+            orderBy: { dataReajuste: 'desc' },
+        });
     });
 });

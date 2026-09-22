@@ -47,6 +47,7 @@ enum tipo_despesa_enum {
   CONDOMINIO
   IPTU
   TAXA_BOMBEIRO
+  SEGURO_INCENDIO
   MANUTENCAO
   OUTRA
 }
@@ -54,6 +55,13 @@ enum tipo_despesa_enum {
 enum status_despesa_enum {
   PAGA
   EM_ABERTO
+}
+
+enum indice_reajuste_enum {
+  IGPM
+  IPCA
+  INCC
+  OUTRO
 }
 
 // ---------------------------------------------------------
@@ -92,6 +100,7 @@ model imovel {
   endereco          endereco             @relation(fields: [idEndereco], references: [id], onDelete: Cascade, onUpdate: Restrict)
   contratolocacao   contratolocacao[]
   propriedadeimovel propriedadeimovel[]
+  memoriacalculo    memoriacalculo[]
 
   @@index([dataCadastro], map: "idx_dataCadastro")
   @@index([status], map: "idx_status")
@@ -126,8 +135,89 @@ model contratolocacao {
   imovel               imovel               @relation(fields: [idImovel], references: [id], onUpdate: Restrict)
   comissao             Decimal              @db.Decimal(10, 2)
   despesa              despesa[]
+  reajustecontrato     reajustecontrato[]
+  memoriacalculo       memoriacalculo[]
 
   @@index([idImovel], map: "idImovel")
+}
+
+model reajustecontrato {
+  // Histórico dos reajustes anuais aplicados ao contrato. "Aplicar" um reajuste grava esta linha E
+  // atualiza contratolocacao.valorAluguel/dataReajuste (dataReajuste avança 1 ano) na mesma transação,
+  // então o valor vigente do contrato sempre reflete o último reajuste aplicado.
+  id              BigInt                @id @default(autoincrement())
+  idContrato      BigInt
+  dataReajuste    DateTime              @db.Date
+  indice          indice_reajuste_enum
+  percentual      Decimal               @db.Decimal(7, 4)
+  valorAnterior   Decimal               @db.Decimal(10, 2)
+  valorNovo       Decimal               @db.Decimal(10, 2)
+  observacao      String?               @db.VarChar(255)
+  criadoEm        DateTime              @default(now()) @db.DateTime(0)
+  contratolocacao contratolocacao       @relation(fields: [idContrato], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@index([idContrato], map: "idx_reajustecontrato_idContrato")
+}
+
+model memoriacalculo {
+  // Registro imutável de cada geração da "Memória de Cálculo" (rateio do aluguel entre os proprietários
+  // de um imóvel, num mês/competência). Uma vez gerado, o documento não deve mudar retroativamente:
+  // por isso os dados de exibição (nome do locador, conta bancária) ficam FOTOGRAFADOS aqui, e não
+  // apontam por FK para os cadastros vivos (que podem ser editados depois em api-locador/api-locatario).
+  id                    Int                  @id @default(autoincrement())
+  idContrato            BigInt
+  idImovel              Int
+  competencia           DateTime             @db.Date // sempre o dia 1 do mês de referência
+  valorAluguelBase      Decimal              @db.Decimal(10, 2) // valorAluguel do contrato usado nesta geração
+
+  // Fotografia da conta de depósito escolhida (a tabela real vive no serviço de locatários)
+  idContaBancaria       Int?
+  contaDescricao        String?              @db.VarChar(100)
+  contaBanco            String?              @db.VarChar(100)
+  contaAgencia          String?              @db.VarChar(20)
+  contaNumero           String?              @db.VarChar(30)
+  contaTipoChavePix     String?              @db.VarChar(20)
+  contaChavePix         String?              @db.VarChar(140)
+  contaTitular          String?              @db.VarChar(150)
+  contaDocumentoTitular String?              @db.VarChar(20)
+
+  // Fotografia do reajuste, quando a competência coincide com um reajuste aplicado nesta geração
+  reajusteIndice        indice_reajuste_enum?
+  reajustePercentual    Decimal?             @db.Decimal(7, 4)
+  reajusteValorAnterior Decimal?             @db.Decimal(10, 2)
+
+  totalAPagar           Decimal              @db.Decimal(10, 2)
+  geradoPorUsuarioId    Int
+  criadoEm              DateTime             @default(now()) @db.DateTime(0)
+
+  contratolocacao       contratolocacao      @relation(fields: [idContrato], references: [id], onUpdate: Restrict)
+  imovel                imovel               @relation(fields: [idImovel], references: [id], onUpdate: Restrict)
+  itens                 memoriacalculoitem[]
+
+  @@unique([idContrato, competencia], map: "uq_memoriacalculo_contrato_competencia")
+  @@index([idImovel], map: "idx_memoriacalculo_idImovel")
+}
+
+model memoriacalculoitem {
+  // Uma linha por proprietário dentro da memória (o "bloco" de cada locador na planilha de referência).
+  id                     Int            @id @default(autoincrement())
+  idMemoriaCalculo       Int
+  idLocador              BigInt
+  nomeLocador            String         @db.VarChar(150)
+  documentoLocador       String?        @db.VarChar(20)
+  percentualParticipacao Decimal        @db.Decimal(5, 2)
+  valorAluguel           Decimal        @db.Decimal(10, 2) // rateio: valorAluguelBase * percentual
+  valorReembolsos        Decimal        @default(0) @db.Decimal(10, 2) // despesas extras atribuídas a este locador
+  valorDescontos         Decimal        @default(0) @db.Decimal(10, 2)
+  baseCalculoIrrf        Decimal        @db.Decimal(10, 2)
+  valorIrrf              Decimal        @db.Decimal(10, 2)
+  valorAPagar            Decimal        @db.Decimal(10, 2)
+  // Lista curta {idDespesa?, tipo, descricao, valor, aplicacao} das despesas extras atribuídas a este
+  // locador, só para exibição/auditoria — os valores oficiais já estão persistidos nas colunas acima.
+  detalhesExtras         Json?
+  memoriacalculo         memoriacalculo @relation(fields: [idMemoriaCalculo], references: [id], onDelete: Cascade, onUpdate: Restrict)
+
+  @@index([idMemoriaCalculo], map: "idx_memoriacalculoitem_idMemoriaCalculo")
 }
 
 model despesa {

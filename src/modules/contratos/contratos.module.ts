@@ -7,6 +7,7 @@ import { Prisma } from 'src/generated/prisma';
 @Module({
     controllers: [ContratosController],
     providers: [ContratosService, PrismaService],
+    exports: [ContratosService], //o módulo de memória de cálculo lê o contrato ativo do imóvel
 })
 
 export class ContratosModule{}

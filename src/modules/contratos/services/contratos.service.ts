@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { PrismaService } from '../../../database/prisma.service'
 import { CriarContratoDto } from '../dto/criar-contrato.dto';
 import { AtualizarContratoDto } from '../dto/atualizar-contrato.dto';
+import { AplicarReajusteDto } from '../dto/aplicar-reajuste.dto';
 
 @Injectable()
 export class ContratosService {
@@ -211,6 +212,87 @@ export class ContratosService {
         });
 
         return this.formatarContrato(contratoAtualizado);
+    }
+
+    private formatarReajuste(reajuste: any) {
+        return {
+            ...reajuste,
+            id: reajuste.id.toString(),
+            idContrato: reajuste.idContrato.toString(),
+            percentual: Number(reajuste.percentual),
+            valorAnterior: Number(reajuste.valorAnterior),
+            valorNovo: Number(reajuste.valorNovo),
+        };
+    }
+
+    //Aplica um reajuste anual: grava o histórico E atualiza o valor vigente do contrato (valorAluguel) na
+    //mesma transação, avançando a próxima data de reajuste em 1 ano. O índice em si (IGPM/IPCA/...) não é
+    //consultado em lugar nenhum: o percentual (ou o valor novo já calculado) é informado por quem aplica.
+    async aplicarReajuste(id: number, dados: AplicarReajusteDto) {
+        const contrato = await this.prisma.contratolocacao.findUnique({ where: { id: BigInt(id) } });
+
+        if (!contrato) {
+            throw new NotFoundException(`Contrato com ID ${id} não encontrado.`);
+        }
+
+        if (contrato.status !== 'ATIVO') {
+            throw new BadRequestException(`Apenas contratos ATIVOS podem ser reajustados. Status atual: ${contrato.status}`);
+        }
+
+        const valorAnterior = Number(contrato.valorAluguel);
+        //Informe percentual OU valorNovo; o outro é derivado, para o histórico sempre ter os dois valores
+        let percentual: number;
+        let valorNovo: number;
+
+        if (dados.valorNovo !== undefined) {
+            valorNovo = Math.round(dados.valorNovo * 100) / 100;
+            percentual = valorAnterior > 0 ? Math.round(((valorNovo / valorAnterior - 1) * 100) * 10000) / 10000 : 0;
+        } else if (dados.percentual !== undefined) {
+            percentual = dados.percentual;
+            valorNovo = Math.round(valorAnterior * (1 + percentual / 100) * 100) / 100;
+        } else {
+            throw new BadRequestException('Informe "percentual" ou "valorNovo" para aplicar o reajuste.');
+        }
+
+        if (valorNovo <= 0) {
+            throw new BadRequestException('O novo valor do aluguel deve ser maior que zero.');
+        }
+
+        const dataReajuste = dados.dataReajuste ?? contrato.dataReajuste ?? new Date();
+        //Próximo aniversário de reajuste: a mesma data, um ano à frente
+        const proximaDataReajuste = new Date(Date.UTC(dataReajuste.getUTCFullYear() + 1, dataReajuste.getUTCMonth(), dataReajuste.getUTCDate()));
+
+        const [reajusteRegistrado, contratoAtualizado] = await this.prisma.$transaction([
+            this.prisma.reajustecontrato.create({
+                data: {
+                    idContrato: BigInt(id),
+                    dataReajuste,
+                    indice: dados.indice,
+                    percentual,
+                    valorAnterior,
+                    valorNovo,
+                    observacao: dados.observacao,
+                },
+            }),
+            this.prisma.contratolocacao.update({
+                where: { id: BigInt(id) },
+                data: { valorAluguel: valorNovo, dataReajuste: proximaDataReajuste },
+            }),
+        ]);
+
+        return {
+            reajuste: this.formatarReajuste(reajusteRegistrado),
+            contrato: this.formatarContrato(contratoAtualizado),
+        };
+    }
+
+    async listarReajustes(id: number) {
+        const reajustes = await this.prisma.reajustecontrato.findMany({
+            where: { idContrato: BigInt(id) },
+            orderBy: { dataReajuste: 'desc' },
+        });
+
+        return reajustes.map((r) => this.formatarReajuste(r));
     }
 
     async removerDefinitivo(id: number) {

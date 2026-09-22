@@ -34,6 +34,21 @@ export type propriedadeimovel = $Result.DefaultSelection<Prisma.$propriedadeimov
  */
 export type contratolocacao = $Result.DefaultSelection<Prisma.$contratolocacaoPayload>
 /**
+ * Model reajustecontrato
+ * 
+ */
+export type reajustecontrato = $Result.DefaultSelection<Prisma.$reajustecontratoPayload>
+/**
+ * Model memoriacalculo
+ * 
+ */
+export type memoriacalculo = $Result.DefaultSelection<Prisma.$memoriacalculoPayload>
+/**
+ * Model memoriacalculoitem
+ * 
+ */
+export type memoriacalculoitem = $Result.DefaultSelection<Prisma.$memoriacalculoitemPayload>
+/**
  * Model despesa
  * 
  */
@@ -98,6 +113,7 @@ export const tipo_despesa_enum: {
   CONDOMINIO: 'CONDOMINIO',
   IPTU: 'IPTU',
   TAXA_BOMBEIRO: 'TAXA_BOMBEIRO',
+  SEGURO_INCENDIO: 'SEGURO_INCENDIO',
   MANUTENCAO: 'MANUTENCAO',
   OUTRA: 'OUTRA'
 };
@@ -111,6 +127,16 @@ export const status_despesa_enum: {
 };
 
 export type status_despesa_enum = (typeof status_despesa_enum)[keyof typeof status_despesa_enum]
+
+
+export const indice_reajuste_enum: {
+  IGPM: 'IGPM',
+  IPCA: 'IPCA',
+  INCC: 'INCC',
+  OUTRO: 'OUTRO'
+};
+
+export type indice_reajuste_enum = (typeof indice_reajuste_enum)[keyof typeof indice_reajuste_enum]
 
 }
 
@@ -137,6 +163,10 @@ export const tipo_despesa_enum: typeof $Enums.tipo_despesa_enum
 export type status_despesa_enum = $Enums.status_despesa_enum
 
 export const status_despesa_enum: typeof $Enums.status_despesa_enum
+
+export type indice_reajuste_enum = $Enums.indice_reajuste_enum
+
+export const indice_reajuste_enum: typeof $Enums.indice_reajuste_enum
 
 /**
  * ##  Prisma Client ʲˢ
@@ -298,6 +328,36 @@ export class PrismaClient<
     * ```
     */
   get contratolocacao(): Prisma.contratolocacaoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.reajustecontrato`: Exposes CRUD operations for the **reajustecontrato** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Reajustecontratoes
+    * const reajustecontratoes = await prisma.reajustecontrato.findMany()
+    * ```
+    */
+  get reajustecontrato(): Prisma.reajustecontratoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.memoriacalculo`: Exposes CRUD operations for the **memoriacalculo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Memoriacalculos
+    * const memoriacalculos = await prisma.memoriacalculo.findMany()
+    * ```
+    */
+  get memoriacalculo(): Prisma.memoriacalculoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.memoriacalculoitem`: Exposes CRUD operations for the **memoriacalculoitem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Memoriacalculoitems
+    * const memoriacalculoitems = await prisma.memoriacalculoitem.findMany()
+    * ```
+    */
+  get memoriacalculoitem(): Prisma.memoriacalculoitemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.despesa`: Exposes CRUD operations for the **despesa** model.
@@ -766,6 +826,9 @@ export namespace Prisma {
     imovel: 'imovel',
     propriedadeimovel: 'propriedadeimovel',
     contratolocacao: 'contratolocacao',
+    reajustecontrato: 'reajustecontrato',
+    memoriacalculo: 'memoriacalculo',
+    memoriacalculoitem: 'memoriacalculoitem',
     despesa: 'despesa',
     tabelairrf: 'tabelairrf',
     faixairrf: 'faixairrf'
@@ -784,7 +847,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "endereco" | "imovel" | "propriedadeimovel" | "contratolocacao" | "despesa" | "tabelairrf" | "faixairrf"
+      modelProps: "endereco" | "imovel" | "propriedadeimovel" | "contratolocacao" | "reajustecontrato" | "memoriacalculo" | "memoriacalculoitem" | "despesa" | "tabelairrf" | "faixairrf"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1049,6 +1112,204 @@ export namespace Prisma {
           count: {
             args: Prisma.contratolocacaoCountArgs<ExtArgs>
             result: $Utils.Optional<ContratolocacaoCountAggregateOutputType> | number
+          }
+        }
+      }
+      reajustecontrato: {
+        payload: Prisma.$reajustecontratoPayload<ExtArgs>
+        fields: Prisma.reajustecontratoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.reajustecontratoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.reajustecontratoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          findFirst: {
+            args: Prisma.reajustecontratoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.reajustecontratoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          findMany: {
+            args: Prisma.reajustecontratoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>[]
+          }
+          create: {
+            args: Prisma.reajustecontratoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          createMany: {
+            args: Prisma.reajustecontratoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.reajustecontratoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          update: {
+            args: Prisma.reajustecontratoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          deleteMany: {
+            args: Prisma.reajustecontratoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.reajustecontratoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.reajustecontratoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$reajustecontratoPayload>
+          }
+          aggregate: {
+            args: Prisma.ReajustecontratoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReajustecontrato>
+          }
+          groupBy: {
+            args: Prisma.reajustecontratoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReajustecontratoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.reajustecontratoCountArgs<ExtArgs>
+            result: $Utils.Optional<ReajustecontratoCountAggregateOutputType> | number
+          }
+        }
+      }
+      memoriacalculo: {
+        payload: Prisma.$memoriacalculoPayload<ExtArgs>
+        fields: Prisma.memoriacalculoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.memoriacalculoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.memoriacalculoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          findFirst: {
+            args: Prisma.memoriacalculoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.memoriacalculoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          findMany: {
+            args: Prisma.memoriacalculoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>[]
+          }
+          create: {
+            args: Prisma.memoriacalculoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          createMany: {
+            args: Prisma.memoriacalculoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.memoriacalculoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          update: {
+            args: Prisma.memoriacalculoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          deleteMany: {
+            args: Prisma.memoriacalculoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.memoriacalculoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.memoriacalculoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoPayload>
+          }
+          aggregate: {
+            args: Prisma.MemoriacalculoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMemoriacalculo>
+          }
+          groupBy: {
+            args: Prisma.memoriacalculoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MemoriacalculoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.memoriacalculoCountArgs<ExtArgs>
+            result: $Utils.Optional<MemoriacalculoCountAggregateOutputType> | number
+          }
+        }
+      }
+      memoriacalculoitem: {
+        payload: Prisma.$memoriacalculoitemPayload<ExtArgs>
+        fields: Prisma.memoriacalculoitemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.memoriacalculoitemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.memoriacalculoitemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          findFirst: {
+            args: Prisma.memoriacalculoitemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.memoriacalculoitemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          findMany: {
+            args: Prisma.memoriacalculoitemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>[]
+          }
+          create: {
+            args: Prisma.memoriacalculoitemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          createMany: {
+            args: Prisma.memoriacalculoitemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.memoriacalculoitemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          update: {
+            args: Prisma.memoriacalculoitemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          deleteMany: {
+            args: Prisma.memoriacalculoitemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.memoriacalculoitemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.memoriacalculoitemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$memoriacalculoitemPayload>
+          }
+          aggregate: {
+            args: Prisma.MemoriacalculoitemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMemoriacalculoitem>
+          }
+          groupBy: {
+            args: Prisma.memoriacalculoitemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MemoriacalculoitemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.memoriacalculoitemCountArgs<ExtArgs>
+            result: $Utils.Optional<MemoriacalculoitemCountAggregateOutputType> | number
           }
         }
       }
@@ -1362,6 +1623,9 @@ export namespace Prisma {
     imovel?: imovelOmit
     propriedadeimovel?: propriedadeimovelOmit
     contratolocacao?: contratolocacaoOmit
+    reajustecontrato?: reajustecontratoOmit
+    memoriacalculo?: memoriacalculoOmit
+    memoriacalculoitem?: memoriacalculoitemOmit
     despesa?: despesaOmit
     tabelairrf?: tabelairrfOmit
     faixairrf?: faixairrfOmit
@@ -1478,11 +1742,13 @@ export namespace Prisma {
   export type ImovelCountOutputType = {
     contratolocacao: number
     propriedadeimovel: number
+    memoriacalculo: number
   }
 
   export type ImovelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contratolocacao?: boolean | ImovelCountOutputTypeCountContratolocacaoArgs
     propriedadeimovel?: boolean | ImovelCountOutputTypeCountPropriedadeimovelArgs
+    memoriacalculo?: boolean | ImovelCountOutputTypeCountMemoriacalculoArgs
   }
 
   // Custom InputTypes
@@ -1510,6 +1776,13 @@ export namespace Prisma {
     where?: propriedadeimovelWhereInput
   }
 
+  /**
+   * ImovelCountOutputType without action
+   */
+  export type ImovelCountOutputTypeCountMemoriacalculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: memoriacalculoWhereInput
+  }
+
 
   /**
    * Count Type ContratolocacaoCountOutputType
@@ -1517,10 +1790,14 @@ export namespace Prisma {
 
   export type ContratolocacaoCountOutputType = {
     despesa: number
+    reajustecontrato: number
+    memoriacalculo: number
   }
 
   export type ContratolocacaoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     despesa?: boolean | ContratolocacaoCountOutputTypeCountDespesaArgs
+    reajustecontrato?: boolean | ContratolocacaoCountOutputTypeCountReajustecontratoArgs
+    memoriacalculo?: boolean | ContratolocacaoCountOutputTypeCountMemoriacalculoArgs
   }
 
   // Custom InputTypes
@@ -1539,6 +1816,51 @@ export namespace Prisma {
    */
   export type ContratolocacaoCountOutputTypeCountDespesaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: despesaWhereInput
+  }
+
+  /**
+   * ContratolocacaoCountOutputType without action
+   */
+  export type ContratolocacaoCountOutputTypeCountReajustecontratoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: reajustecontratoWhereInput
+  }
+
+  /**
+   * ContratolocacaoCountOutputType without action
+   */
+  export type ContratolocacaoCountOutputTypeCountMemoriacalculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: memoriacalculoWhereInput
+  }
+
+
+  /**
+   * Count Type MemoriacalculoCountOutputType
+   */
+
+  export type MemoriacalculoCountOutputType = {
+    itens: number
+  }
+
+  export type MemoriacalculoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    itens?: boolean | MemoriacalculoCountOutputTypeCountItensArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MemoriacalculoCountOutputType without action
+   */
+  export type MemoriacalculoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MemoriacalculoCountOutputType
+     */
+    select?: MemoriacalculoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MemoriacalculoCountOutputType without action
+   */
+  export type MemoriacalculoCountOutputTypeCountItensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: memoriacalculoitemWhereInput
   }
 
 
@@ -2830,6 +3152,7 @@ export namespace Prisma {
     endereco?: boolean | enderecoDefaultArgs<ExtArgs>
     contratolocacao?: boolean | imovel$contratolocacaoArgs<ExtArgs>
     propriedadeimovel?: boolean | imovel$propriedadeimovelArgs<ExtArgs>
+    memoriacalculo?: boolean | imovel$memoriacalculoArgs<ExtArgs>
     _count?: boolean | ImovelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["imovel"]>
 
@@ -2852,6 +3175,7 @@ export namespace Prisma {
     endereco?: boolean | enderecoDefaultArgs<ExtArgs>
     contratolocacao?: boolean | imovel$contratolocacaoArgs<ExtArgs>
     propriedadeimovel?: boolean | imovel$propriedadeimovelArgs<ExtArgs>
+    memoriacalculo?: boolean | imovel$memoriacalculoArgs<ExtArgs>
     _count?: boolean | ImovelCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2861,6 +3185,7 @@ export namespace Prisma {
       endereco: Prisma.$enderecoPayload<ExtArgs>
       contratolocacao: Prisma.$contratolocacaoPayload<ExtArgs>[]
       propriedadeimovel: Prisma.$propriedadeimovelPayload<ExtArgs>[]
+      memoriacalculo: Prisma.$memoriacalculoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3215,6 +3540,7 @@ export namespace Prisma {
     endereco<T extends enderecoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, enderecoDefaultArgs<ExtArgs>>): Prisma__enderecoClient<$Result.GetResult<Prisma.$enderecoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     contratolocacao<T extends imovel$contratolocacaoArgs<ExtArgs> = {}>(args?: Subset<T, imovel$contratolocacaoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$contratolocacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     propriedadeimovel<T extends imovel$propriedadeimovelArgs<ExtArgs> = {}>(args?: Subset<T, imovel$propriedadeimovelArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$propriedadeimovelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    memoriacalculo<T extends imovel$memoriacalculoArgs<ExtArgs> = {}>(args?: Subset<T, imovel$memoriacalculoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3646,6 +3972,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PropriedadeimovelScalarFieldEnum | PropriedadeimovelScalarFieldEnum[]
+  }
+
+  /**
+   * imovel.memoriacalculo
+   */
+  export type imovel$memoriacalculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    where?: memoriacalculoWhereInput
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    cursor?: memoriacalculoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemoriacalculoScalarFieldEnum | MemoriacalculoScalarFieldEnum[]
   }
 
   /**
@@ -4904,6 +5254,8 @@ export namespace Prisma {
     comissao?: boolean
     imovel?: boolean | imovelDefaultArgs<ExtArgs>
     despesa?: boolean | contratolocacao$despesaArgs<ExtArgs>
+    reajustecontrato?: boolean | contratolocacao$reajustecontratoArgs<ExtArgs>
+    memoriacalculo?: boolean | contratolocacao$memoriacalculoArgs<ExtArgs>
     _count?: boolean | ContratolocacaoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["contratolocacao"]>
 
@@ -4927,6 +5279,8 @@ export namespace Prisma {
   export type contratolocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imovel?: boolean | imovelDefaultArgs<ExtArgs>
     despesa?: boolean | contratolocacao$despesaArgs<ExtArgs>
+    reajustecontrato?: boolean | contratolocacao$reajustecontratoArgs<ExtArgs>
+    memoriacalculo?: boolean | contratolocacao$memoriacalculoArgs<ExtArgs>
     _count?: boolean | ContratolocacaoCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -4935,6 +5289,8 @@ export namespace Prisma {
     objects: {
       imovel: Prisma.$imovelPayload<ExtArgs>
       despesa: Prisma.$despesaPayload<ExtArgs>[]
+      reajustecontrato: Prisma.$reajustecontratoPayload<ExtArgs>[]
+      memoriacalculo: Prisma.$memoriacalculoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -5290,6 +5646,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     imovel<T extends imovelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, imovelDefaultArgs<ExtArgs>>): Prisma__imovelClient<$Result.GetResult<Prisma.$imovelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     despesa<T extends contratolocacao$despesaArgs<ExtArgs> = {}>(args?: Subset<T, contratolocacao$despesaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$despesaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reajustecontrato<T extends contratolocacao$reajustecontratoArgs<ExtArgs> = {}>(args?: Subset<T, contratolocacao$reajustecontratoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    memoriacalculo<T extends contratolocacao$memoriacalculoArgs<ExtArgs> = {}>(args?: Subset<T, contratolocacao$memoriacalculoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5702,6 +6060,54 @@ export namespace Prisma {
   }
 
   /**
+   * contratolocacao.reajustecontrato
+   */
+  export type contratolocacao$reajustecontratoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    where?: reajustecontratoWhereInput
+    orderBy?: reajustecontratoOrderByWithRelationInput | reajustecontratoOrderByWithRelationInput[]
+    cursor?: reajustecontratoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReajustecontratoScalarFieldEnum | ReajustecontratoScalarFieldEnum[]
+  }
+
+  /**
+   * contratolocacao.memoriacalculo
+   */
+  export type contratolocacao$memoriacalculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    where?: memoriacalculoWhereInput
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    cursor?: memoriacalculoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemoriacalculoScalarFieldEnum | MemoriacalculoScalarFieldEnum[]
+  }
+
+  /**
    * contratolocacao without action
    */
   export type contratolocacaoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5717,6 +6123,3321 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: contratolocacaoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model reajustecontrato
+   */
+
+  export type AggregateReajustecontrato = {
+    _count: ReajustecontratoCountAggregateOutputType | null
+    _avg: ReajustecontratoAvgAggregateOutputType | null
+    _sum: ReajustecontratoSumAggregateOutputType | null
+    _min: ReajustecontratoMinAggregateOutputType | null
+    _max: ReajustecontratoMaxAggregateOutputType | null
+  }
+
+  export type ReajustecontratoAvgAggregateOutputType = {
+    id: number | null
+    idContrato: number | null
+    percentual: Decimal | null
+    valorAnterior: Decimal | null
+    valorNovo: Decimal | null
+  }
+
+  export type ReajustecontratoSumAggregateOutputType = {
+    id: bigint | null
+    idContrato: bigint | null
+    percentual: Decimal | null
+    valorAnterior: Decimal | null
+    valorNovo: Decimal | null
+  }
+
+  export type ReajustecontratoMinAggregateOutputType = {
+    id: bigint | null
+    idContrato: bigint | null
+    dataReajuste: Date | null
+    indice: $Enums.indice_reajuste_enum | null
+    percentual: Decimal | null
+    valorAnterior: Decimal | null
+    valorNovo: Decimal | null
+    observacao: string | null
+    criadoEm: Date | null
+  }
+
+  export type ReajustecontratoMaxAggregateOutputType = {
+    id: bigint | null
+    idContrato: bigint | null
+    dataReajuste: Date | null
+    indice: $Enums.indice_reajuste_enum | null
+    percentual: Decimal | null
+    valorAnterior: Decimal | null
+    valorNovo: Decimal | null
+    observacao: string | null
+    criadoEm: Date | null
+  }
+
+  export type ReajustecontratoCountAggregateOutputType = {
+    id: number
+    idContrato: number
+    dataReajuste: number
+    indice: number
+    percentual: number
+    valorAnterior: number
+    valorNovo: number
+    observacao: number
+    criadoEm: number
+    _all: number
+  }
+
+
+  export type ReajustecontratoAvgAggregateInputType = {
+    id?: true
+    idContrato?: true
+    percentual?: true
+    valorAnterior?: true
+    valorNovo?: true
+  }
+
+  export type ReajustecontratoSumAggregateInputType = {
+    id?: true
+    idContrato?: true
+    percentual?: true
+    valorAnterior?: true
+    valorNovo?: true
+  }
+
+  export type ReajustecontratoMinAggregateInputType = {
+    id?: true
+    idContrato?: true
+    dataReajuste?: true
+    indice?: true
+    percentual?: true
+    valorAnterior?: true
+    valorNovo?: true
+    observacao?: true
+    criadoEm?: true
+  }
+
+  export type ReajustecontratoMaxAggregateInputType = {
+    id?: true
+    idContrato?: true
+    dataReajuste?: true
+    indice?: true
+    percentual?: true
+    valorAnterior?: true
+    valorNovo?: true
+    observacao?: true
+    criadoEm?: true
+  }
+
+  export type ReajustecontratoCountAggregateInputType = {
+    id?: true
+    idContrato?: true
+    dataReajuste?: true
+    indice?: true
+    percentual?: true
+    valorAnterior?: true
+    valorNovo?: true
+    observacao?: true
+    criadoEm?: true
+    _all?: true
+  }
+
+  export type ReajustecontratoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which reajustecontrato to aggregate.
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of reajustecontratoes to fetch.
+     */
+    orderBy?: reajustecontratoOrderByWithRelationInput | reajustecontratoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: reajustecontratoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` reajustecontratoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` reajustecontratoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned reajustecontratoes
+    **/
+    _count?: true | ReajustecontratoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReajustecontratoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReajustecontratoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReajustecontratoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReajustecontratoMaxAggregateInputType
+  }
+
+  export type GetReajustecontratoAggregateType<T extends ReajustecontratoAggregateArgs> = {
+        [P in keyof T & keyof AggregateReajustecontrato]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReajustecontrato[P]>
+      : GetScalarType<T[P], AggregateReajustecontrato[P]>
+  }
+
+
+
+
+  export type reajustecontratoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: reajustecontratoWhereInput
+    orderBy?: reajustecontratoOrderByWithAggregationInput | reajustecontratoOrderByWithAggregationInput[]
+    by: ReajustecontratoScalarFieldEnum[] | ReajustecontratoScalarFieldEnum
+    having?: reajustecontratoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReajustecontratoCountAggregateInputType | true
+    _avg?: ReajustecontratoAvgAggregateInputType
+    _sum?: ReajustecontratoSumAggregateInputType
+    _min?: ReajustecontratoMinAggregateInputType
+    _max?: ReajustecontratoMaxAggregateInputType
+  }
+
+  export type ReajustecontratoGroupByOutputType = {
+    id: bigint
+    idContrato: bigint
+    dataReajuste: Date
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal
+    valorAnterior: Decimal
+    valorNovo: Decimal
+    observacao: string | null
+    criadoEm: Date
+    _count: ReajustecontratoCountAggregateOutputType | null
+    _avg: ReajustecontratoAvgAggregateOutputType | null
+    _sum: ReajustecontratoSumAggregateOutputType | null
+    _min: ReajustecontratoMinAggregateOutputType | null
+    _max: ReajustecontratoMaxAggregateOutputType | null
+  }
+
+  type GetReajustecontratoGroupByPayload<T extends reajustecontratoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReajustecontratoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReajustecontratoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReajustecontratoGroupByOutputType[P]>
+            : GetScalarType<T[P], ReajustecontratoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type reajustecontratoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idContrato?: boolean
+    dataReajuste?: boolean
+    indice?: boolean
+    percentual?: boolean
+    valorAnterior?: boolean
+    valorNovo?: boolean
+    observacao?: boolean
+    criadoEm?: boolean
+    contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["reajustecontrato"]>
+
+
+
+  export type reajustecontratoSelectScalar = {
+    id?: boolean
+    idContrato?: boolean
+    dataReajuste?: boolean
+    indice?: boolean
+    percentual?: boolean
+    valorAnterior?: boolean
+    valorNovo?: boolean
+    observacao?: boolean
+    criadoEm?: boolean
+  }
+
+  export type reajustecontratoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idContrato" | "dataReajuste" | "indice" | "percentual" | "valorAnterior" | "valorNovo" | "observacao" | "criadoEm", ExtArgs["result"]["reajustecontrato"]>
+  export type reajustecontratoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
+  }
+
+  export type $reajustecontratoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "reajustecontrato"
+    objects: {
+      contratolocacao: Prisma.$contratolocacaoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      idContrato: bigint
+      dataReajuste: Date
+      indice: $Enums.indice_reajuste_enum
+      percentual: Prisma.Decimal
+      valorAnterior: Prisma.Decimal
+      valorNovo: Prisma.Decimal
+      observacao: string | null
+      criadoEm: Date
+    }, ExtArgs["result"]["reajustecontrato"]>
+    composites: {}
+  }
+
+  type reajustecontratoGetPayload<S extends boolean | null | undefined | reajustecontratoDefaultArgs> = $Result.GetResult<Prisma.$reajustecontratoPayload, S>
+
+  type reajustecontratoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<reajustecontratoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReajustecontratoCountAggregateInputType | true
+    }
+
+  export interface reajustecontratoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['reajustecontrato'], meta: { name: 'reajustecontrato' } }
+    /**
+     * Find zero or one Reajustecontrato that matches the filter.
+     * @param {reajustecontratoFindUniqueArgs} args - Arguments to find a Reajustecontrato
+     * @example
+     * // Get one Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends reajustecontratoFindUniqueArgs>(args: SelectSubset<T, reajustecontratoFindUniqueArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Reajustecontrato that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {reajustecontratoFindUniqueOrThrowArgs} args - Arguments to find a Reajustecontrato
+     * @example
+     * // Get one Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends reajustecontratoFindUniqueOrThrowArgs>(args: SelectSubset<T, reajustecontratoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reajustecontrato that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoFindFirstArgs} args - Arguments to find a Reajustecontrato
+     * @example
+     * // Get one Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends reajustecontratoFindFirstArgs>(args?: SelectSubset<T, reajustecontratoFindFirstArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Reajustecontrato that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoFindFirstOrThrowArgs} args - Arguments to find a Reajustecontrato
+     * @example
+     * // Get one Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends reajustecontratoFindFirstOrThrowArgs>(args?: SelectSubset<T, reajustecontratoFindFirstOrThrowArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Reajustecontratoes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Reajustecontratoes
+     * const reajustecontratoes = await prisma.reajustecontrato.findMany()
+     * 
+     * // Get first 10 Reajustecontratoes
+     * const reajustecontratoes = await prisma.reajustecontrato.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const reajustecontratoWithIdOnly = await prisma.reajustecontrato.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends reajustecontratoFindManyArgs>(args?: SelectSubset<T, reajustecontratoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Reajustecontrato.
+     * @param {reajustecontratoCreateArgs} args - Arguments to create a Reajustecontrato.
+     * @example
+     * // Create one Reajustecontrato
+     * const Reajustecontrato = await prisma.reajustecontrato.create({
+     *   data: {
+     *     // ... data to create a Reajustecontrato
+     *   }
+     * })
+     * 
+     */
+    create<T extends reajustecontratoCreateArgs>(args: SelectSubset<T, reajustecontratoCreateArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Reajustecontratoes.
+     * @param {reajustecontratoCreateManyArgs} args - Arguments to create many Reajustecontratoes.
+     * @example
+     * // Create many Reajustecontratoes
+     * const reajustecontrato = await prisma.reajustecontrato.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends reajustecontratoCreateManyArgs>(args?: SelectSubset<T, reajustecontratoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Reajustecontrato.
+     * @param {reajustecontratoDeleteArgs} args - Arguments to delete one Reajustecontrato.
+     * @example
+     * // Delete one Reajustecontrato
+     * const Reajustecontrato = await prisma.reajustecontrato.delete({
+     *   where: {
+     *     // ... filter to delete one Reajustecontrato
+     *   }
+     * })
+     * 
+     */
+    delete<T extends reajustecontratoDeleteArgs>(args: SelectSubset<T, reajustecontratoDeleteArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Reajustecontrato.
+     * @param {reajustecontratoUpdateArgs} args - Arguments to update one Reajustecontrato.
+     * @example
+     * // Update one Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends reajustecontratoUpdateArgs>(args: SelectSubset<T, reajustecontratoUpdateArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Reajustecontratoes.
+     * @param {reajustecontratoDeleteManyArgs} args - Arguments to filter Reajustecontratoes to delete.
+     * @example
+     * // Delete a few Reajustecontratoes
+     * const { count } = await prisma.reajustecontrato.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends reajustecontratoDeleteManyArgs>(args?: SelectSubset<T, reajustecontratoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Reajustecontratoes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Reajustecontratoes
+     * const reajustecontrato = await prisma.reajustecontrato.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends reajustecontratoUpdateManyArgs>(args: SelectSubset<T, reajustecontratoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Reajustecontrato.
+     * @param {reajustecontratoUpsertArgs} args - Arguments to update or create a Reajustecontrato.
+     * @example
+     * // Update or create a Reajustecontrato
+     * const reajustecontrato = await prisma.reajustecontrato.upsert({
+     *   create: {
+     *     // ... data to create a Reajustecontrato
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Reajustecontrato we want to update
+     *   }
+     * })
+     */
+    upsert<T extends reajustecontratoUpsertArgs>(args: SelectSubset<T, reajustecontratoUpsertArgs<ExtArgs>>): Prisma__reajustecontratoClient<$Result.GetResult<Prisma.$reajustecontratoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Reajustecontratoes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoCountArgs} args - Arguments to filter Reajustecontratoes to count.
+     * @example
+     * // Count the number of Reajustecontratoes
+     * const count = await prisma.reajustecontrato.count({
+     *   where: {
+     *     // ... the filter for the Reajustecontratoes we want to count
+     *   }
+     * })
+    **/
+    count<T extends reajustecontratoCountArgs>(
+      args?: Subset<T, reajustecontratoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReajustecontratoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Reajustecontrato.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReajustecontratoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReajustecontratoAggregateArgs>(args: Subset<T, ReajustecontratoAggregateArgs>): Prisma.PrismaPromise<GetReajustecontratoAggregateType<T>>
+
+    /**
+     * Group by Reajustecontrato.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {reajustecontratoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends reajustecontratoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: reajustecontratoGroupByArgs['orderBy'] }
+        : { orderBy?: reajustecontratoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, reajustecontratoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReajustecontratoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the reajustecontrato model
+   */
+  readonly fields: reajustecontratoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for reajustecontrato.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__reajustecontratoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    contratolocacao<T extends contratolocacaoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, contratolocacaoDefaultArgs<ExtArgs>>): Prisma__contratolocacaoClient<$Result.GetResult<Prisma.$contratolocacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the reajustecontrato model
+   */
+  interface reajustecontratoFieldRefs {
+    readonly id: FieldRef<"reajustecontrato", 'BigInt'>
+    readonly idContrato: FieldRef<"reajustecontrato", 'BigInt'>
+    readonly dataReajuste: FieldRef<"reajustecontrato", 'DateTime'>
+    readonly indice: FieldRef<"reajustecontrato", 'indice_reajuste_enum'>
+    readonly percentual: FieldRef<"reajustecontrato", 'Decimal'>
+    readonly valorAnterior: FieldRef<"reajustecontrato", 'Decimal'>
+    readonly valorNovo: FieldRef<"reajustecontrato", 'Decimal'>
+    readonly observacao: FieldRef<"reajustecontrato", 'String'>
+    readonly criadoEm: FieldRef<"reajustecontrato", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * reajustecontrato findUnique
+   */
+  export type reajustecontratoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter, which reajustecontrato to fetch.
+     */
+    where: reajustecontratoWhereUniqueInput
+  }
+
+  /**
+   * reajustecontrato findUniqueOrThrow
+   */
+  export type reajustecontratoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter, which reajustecontrato to fetch.
+     */
+    where: reajustecontratoWhereUniqueInput
+  }
+
+  /**
+   * reajustecontrato findFirst
+   */
+  export type reajustecontratoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter, which reajustecontrato to fetch.
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of reajustecontratoes to fetch.
+     */
+    orderBy?: reajustecontratoOrderByWithRelationInput | reajustecontratoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for reajustecontratoes.
+     */
+    cursor?: reajustecontratoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` reajustecontratoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` reajustecontratoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of reajustecontratoes.
+     */
+    distinct?: ReajustecontratoScalarFieldEnum | ReajustecontratoScalarFieldEnum[]
+  }
+
+  /**
+   * reajustecontrato findFirstOrThrow
+   */
+  export type reajustecontratoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter, which reajustecontrato to fetch.
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of reajustecontratoes to fetch.
+     */
+    orderBy?: reajustecontratoOrderByWithRelationInput | reajustecontratoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for reajustecontratoes.
+     */
+    cursor?: reajustecontratoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` reajustecontratoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` reajustecontratoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of reajustecontratoes.
+     */
+    distinct?: ReajustecontratoScalarFieldEnum | ReajustecontratoScalarFieldEnum[]
+  }
+
+  /**
+   * reajustecontrato findMany
+   */
+  export type reajustecontratoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter, which reajustecontratoes to fetch.
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of reajustecontratoes to fetch.
+     */
+    orderBy?: reajustecontratoOrderByWithRelationInput | reajustecontratoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing reajustecontratoes.
+     */
+    cursor?: reajustecontratoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` reajustecontratoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` reajustecontratoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of reajustecontratoes.
+     */
+    distinct?: ReajustecontratoScalarFieldEnum | ReajustecontratoScalarFieldEnum[]
+  }
+
+  /**
+   * reajustecontrato create
+   */
+  export type reajustecontratoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a reajustecontrato.
+     */
+    data: XOR<reajustecontratoCreateInput, reajustecontratoUncheckedCreateInput>
+  }
+
+  /**
+   * reajustecontrato createMany
+   */
+  export type reajustecontratoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many reajustecontratoes.
+     */
+    data: reajustecontratoCreateManyInput | reajustecontratoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * reajustecontrato update
+   */
+  export type reajustecontratoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a reajustecontrato.
+     */
+    data: XOR<reajustecontratoUpdateInput, reajustecontratoUncheckedUpdateInput>
+    /**
+     * Choose, which reajustecontrato to update.
+     */
+    where: reajustecontratoWhereUniqueInput
+  }
+
+  /**
+   * reajustecontrato updateMany
+   */
+  export type reajustecontratoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update reajustecontratoes.
+     */
+    data: XOR<reajustecontratoUpdateManyMutationInput, reajustecontratoUncheckedUpdateManyInput>
+    /**
+     * Filter which reajustecontratoes to update
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * Limit how many reajustecontratoes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * reajustecontrato upsert
+   */
+  export type reajustecontratoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the reajustecontrato to update in case it exists.
+     */
+    where: reajustecontratoWhereUniqueInput
+    /**
+     * In case the reajustecontrato found by the `where` argument doesn't exist, create a new reajustecontrato with this data.
+     */
+    create: XOR<reajustecontratoCreateInput, reajustecontratoUncheckedCreateInput>
+    /**
+     * In case the reajustecontrato was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<reajustecontratoUpdateInput, reajustecontratoUncheckedUpdateInput>
+  }
+
+  /**
+   * reajustecontrato delete
+   */
+  export type reajustecontratoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+    /**
+     * Filter which reajustecontrato to delete.
+     */
+    where: reajustecontratoWhereUniqueInput
+  }
+
+  /**
+   * reajustecontrato deleteMany
+   */
+  export type reajustecontratoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which reajustecontratoes to delete
+     */
+    where?: reajustecontratoWhereInput
+    /**
+     * Limit how many reajustecontratoes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * reajustecontrato without action
+   */
+  export type reajustecontratoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the reajustecontrato
+     */
+    select?: reajustecontratoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the reajustecontrato
+     */
+    omit?: reajustecontratoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: reajustecontratoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model memoriacalculo
+   */
+
+  export type AggregateMemoriacalculo = {
+    _count: MemoriacalculoCountAggregateOutputType | null
+    _avg: MemoriacalculoAvgAggregateOutputType | null
+    _sum: MemoriacalculoSumAggregateOutputType | null
+    _min: MemoriacalculoMinAggregateOutputType | null
+    _max: MemoriacalculoMaxAggregateOutputType | null
+  }
+
+  export type MemoriacalculoAvgAggregateOutputType = {
+    id: number | null
+    idContrato: number | null
+    idImovel: number | null
+    valorAluguelBase: Decimal | null
+    idContaBancaria: number | null
+    reajustePercentual: Decimal | null
+    reajusteValorAnterior: Decimal | null
+    totalAPagar: Decimal | null
+    geradoPorUsuarioId: number | null
+  }
+
+  export type MemoriacalculoSumAggregateOutputType = {
+    id: number | null
+    idContrato: bigint | null
+    idImovel: number | null
+    valorAluguelBase: Decimal | null
+    idContaBancaria: number | null
+    reajustePercentual: Decimal | null
+    reajusteValorAnterior: Decimal | null
+    totalAPagar: Decimal | null
+    geradoPorUsuarioId: number | null
+  }
+
+  export type MemoriacalculoMinAggregateOutputType = {
+    id: number | null
+    idContrato: bigint | null
+    idImovel: number | null
+    competencia: Date | null
+    valorAluguelBase: Decimal | null
+    idContaBancaria: number | null
+    contaDescricao: string | null
+    contaBanco: string | null
+    contaAgencia: string | null
+    contaNumero: string | null
+    contaTipoChavePix: string | null
+    contaChavePix: string | null
+    contaTitular: string | null
+    contaDocumentoTitular: string | null
+    reajusteIndice: $Enums.indice_reajuste_enum | null
+    reajustePercentual: Decimal | null
+    reajusteValorAnterior: Decimal | null
+    totalAPagar: Decimal | null
+    geradoPorUsuarioId: number | null
+    criadoEm: Date | null
+  }
+
+  export type MemoriacalculoMaxAggregateOutputType = {
+    id: number | null
+    idContrato: bigint | null
+    idImovel: number | null
+    competencia: Date | null
+    valorAluguelBase: Decimal | null
+    idContaBancaria: number | null
+    contaDescricao: string | null
+    contaBanco: string | null
+    contaAgencia: string | null
+    contaNumero: string | null
+    contaTipoChavePix: string | null
+    contaChavePix: string | null
+    contaTitular: string | null
+    contaDocumentoTitular: string | null
+    reajusteIndice: $Enums.indice_reajuste_enum | null
+    reajustePercentual: Decimal | null
+    reajusteValorAnterior: Decimal | null
+    totalAPagar: Decimal | null
+    geradoPorUsuarioId: number | null
+    criadoEm: Date | null
+  }
+
+  export type MemoriacalculoCountAggregateOutputType = {
+    id: number
+    idContrato: number
+    idImovel: number
+    competencia: number
+    valorAluguelBase: number
+    idContaBancaria: number
+    contaDescricao: number
+    contaBanco: number
+    contaAgencia: number
+    contaNumero: number
+    contaTipoChavePix: number
+    contaChavePix: number
+    contaTitular: number
+    contaDocumentoTitular: number
+    reajusteIndice: number
+    reajustePercentual: number
+    reajusteValorAnterior: number
+    totalAPagar: number
+    geradoPorUsuarioId: number
+    criadoEm: number
+    _all: number
+  }
+
+
+  export type MemoriacalculoAvgAggregateInputType = {
+    id?: true
+    idContrato?: true
+    idImovel?: true
+    valorAluguelBase?: true
+    idContaBancaria?: true
+    reajustePercentual?: true
+    reajusteValorAnterior?: true
+    totalAPagar?: true
+    geradoPorUsuarioId?: true
+  }
+
+  export type MemoriacalculoSumAggregateInputType = {
+    id?: true
+    idContrato?: true
+    idImovel?: true
+    valorAluguelBase?: true
+    idContaBancaria?: true
+    reajustePercentual?: true
+    reajusteValorAnterior?: true
+    totalAPagar?: true
+    geradoPorUsuarioId?: true
+  }
+
+  export type MemoriacalculoMinAggregateInputType = {
+    id?: true
+    idContrato?: true
+    idImovel?: true
+    competencia?: true
+    valorAluguelBase?: true
+    idContaBancaria?: true
+    contaDescricao?: true
+    contaBanco?: true
+    contaAgencia?: true
+    contaNumero?: true
+    contaTipoChavePix?: true
+    contaChavePix?: true
+    contaTitular?: true
+    contaDocumentoTitular?: true
+    reajusteIndice?: true
+    reajustePercentual?: true
+    reajusteValorAnterior?: true
+    totalAPagar?: true
+    geradoPorUsuarioId?: true
+    criadoEm?: true
+  }
+
+  export type MemoriacalculoMaxAggregateInputType = {
+    id?: true
+    idContrato?: true
+    idImovel?: true
+    competencia?: true
+    valorAluguelBase?: true
+    idContaBancaria?: true
+    contaDescricao?: true
+    contaBanco?: true
+    contaAgencia?: true
+    contaNumero?: true
+    contaTipoChavePix?: true
+    contaChavePix?: true
+    contaTitular?: true
+    contaDocumentoTitular?: true
+    reajusteIndice?: true
+    reajustePercentual?: true
+    reajusteValorAnterior?: true
+    totalAPagar?: true
+    geradoPorUsuarioId?: true
+    criadoEm?: true
+  }
+
+  export type MemoriacalculoCountAggregateInputType = {
+    id?: true
+    idContrato?: true
+    idImovel?: true
+    competencia?: true
+    valorAluguelBase?: true
+    idContaBancaria?: true
+    contaDescricao?: true
+    contaBanco?: true
+    contaAgencia?: true
+    contaNumero?: true
+    contaTipoChavePix?: true
+    contaChavePix?: true
+    contaTitular?: true
+    contaDocumentoTitular?: true
+    reajusteIndice?: true
+    reajustePercentual?: true
+    reajusteValorAnterior?: true
+    totalAPagar?: true
+    geradoPorUsuarioId?: true
+    criadoEm?: true
+    _all?: true
+  }
+
+  export type MemoriacalculoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which memoriacalculo to aggregate.
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculos to fetch.
+     */
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: memoriacalculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned memoriacalculos
+    **/
+    _count?: true | MemoriacalculoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MemoriacalculoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MemoriacalculoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MemoriacalculoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MemoriacalculoMaxAggregateInputType
+  }
+
+  export type GetMemoriacalculoAggregateType<T extends MemoriacalculoAggregateArgs> = {
+        [P in keyof T & keyof AggregateMemoriacalculo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMemoriacalculo[P]>
+      : GetScalarType<T[P], AggregateMemoriacalculo[P]>
+  }
+
+
+
+
+  export type memoriacalculoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: memoriacalculoWhereInput
+    orderBy?: memoriacalculoOrderByWithAggregationInput | memoriacalculoOrderByWithAggregationInput[]
+    by: MemoriacalculoScalarFieldEnum[] | MemoriacalculoScalarFieldEnum
+    having?: memoriacalculoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MemoriacalculoCountAggregateInputType | true
+    _avg?: MemoriacalculoAvgAggregateInputType
+    _sum?: MemoriacalculoSumAggregateInputType
+    _min?: MemoriacalculoMinAggregateInputType
+    _max?: MemoriacalculoMaxAggregateInputType
+  }
+
+  export type MemoriacalculoGroupByOutputType = {
+    id: number
+    idContrato: bigint
+    idImovel: number
+    competencia: Date
+    valorAluguelBase: Decimal
+    idContaBancaria: number | null
+    contaDescricao: string | null
+    contaBanco: string | null
+    contaAgencia: string | null
+    contaNumero: string | null
+    contaTipoChavePix: string | null
+    contaChavePix: string | null
+    contaTitular: string | null
+    contaDocumentoTitular: string | null
+    reajusteIndice: $Enums.indice_reajuste_enum | null
+    reajustePercentual: Decimal | null
+    reajusteValorAnterior: Decimal | null
+    totalAPagar: Decimal
+    geradoPorUsuarioId: number
+    criadoEm: Date
+    _count: MemoriacalculoCountAggregateOutputType | null
+    _avg: MemoriacalculoAvgAggregateOutputType | null
+    _sum: MemoriacalculoSumAggregateOutputType | null
+    _min: MemoriacalculoMinAggregateOutputType | null
+    _max: MemoriacalculoMaxAggregateOutputType | null
+  }
+
+  type GetMemoriacalculoGroupByPayload<T extends memoriacalculoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MemoriacalculoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MemoriacalculoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MemoriacalculoGroupByOutputType[P]>
+            : GetScalarType<T[P], MemoriacalculoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type memoriacalculoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idContrato?: boolean
+    idImovel?: boolean
+    competencia?: boolean
+    valorAluguelBase?: boolean
+    idContaBancaria?: boolean
+    contaDescricao?: boolean
+    contaBanco?: boolean
+    contaAgencia?: boolean
+    contaNumero?: boolean
+    contaTipoChavePix?: boolean
+    contaChavePix?: boolean
+    contaTitular?: boolean
+    contaDocumentoTitular?: boolean
+    reajusteIndice?: boolean
+    reajustePercentual?: boolean
+    reajusteValorAnterior?: boolean
+    totalAPagar?: boolean
+    geradoPorUsuarioId?: boolean
+    criadoEm?: boolean
+    contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
+    imovel?: boolean | imovelDefaultArgs<ExtArgs>
+    itens?: boolean | memoriacalculo$itensArgs<ExtArgs>
+    _count?: boolean | MemoriacalculoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["memoriacalculo"]>
+
+
+
+  export type memoriacalculoSelectScalar = {
+    id?: boolean
+    idContrato?: boolean
+    idImovel?: boolean
+    competencia?: boolean
+    valorAluguelBase?: boolean
+    idContaBancaria?: boolean
+    contaDescricao?: boolean
+    contaBanco?: boolean
+    contaAgencia?: boolean
+    contaNumero?: boolean
+    contaTipoChavePix?: boolean
+    contaChavePix?: boolean
+    contaTitular?: boolean
+    contaDocumentoTitular?: boolean
+    reajusteIndice?: boolean
+    reajustePercentual?: boolean
+    reajusteValorAnterior?: boolean
+    totalAPagar?: boolean
+    geradoPorUsuarioId?: boolean
+    criadoEm?: boolean
+  }
+
+  export type memoriacalculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idContrato" | "idImovel" | "competencia" | "valorAluguelBase" | "idContaBancaria" | "contaDescricao" | "contaBanco" | "contaAgencia" | "contaNumero" | "contaTipoChavePix" | "contaChavePix" | "contaTitular" | "contaDocumentoTitular" | "reajusteIndice" | "reajustePercentual" | "reajusteValorAnterior" | "totalAPagar" | "geradoPorUsuarioId" | "criadoEm", ExtArgs["result"]["memoriacalculo"]>
+  export type memoriacalculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
+    imovel?: boolean | imovelDefaultArgs<ExtArgs>
+    itens?: boolean | memoriacalculo$itensArgs<ExtArgs>
+    _count?: boolean | MemoriacalculoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $memoriacalculoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "memoriacalculo"
+    objects: {
+      contratolocacao: Prisma.$contratolocacaoPayload<ExtArgs>
+      imovel: Prisma.$imovelPayload<ExtArgs>
+      itens: Prisma.$memoriacalculoitemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      idContrato: bigint
+      idImovel: number
+      competencia: Date
+      valorAluguelBase: Prisma.Decimal
+      idContaBancaria: number | null
+      contaDescricao: string | null
+      contaBanco: string | null
+      contaAgencia: string | null
+      contaNumero: string | null
+      contaTipoChavePix: string | null
+      contaChavePix: string | null
+      contaTitular: string | null
+      contaDocumentoTitular: string | null
+      reajusteIndice: $Enums.indice_reajuste_enum | null
+      reajustePercentual: Prisma.Decimal | null
+      reajusteValorAnterior: Prisma.Decimal | null
+      totalAPagar: Prisma.Decimal
+      geradoPorUsuarioId: number
+      criadoEm: Date
+    }, ExtArgs["result"]["memoriacalculo"]>
+    composites: {}
+  }
+
+  type memoriacalculoGetPayload<S extends boolean | null | undefined | memoriacalculoDefaultArgs> = $Result.GetResult<Prisma.$memoriacalculoPayload, S>
+
+  type memoriacalculoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<memoriacalculoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MemoriacalculoCountAggregateInputType | true
+    }
+
+  export interface memoriacalculoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['memoriacalculo'], meta: { name: 'memoriacalculo' } }
+    /**
+     * Find zero or one Memoriacalculo that matches the filter.
+     * @param {memoriacalculoFindUniqueArgs} args - Arguments to find a Memoriacalculo
+     * @example
+     * // Get one Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends memoriacalculoFindUniqueArgs>(args: SelectSubset<T, memoriacalculoFindUniqueArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Memoriacalculo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {memoriacalculoFindUniqueOrThrowArgs} args - Arguments to find a Memoriacalculo
+     * @example
+     * // Get one Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends memoriacalculoFindUniqueOrThrowArgs>(args: SelectSubset<T, memoriacalculoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Memoriacalculo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoFindFirstArgs} args - Arguments to find a Memoriacalculo
+     * @example
+     * // Get one Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends memoriacalculoFindFirstArgs>(args?: SelectSubset<T, memoriacalculoFindFirstArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Memoriacalculo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoFindFirstOrThrowArgs} args - Arguments to find a Memoriacalculo
+     * @example
+     * // Get one Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends memoriacalculoFindFirstOrThrowArgs>(args?: SelectSubset<T, memoriacalculoFindFirstOrThrowArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Memoriacalculos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Memoriacalculos
+     * const memoriacalculos = await prisma.memoriacalculo.findMany()
+     * 
+     * // Get first 10 Memoriacalculos
+     * const memoriacalculos = await prisma.memoriacalculo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const memoriacalculoWithIdOnly = await prisma.memoriacalculo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends memoriacalculoFindManyArgs>(args?: SelectSubset<T, memoriacalculoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Memoriacalculo.
+     * @param {memoriacalculoCreateArgs} args - Arguments to create a Memoriacalculo.
+     * @example
+     * // Create one Memoriacalculo
+     * const Memoriacalculo = await prisma.memoriacalculo.create({
+     *   data: {
+     *     // ... data to create a Memoriacalculo
+     *   }
+     * })
+     * 
+     */
+    create<T extends memoriacalculoCreateArgs>(args: SelectSubset<T, memoriacalculoCreateArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Memoriacalculos.
+     * @param {memoriacalculoCreateManyArgs} args - Arguments to create many Memoriacalculos.
+     * @example
+     * // Create many Memoriacalculos
+     * const memoriacalculo = await prisma.memoriacalculo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends memoriacalculoCreateManyArgs>(args?: SelectSubset<T, memoriacalculoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Memoriacalculo.
+     * @param {memoriacalculoDeleteArgs} args - Arguments to delete one Memoriacalculo.
+     * @example
+     * // Delete one Memoriacalculo
+     * const Memoriacalculo = await prisma.memoriacalculo.delete({
+     *   where: {
+     *     // ... filter to delete one Memoriacalculo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends memoriacalculoDeleteArgs>(args: SelectSubset<T, memoriacalculoDeleteArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Memoriacalculo.
+     * @param {memoriacalculoUpdateArgs} args - Arguments to update one Memoriacalculo.
+     * @example
+     * // Update one Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends memoriacalculoUpdateArgs>(args: SelectSubset<T, memoriacalculoUpdateArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Memoriacalculos.
+     * @param {memoriacalculoDeleteManyArgs} args - Arguments to filter Memoriacalculos to delete.
+     * @example
+     * // Delete a few Memoriacalculos
+     * const { count } = await prisma.memoriacalculo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends memoriacalculoDeleteManyArgs>(args?: SelectSubset<T, memoriacalculoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Memoriacalculos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Memoriacalculos
+     * const memoriacalculo = await prisma.memoriacalculo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends memoriacalculoUpdateManyArgs>(args: SelectSubset<T, memoriacalculoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Memoriacalculo.
+     * @param {memoriacalculoUpsertArgs} args - Arguments to update or create a Memoriacalculo.
+     * @example
+     * // Update or create a Memoriacalculo
+     * const memoriacalculo = await prisma.memoriacalculo.upsert({
+     *   create: {
+     *     // ... data to create a Memoriacalculo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Memoriacalculo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends memoriacalculoUpsertArgs>(args: SelectSubset<T, memoriacalculoUpsertArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Memoriacalculos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoCountArgs} args - Arguments to filter Memoriacalculos to count.
+     * @example
+     * // Count the number of Memoriacalculos
+     * const count = await prisma.memoriacalculo.count({
+     *   where: {
+     *     // ... the filter for the Memoriacalculos we want to count
+     *   }
+     * })
+    **/
+    count<T extends memoriacalculoCountArgs>(
+      args?: Subset<T, memoriacalculoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MemoriacalculoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Memoriacalculo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MemoriacalculoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MemoriacalculoAggregateArgs>(args: Subset<T, MemoriacalculoAggregateArgs>): Prisma.PrismaPromise<GetMemoriacalculoAggregateType<T>>
+
+    /**
+     * Group by Memoriacalculo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends memoriacalculoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: memoriacalculoGroupByArgs['orderBy'] }
+        : { orderBy?: memoriacalculoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, memoriacalculoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMemoriacalculoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the memoriacalculo model
+   */
+  readonly fields: memoriacalculoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for memoriacalculo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__memoriacalculoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    contratolocacao<T extends contratolocacaoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, contratolocacaoDefaultArgs<ExtArgs>>): Prisma__contratolocacaoClient<$Result.GetResult<Prisma.$contratolocacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    imovel<T extends imovelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, imovelDefaultArgs<ExtArgs>>): Prisma__imovelClient<$Result.GetResult<Prisma.$imovelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itens<T extends memoriacalculo$itensArgs<ExtArgs> = {}>(args?: Subset<T, memoriacalculo$itensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the memoriacalculo model
+   */
+  interface memoriacalculoFieldRefs {
+    readonly id: FieldRef<"memoriacalculo", 'Int'>
+    readonly idContrato: FieldRef<"memoriacalculo", 'BigInt'>
+    readonly idImovel: FieldRef<"memoriacalculo", 'Int'>
+    readonly competencia: FieldRef<"memoriacalculo", 'DateTime'>
+    readonly valorAluguelBase: FieldRef<"memoriacalculo", 'Decimal'>
+    readonly idContaBancaria: FieldRef<"memoriacalculo", 'Int'>
+    readonly contaDescricao: FieldRef<"memoriacalculo", 'String'>
+    readonly contaBanco: FieldRef<"memoriacalculo", 'String'>
+    readonly contaAgencia: FieldRef<"memoriacalculo", 'String'>
+    readonly contaNumero: FieldRef<"memoriacalculo", 'String'>
+    readonly contaTipoChavePix: FieldRef<"memoriacalculo", 'String'>
+    readonly contaChavePix: FieldRef<"memoriacalculo", 'String'>
+    readonly contaTitular: FieldRef<"memoriacalculo", 'String'>
+    readonly contaDocumentoTitular: FieldRef<"memoriacalculo", 'String'>
+    readonly reajusteIndice: FieldRef<"memoriacalculo", 'indice_reajuste_enum'>
+    readonly reajustePercentual: FieldRef<"memoriacalculo", 'Decimal'>
+    readonly reajusteValorAnterior: FieldRef<"memoriacalculo", 'Decimal'>
+    readonly totalAPagar: FieldRef<"memoriacalculo", 'Decimal'>
+    readonly geradoPorUsuarioId: FieldRef<"memoriacalculo", 'Int'>
+    readonly criadoEm: FieldRef<"memoriacalculo", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * memoriacalculo findUnique
+   */
+  export type memoriacalculoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculo to fetch.
+     */
+    where: memoriacalculoWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculo findUniqueOrThrow
+   */
+  export type memoriacalculoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculo to fetch.
+     */
+    where: memoriacalculoWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculo findFirst
+   */
+  export type memoriacalculoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculo to fetch.
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculos to fetch.
+     */
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for memoriacalculos.
+     */
+    cursor?: memoriacalculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculos.
+     */
+    distinct?: MemoriacalculoScalarFieldEnum | MemoriacalculoScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculo findFirstOrThrow
+   */
+  export type memoriacalculoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculo to fetch.
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculos to fetch.
+     */
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for memoriacalculos.
+     */
+    cursor?: memoriacalculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculos.
+     */
+    distinct?: MemoriacalculoScalarFieldEnum | MemoriacalculoScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculo findMany
+   */
+  export type memoriacalculoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculos to fetch.
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculos to fetch.
+     */
+    orderBy?: memoriacalculoOrderByWithRelationInput | memoriacalculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing memoriacalculos.
+     */
+    cursor?: memoriacalculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculos.
+     */
+    distinct?: MemoriacalculoScalarFieldEnum | MemoriacalculoScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculo create
+   */
+  export type memoriacalculoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a memoriacalculo.
+     */
+    data: XOR<memoriacalculoCreateInput, memoriacalculoUncheckedCreateInput>
+  }
+
+  /**
+   * memoriacalculo createMany
+   */
+  export type memoriacalculoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many memoriacalculos.
+     */
+    data: memoriacalculoCreateManyInput | memoriacalculoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * memoriacalculo update
+   */
+  export type memoriacalculoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a memoriacalculo.
+     */
+    data: XOR<memoriacalculoUpdateInput, memoriacalculoUncheckedUpdateInput>
+    /**
+     * Choose, which memoriacalculo to update.
+     */
+    where: memoriacalculoWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculo updateMany
+   */
+  export type memoriacalculoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update memoriacalculos.
+     */
+    data: XOR<memoriacalculoUpdateManyMutationInput, memoriacalculoUncheckedUpdateManyInput>
+    /**
+     * Filter which memoriacalculos to update
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * Limit how many memoriacalculos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * memoriacalculo upsert
+   */
+  export type memoriacalculoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the memoriacalculo to update in case it exists.
+     */
+    where: memoriacalculoWhereUniqueInput
+    /**
+     * In case the memoriacalculo found by the `where` argument doesn't exist, create a new memoriacalculo with this data.
+     */
+    create: XOR<memoriacalculoCreateInput, memoriacalculoUncheckedCreateInput>
+    /**
+     * In case the memoriacalculo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<memoriacalculoUpdateInput, memoriacalculoUncheckedUpdateInput>
+  }
+
+  /**
+   * memoriacalculo delete
+   */
+  export type memoriacalculoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+    /**
+     * Filter which memoriacalculo to delete.
+     */
+    where: memoriacalculoWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculo deleteMany
+   */
+  export type memoriacalculoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which memoriacalculos to delete
+     */
+    where?: memoriacalculoWhereInput
+    /**
+     * Limit how many memoriacalculos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * memoriacalculo.itens
+   */
+  export type memoriacalculo$itensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    where?: memoriacalculoitemWhereInput
+    orderBy?: memoriacalculoitemOrderByWithRelationInput | memoriacalculoitemOrderByWithRelationInput[]
+    cursor?: memoriacalculoitemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemoriacalculoitemScalarFieldEnum | MemoriacalculoitemScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculo without action
+   */
+  export type memoriacalculoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculo
+     */
+    select?: memoriacalculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculo
+     */
+    omit?: memoriacalculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model memoriacalculoitem
+   */
+
+  export type AggregateMemoriacalculoitem = {
+    _count: MemoriacalculoitemCountAggregateOutputType | null
+    _avg: MemoriacalculoitemAvgAggregateOutputType | null
+    _sum: MemoriacalculoitemSumAggregateOutputType | null
+    _min: MemoriacalculoitemMinAggregateOutputType | null
+    _max: MemoriacalculoitemMaxAggregateOutputType | null
+  }
+
+  export type MemoriacalculoitemAvgAggregateOutputType = {
+    id: number | null
+    idMemoriaCalculo: number | null
+    idLocador: number | null
+    percentualParticipacao: Decimal | null
+    valorAluguel: Decimal | null
+    valorReembolsos: Decimal | null
+    valorDescontos: Decimal | null
+    baseCalculoIrrf: Decimal | null
+    valorIrrf: Decimal | null
+    valorAPagar: Decimal | null
+  }
+
+  export type MemoriacalculoitemSumAggregateOutputType = {
+    id: number | null
+    idMemoriaCalculo: number | null
+    idLocador: bigint | null
+    percentualParticipacao: Decimal | null
+    valorAluguel: Decimal | null
+    valorReembolsos: Decimal | null
+    valorDescontos: Decimal | null
+    baseCalculoIrrf: Decimal | null
+    valorIrrf: Decimal | null
+    valorAPagar: Decimal | null
+  }
+
+  export type MemoriacalculoitemMinAggregateOutputType = {
+    id: number | null
+    idMemoriaCalculo: number | null
+    idLocador: bigint | null
+    nomeLocador: string | null
+    documentoLocador: string | null
+    percentualParticipacao: Decimal | null
+    valorAluguel: Decimal | null
+    valorReembolsos: Decimal | null
+    valorDescontos: Decimal | null
+    baseCalculoIrrf: Decimal | null
+    valorIrrf: Decimal | null
+    valorAPagar: Decimal | null
+  }
+
+  export type MemoriacalculoitemMaxAggregateOutputType = {
+    id: number | null
+    idMemoriaCalculo: number | null
+    idLocador: bigint | null
+    nomeLocador: string | null
+    documentoLocador: string | null
+    percentualParticipacao: Decimal | null
+    valorAluguel: Decimal | null
+    valorReembolsos: Decimal | null
+    valorDescontos: Decimal | null
+    baseCalculoIrrf: Decimal | null
+    valorIrrf: Decimal | null
+    valorAPagar: Decimal | null
+  }
+
+  export type MemoriacalculoitemCountAggregateOutputType = {
+    id: number
+    idMemoriaCalculo: number
+    idLocador: number
+    nomeLocador: number
+    documentoLocador: number
+    percentualParticipacao: number
+    valorAluguel: number
+    valorReembolsos: number
+    valorDescontos: number
+    baseCalculoIrrf: number
+    valorIrrf: number
+    valorAPagar: number
+    detalhesExtras: number
+    _all: number
+  }
+
+
+  export type MemoriacalculoitemAvgAggregateInputType = {
+    id?: true
+    idMemoriaCalculo?: true
+    idLocador?: true
+    percentualParticipacao?: true
+    valorAluguel?: true
+    valorReembolsos?: true
+    valorDescontos?: true
+    baseCalculoIrrf?: true
+    valorIrrf?: true
+    valorAPagar?: true
+  }
+
+  export type MemoriacalculoitemSumAggregateInputType = {
+    id?: true
+    idMemoriaCalculo?: true
+    idLocador?: true
+    percentualParticipacao?: true
+    valorAluguel?: true
+    valorReembolsos?: true
+    valorDescontos?: true
+    baseCalculoIrrf?: true
+    valorIrrf?: true
+    valorAPagar?: true
+  }
+
+  export type MemoriacalculoitemMinAggregateInputType = {
+    id?: true
+    idMemoriaCalculo?: true
+    idLocador?: true
+    nomeLocador?: true
+    documentoLocador?: true
+    percentualParticipacao?: true
+    valorAluguel?: true
+    valorReembolsos?: true
+    valorDescontos?: true
+    baseCalculoIrrf?: true
+    valorIrrf?: true
+    valorAPagar?: true
+  }
+
+  export type MemoriacalculoitemMaxAggregateInputType = {
+    id?: true
+    idMemoriaCalculo?: true
+    idLocador?: true
+    nomeLocador?: true
+    documentoLocador?: true
+    percentualParticipacao?: true
+    valorAluguel?: true
+    valorReembolsos?: true
+    valorDescontos?: true
+    baseCalculoIrrf?: true
+    valorIrrf?: true
+    valorAPagar?: true
+  }
+
+  export type MemoriacalculoitemCountAggregateInputType = {
+    id?: true
+    idMemoriaCalculo?: true
+    idLocador?: true
+    nomeLocador?: true
+    documentoLocador?: true
+    percentualParticipacao?: true
+    valorAluguel?: true
+    valorReembolsos?: true
+    valorDescontos?: true
+    baseCalculoIrrf?: true
+    valorIrrf?: true
+    valorAPagar?: true
+    detalhesExtras?: true
+    _all?: true
+  }
+
+  export type MemoriacalculoitemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which memoriacalculoitem to aggregate.
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculoitems to fetch.
+     */
+    orderBy?: memoriacalculoitemOrderByWithRelationInput | memoriacalculoitemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: memoriacalculoitemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculoitems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculoitems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned memoriacalculoitems
+    **/
+    _count?: true | MemoriacalculoitemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MemoriacalculoitemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MemoriacalculoitemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MemoriacalculoitemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MemoriacalculoitemMaxAggregateInputType
+  }
+
+  export type GetMemoriacalculoitemAggregateType<T extends MemoriacalculoitemAggregateArgs> = {
+        [P in keyof T & keyof AggregateMemoriacalculoitem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMemoriacalculoitem[P]>
+      : GetScalarType<T[P], AggregateMemoriacalculoitem[P]>
+  }
+
+
+
+
+  export type memoriacalculoitemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: memoriacalculoitemWhereInput
+    orderBy?: memoriacalculoitemOrderByWithAggregationInput | memoriacalculoitemOrderByWithAggregationInput[]
+    by: MemoriacalculoitemScalarFieldEnum[] | MemoriacalculoitemScalarFieldEnum
+    having?: memoriacalculoitemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MemoriacalculoitemCountAggregateInputType | true
+    _avg?: MemoriacalculoitemAvgAggregateInputType
+    _sum?: MemoriacalculoitemSumAggregateInputType
+    _min?: MemoriacalculoitemMinAggregateInputType
+    _max?: MemoriacalculoitemMaxAggregateInputType
+  }
+
+  export type MemoriacalculoitemGroupByOutputType = {
+    id: number
+    idMemoriaCalculo: number
+    idLocador: bigint
+    nomeLocador: string
+    documentoLocador: string | null
+    percentualParticipacao: Decimal
+    valorAluguel: Decimal
+    valorReembolsos: Decimal
+    valorDescontos: Decimal
+    baseCalculoIrrf: Decimal
+    valorIrrf: Decimal
+    valorAPagar: Decimal
+    detalhesExtras: JsonValue | null
+    _count: MemoriacalculoitemCountAggregateOutputType | null
+    _avg: MemoriacalculoitemAvgAggregateOutputType | null
+    _sum: MemoriacalculoitemSumAggregateOutputType | null
+    _min: MemoriacalculoitemMinAggregateOutputType | null
+    _max: MemoriacalculoitemMaxAggregateOutputType | null
+  }
+
+  type GetMemoriacalculoitemGroupByPayload<T extends memoriacalculoitemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MemoriacalculoitemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MemoriacalculoitemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MemoriacalculoitemGroupByOutputType[P]>
+            : GetScalarType<T[P], MemoriacalculoitemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type memoriacalculoitemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idMemoriaCalculo?: boolean
+    idLocador?: boolean
+    nomeLocador?: boolean
+    documentoLocador?: boolean
+    percentualParticipacao?: boolean
+    valorAluguel?: boolean
+    valorReembolsos?: boolean
+    valorDescontos?: boolean
+    baseCalculoIrrf?: boolean
+    valorIrrf?: boolean
+    valorAPagar?: boolean
+    detalhesExtras?: boolean
+    memoriacalculo?: boolean | memoriacalculoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["memoriacalculoitem"]>
+
+
+
+  export type memoriacalculoitemSelectScalar = {
+    id?: boolean
+    idMemoriaCalculo?: boolean
+    idLocador?: boolean
+    nomeLocador?: boolean
+    documentoLocador?: boolean
+    percentualParticipacao?: boolean
+    valorAluguel?: boolean
+    valorReembolsos?: boolean
+    valorDescontos?: boolean
+    baseCalculoIrrf?: boolean
+    valorIrrf?: boolean
+    valorAPagar?: boolean
+    detalhesExtras?: boolean
+  }
+
+  export type memoriacalculoitemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idMemoriaCalculo" | "idLocador" | "nomeLocador" | "documentoLocador" | "percentualParticipacao" | "valorAluguel" | "valorReembolsos" | "valorDescontos" | "baseCalculoIrrf" | "valorIrrf" | "valorAPagar" | "detalhesExtras", ExtArgs["result"]["memoriacalculoitem"]>
+  export type memoriacalculoitemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    memoriacalculo?: boolean | memoriacalculoDefaultArgs<ExtArgs>
+  }
+
+  export type $memoriacalculoitemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "memoriacalculoitem"
+    objects: {
+      memoriacalculo: Prisma.$memoriacalculoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      idMemoriaCalculo: number
+      idLocador: bigint
+      nomeLocador: string
+      documentoLocador: string | null
+      percentualParticipacao: Prisma.Decimal
+      valorAluguel: Prisma.Decimal
+      valorReembolsos: Prisma.Decimal
+      valorDescontos: Prisma.Decimal
+      baseCalculoIrrf: Prisma.Decimal
+      valorIrrf: Prisma.Decimal
+      valorAPagar: Prisma.Decimal
+      detalhesExtras: Prisma.JsonValue | null
+    }, ExtArgs["result"]["memoriacalculoitem"]>
+    composites: {}
+  }
+
+  type memoriacalculoitemGetPayload<S extends boolean | null | undefined | memoriacalculoitemDefaultArgs> = $Result.GetResult<Prisma.$memoriacalculoitemPayload, S>
+
+  type memoriacalculoitemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<memoriacalculoitemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MemoriacalculoitemCountAggregateInputType | true
+    }
+
+  export interface memoriacalculoitemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['memoriacalculoitem'], meta: { name: 'memoriacalculoitem' } }
+    /**
+     * Find zero or one Memoriacalculoitem that matches the filter.
+     * @param {memoriacalculoitemFindUniqueArgs} args - Arguments to find a Memoriacalculoitem
+     * @example
+     * // Get one Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends memoriacalculoitemFindUniqueArgs>(args: SelectSubset<T, memoriacalculoitemFindUniqueArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Memoriacalculoitem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {memoriacalculoitemFindUniqueOrThrowArgs} args - Arguments to find a Memoriacalculoitem
+     * @example
+     * // Get one Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends memoriacalculoitemFindUniqueOrThrowArgs>(args: SelectSubset<T, memoriacalculoitemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Memoriacalculoitem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemFindFirstArgs} args - Arguments to find a Memoriacalculoitem
+     * @example
+     * // Get one Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends memoriacalculoitemFindFirstArgs>(args?: SelectSubset<T, memoriacalculoitemFindFirstArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Memoriacalculoitem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemFindFirstOrThrowArgs} args - Arguments to find a Memoriacalculoitem
+     * @example
+     * // Get one Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends memoriacalculoitemFindFirstOrThrowArgs>(args?: SelectSubset<T, memoriacalculoitemFindFirstOrThrowArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Memoriacalculoitems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Memoriacalculoitems
+     * const memoriacalculoitems = await prisma.memoriacalculoitem.findMany()
+     * 
+     * // Get first 10 Memoriacalculoitems
+     * const memoriacalculoitems = await prisma.memoriacalculoitem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const memoriacalculoitemWithIdOnly = await prisma.memoriacalculoitem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends memoriacalculoitemFindManyArgs>(args?: SelectSubset<T, memoriacalculoitemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Memoriacalculoitem.
+     * @param {memoriacalculoitemCreateArgs} args - Arguments to create a Memoriacalculoitem.
+     * @example
+     * // Create one Memoriacalculoitem
+     * const Memoriacalculoitem = await prisma.memoriacalculoitem.create({
+     *   data: {
+     *     // ... data to create a Memoriacalculoitem
+     *   }
+     * })
+     * 
+     */
+    create<T extends memoriacalculoitemCreateArgs>(args: SelectSubset<T, memoriacalculoitemCreateArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Memoriacalculoitems.
+     * @param {memoriacalculoitemCreateManyArgs} args - Arguments to create many Memoriacalculoitems.
+     * @example
+     * // Create many Memoriacalculoitems
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends memoriacalculoitemCreateManyArgs>(args?: SelectSubset<T, memoriacalculoitemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Memoriacalculoitem.
+     * @param {memoriacalculoitemDeleteArgs} args - Arguments to delete one Memoriacalculoitem.
+     * @example
+     * // Delete one Memoriacalculoitem
+     * const Memoriacalculoitem = await prisma.memoriacalculoitem.delete({
+     *   where: {
+     *     // ... filter to delete one Memoriacalculoitem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends memoriacalculoitemDeleteArgs>(args: SelectSubset<T, memoriacalculoitemDeleteArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Memoriacalculoitem.
+     * @param {memoriacalculoitemUpdateArgs} args - Arguments to update one Memoriacalculoitem.
+     * @example
+     * // Update one Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends memoriacalculoitemUpdateArgs>(args: SelectSubset<T, memoriacalculoitemUpdateArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Memoriacalculoitems.
+     * @param {memoriacalculoitemDeleteManyArgs} args - Arguments to filter Memoriacalculoitems to delete.
+     * @example
+     * // Delete a few Memoriacalculoitems
+     * const { count } = await prisma.memoriacalculoitem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends memoriacalculoitemDeleteManyArgs>(args?: SelectSubset<T, memoriacalculoitemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Memoriacalculoitems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Memoriacalculoitems
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends memoriacalculoitemUpdateManyArgs>(args: SelectSubset<T, memoriacalculoitemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Memoriacalculoitem.
+     * @param {memoriacalculoitemUpsertArgs} args - Arguments to update or create a Memoriacalculoitem.
+     * @example
+     * // Update or create a Memoriacalculoitem
+     * const memoriacalculoitem = await prisma.memoriacalculoitem.upsert({
+     *   create: {
+     *     // ... data to create a Memoriacalculoitem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Memoriacalculoitem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends memoriacalculoitemUpsertArgs>(args: SelectSubset<T, memoriacalculoitemUpsertArgs<ExtArgs>>): Prisma__memoriacalculoitemClient<$Result.GetResult<Prisma.$memoriacalculoitemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Memoriacalculoitems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemCountArgs} args - Arguments to filter Memoriacalculoitems to count.
+     * @example
+     * // Count the number of Memoriacalculoitems
+     * const count = await prisma.memoriacalculoitem.count({
+     *   where: {
+     *     // ... the filter for the Memoriacalculoitems we want to count
+     *   }
+     * })
+    **/
+    count<T extends memoriacalculoitemCountArgs>(
+      args?: Subset<T, memoriacalculoitemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MemoriacalculoitemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Memoriacalculoitem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MemoriacalculoitemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MemoriacalculoitemAggregateArgs>(args: Subset<T, MemoriacalculoitemAggregateArgs>): Prisma.PrismaPromise<GetMemoriacalculoitemAggregateType<T>>
+
+    /**
+     * Group by Memoriacalculoitem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {memoriacalculoitemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends memoriacalculoitemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: memoriacalculoitemGroupByArgs['orderBy'] }
+        : { orderBy?: memoriacalculoitemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, memoriacalculoitemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMemoriacalculoitemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the memoriacalculoitem model
+   */
+  readonly fields: memoriacalculoitemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for memoriacalculoitem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__memoriacalculoitemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    memoriacalculo<T extends memoriacalculoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, memoriacalculoDefaultArgs<ExtArgs>>): Prisma__memoriacalculoClient<$Result.GetResult<Prisma.$memoriacalculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the memoriacalculoitem model
+   */
+  interface memoriacalculoitemFieldRefs {
+    readonly id: FieldRef<"memoriacalculoitem", 'Int'>
+    readonly idMemoriaCalculo: FieldRef<"memoriacalculoitem", 'Int'>
+    readonly idLocador: FieldRef<"memoriacalculoitem", 'BigInt'>
+    readonly nomeLocador: FieldRef<"memoriacalculoitem", 'String'>
+    readonly documentoLocador: FieldRef<"memoriacalculoitem", 'String'>
+    readonly percentualParticipacao: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly valorAluguel: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly valorReembolsos: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly valorDescontos: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly baseCalculoIrrf: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly valorIrrf: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly valorAPagar: FieldRef<"memoriacalculoitem", 'Decimal'>
+    readonly detalhesExtras: FieldRef<"memoriacalculoitem", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * memoriacalculoitem findUnique
+   */
+  export type memoriacalculoitemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculoitem to fetch.
+     */
+    where: memoriacalculoitemWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculoitem findUniqueOrThrow
+   */
+  export type memoriacalculoitemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculoitem to fetch.
+     */
+    where: memoriacalculoitemWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculoitem findFirst
+   */
+  export type memoriacalculoitemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculoitem to fetch.
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculoitems to fetch.
+     */
+    orderBy?: memoriacalculoitemOrderByWithRelationInput | memoriacalculoitemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for memoriacalculoitems.
+     */
+    cursor?: memoriacalculoitemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculoitems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculoitems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculoitems.
+     */
+    distinct?: MemoriacalculoitemScalarFieldEnum | MemoriacalculoitemScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculoitem findFirstOrThrow
+   */
+  export type memoriacalculoitemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculoitem to fetch.
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculoitems to fetch.
+     */
+    orderBy?: memoriacalculoitemOrderByWithRelationInput | memoriacalculoitemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for memoriacalculoitems.
+     */
+    cursor?: memoriacalculoitemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculoitems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculoitems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculoitems.
+     */
+    distinct?: MemoriacalculoitemScalarFieldEnum | MemoriacalculoitemScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculoitem findMany
+   */
+  export type memoriacalculoitemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter, which memoriacalculoitems to fetch.
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of memoriacalculoitems to fetch.
+     */
+    orderBy?: memoriacalculoitemOrderByWithRelationInput | memoriacalculoitemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing memoriacalculoitems.
+     */
+    cursor?: memoriacalculoitemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` memoriacalculoitems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` memoriacalculoitems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of memoriacalculoitems.
+     */
+    distinct?: MemoriacalculoitemScalarFieldEnum | MemoriacalculoitemScalarFieldEnum[]
+  }
+
+  /**
+   * memoriacalculoitem create
+   */
+  export type memoriacalculoitemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a memoriacalculoitem.
+     */
+    data: XOR<memoriacalculoitemCreateInput, memoriacalculoitemUncheckedCreateInput>
+  }
+
+  /**
+   * memoriacalculoitem createMany
+   */
+  export type memoriacalculoitemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many memoriacalculoitems.
+     */
+    data: memoriacalculoitemCreateManyInput | memoriacalculoitemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * memoriacalculoitem update
+   */
+  export type memoriacalculoitemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a memoriacalculoitem.
+     */
+    data: XOR<memoriacalculoitemUpdateInput, memoriacalculoitemUncheckedUpdateInput>
+    /**
+     * Choose, which memoriacalculoitem to update.
+     */
+    where: memoriacalculoitemWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculoitem updateMany
+   */
+  export type memoriacalculoitemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update memoriacalculoitems.
+     */
+    data: XOR<memoriacalculoitemUpdateManyMutationInput, memoriacalculoitemUncheckedUpdateManyInput>
+    /**
+     * Filter which memoriacalculoitems to update
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * Limit how many memoriacalculoitems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * memoriacalculoitem upsert
+   */
+  export type memoriacalculoitemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the memoriacalculoitem to update in case it exists.
+     */
+    where: memoriacalculoitemWhereUniqueInput
+    /**
+     * In case the memoriacalculoitem found by the `where` argument doesn't exist, create a new memoriacalculoitem with this data.
+     */
+    create: XOR<memoriacalculoitemCreateInput, memoriacalculoitemUncheckedCreateInput>
+    /**
+     * In case the memoriacalculoitem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<memoriacalculoitemUpdateInput, memoriacalculoitemUncheckedUpdateInput>
+  }
+
+  /**
+   * memoriacalculoitem delete
+   */
+  export type memoriacalculoitemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
+    /**
+     * Filter which memoriacalculoitem to delete.
+     */
+    where: memoriacalculoitemWhereUniqueInput
+  }
+
+  /**
+   * memoriacalculoitem deleteMany
+   */
+  export type memoriacalculoitemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which memoriacalculoitems to delete
+     */
+    where?: memoriacalculoitemWhereInput
+    /**
+     * Limit how many memoriacalculoitems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * memoriacalculoitem without action
+   */
+  export type memoriacalculoitemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the memoriacalculoitem
+     */
+    select?: memoriacalculoitemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the memoriacalculoitem
+     */
+    omit?: memoriacalculoitemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: memoriacalculoitemInclude<ExtArgs> | null
   }
 
 
@@ -8892,6 +12613,66 @@ export namespace Prisma {
   export type ContratolocacaoScalarFieldEnum = (typeof ContratolocacaoScalarFieldEnum)[keyof typeof ContratolocacaoScalarFieldEnum]
 
 
+  export const ReajustecontratoScalarFieldEnum: {
+    id: 'id',
+    idContrato: 'idContrato',
+    dataReajuste: 'dataReajuste',
+    indice: 'indice',
+    percentual: 'percentual',
+    valorAnterior: 'valorAnterior',
+    valorNovo: 'valorNovo',
+    observacao: 'observacao',
+    criadoEm: 'criadoEm'
+  };
+
+  export type ReajustecontratoScalarFieldEnum = (typeof ReajustecontratoScalarFieldEnum)[keyof typeof ReajustecontratoScalarFieldEnum]
+
+
+  export const MemoriacalculoScalarFieldEnum: {
+    id: 'id',
+    idContrato: 'idContrato',
+    idImovel: 'idImovel',
+    competencia: 'competencia',
+    valorAluguelBase: 'valorAluguelBase',
+    idContaBancaria: 'idContaBancaria',
+    contaDescricao: 'contaDescricao',
+    contaBanco: 'contaBanco',
+    contaAgencia: 'contaAgencia',
+    contaNumero: 'contaNumero',
+    contaTipoChavePix: 'contaTipoChavePix',
+    contaChavePix: 'contaChavePix',
+    contaTitular: 'contaTitular',
+    contaDocumentoTitular: 'contaDocumentoTitular',
+    reajusteIndice: 'reajusteIndice',
+    reajustePercentual: 'reajustePercentual',
+    reajusteValorAnterior: 'reajusteValorAnterior',
+    totalAPagar: 'totalAPagar',
+    geradoPorUsuarioId: 'geradoPorUsuarioId',
+    criadoEm: 'criadoEm'
+  };
+
+  export type MemoriacalculoScalarFieldEnum = (typeof MemoriacalculoScalarFieldEnum)[keyof typeof MemoriacalculoScalarFieldEnum]
+
+
+  export const MemoriacalculoitemScalarFieldEnum: {
+    id: 'id',
+    idMemoriaCalculo: 'idMemoriaCalculo',
+    idLocador: 'idLocador',
+    nomeLocador: 'nomeLocador',
+    documentoLocador: 'documentoLocador',
+    percentualParticipacao: 'percentualParticipacao',
+    valorAluguel: 'valorAluguel',
+    valorReembolsos: 'valorReembolsos',
+    valorDescontos: 'valorDescontos',
+    baseCalculoIrrf: 'baseCalculoIrrf',
+    valorIrrf: 'valorIrrf',
+    valorAPagar: 'valorAPagar',
+    detalhesExtras: 'detalhesExtras'
+  };
+
+  export type MemoriacalculoitemScalarFieldEnum = (typeof MemoriacalculoitemScalarFieldEnum)[keyof typeof MemoriacalculoitemScalarFieldEnum]
+
+
   export const DespesaScalarFieldEnum: {
     id: 'id',
     idContratoLocacao: 'idContratoLocacao',
@@ -8944,6 +12725,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
@@ -8971,6 +12760,52 @@ export namespace Prisma {
   };
 
   export type imovelOrderByRelevanceFieldEnum = (typeof imovelOrderByRelevanceFieldEnum)[keyof typeof imovelOrderByRelevanceFieldEnum]
+
+
+  export const reajustecontratoOrderByRelevanceFieldEnum: {
+    observacao: 'observacao'
+  };
+
+  export type reajustecontratoOrderByRelevanceFieldEnum = (typeof reajustecontratoOrderByRelevanceFieldEnum)[keyof typeof reajustecontratoOrderByRelevanceFieldEnum]
+
+
+  export const memoriacalculoOrderByRelevanceFieldEnum: {
+    contaDescricao: 'contaDescricao',
+    contaBanco: 'contaBanco',
+    contaAgencia: 'contaAgencia',
+    contaNumero: 'contaNumero',
+    contaTipoChavePix: 'contaTipoChavePix',
+    contaChavePix: 'contaChavePix',
+    contaTitular: 'contaTitular',
+    contaDocumentoTitular: 'contaDocumentoTitular'
+  };
+
+  export type memoriacalculoOrderByRelevanceFieldEnum = (typeof memoriacalculoOrderByRelevanceFieldEnum)[keyof typeof memoriacalculoOrderByRelevanceFieldEnum]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const memoriacalculoitemOrderByRelevanceFieldEnum: {
+    nomeLocador: 'nomeLocador',
+    documentoLocador: 'documentoLocador'
+  };
+
+  export type memoriacalculoitemOrderByRelevanceFieldEnum = (typeof memoriacalculoitemOrderByRelevanceFieldEnum)[keyof typeof memoriacalculoitemOrderByRelevanceFieldEnum]
 
 
   export const despesaOrderByRelevanceFieldEnum: {
@@ -9059,6 +12894,27 @@ export namespace Prisma {
    * Reference to a field of type 'Bytes'
    */
   export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
+    
+
+
+  /**
+   * Reference to a field of type 'indice_reajuste_enum'
+   */
+  export type Enumindice_reajuste_enumFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'indice_reajuste_enum'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -9170,6 +13026,7 @@ export namespace Prisma {
     endereco?: XOR<EnderecoScalarRelationFilter, enderecoWhereInput>
     contratolocacao?: ContratolocacaoListRelationFilter
     propriedadeimovel?: PropriedadeimovelListRelationFilter
+    memoriacalculo?: MemoriacalculoListRelationFilter
   }
 
   export type imovelOrderByWithRelationInput = {
@@ -9185,6 +13042,7 @@ export namespace Prisma {
     endereco?: enderecoOrderByWithRelationInput
     contratolocacao?: contratolocacaoOrderByRelationAggregateInput
     propriedadeimovel?: propriedadeimovelOrderByRelationAggregateInput
+    memoriacalculo?: memoriacalculoOrderByRelationAggregateInput
     _relevance?: imovelOrderByRelevanceInput
   }
 
@@ -9204,6 +13062,7 @@ export namespace Prisma {
     endereco?: XOR<EnderecoScalarRelationFilter, enderecoWhereInput>
     contratolocacao?: ContratolocacaoListRelationFilter
     propriedadeimovel?: PropriedadeimovelListRelationFilter
+    memoriacalculo?: MemoriacalculoListRelationFilter
   }, "id" | "inscricaoIPTU">
 
   export type imovelOrderByWithAggregationInput = {
@@ -9307,6 +13166,8 @@ export namespace Prisma {
     comissao?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
     despesa?: DespesaListRelationFilter
+    reajustecontrato?: ReajustecontratoListRelationFilter
+    memoriacalculo?: MemoriacalculoListRelationFilter
   }
 
   export type contratolocacaoOrderByWithRelationInput = {
@@ -9323,6 +13184,8 @@ export namespace Prisma {
     comissao?: SortOrder
     imovel?: imovelOrderByWithRelationInput
     despesa?: despesaOrderByRelationAggregateInput
+    reajustecontrato?: reajustecontratoOrderByRelationAggregateInput
+    memoriacalculo?: memoriacalculoOrderByRelationAggregateInput
   }
 
   export type contratolocacaoWhereUniqueInput = Prisma.AtLeast<{
@@ -9342,6 +13205,8 @@ export namespace Prisma {
     comissao?: DecimalFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
     imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
     despesa?: DespesaListRelationFilter
+    reajustecontrato?: ReajustecontratoListRelationFilter
+    memoriacalculo?: MemoriacalculoListRelationFilter
   }, "id">
 
   export type contratolocacaoOrderByWithAggregationInput = {
@@ -9378,6 +13243,322 @@ export namespace Prisma {
     status?: Enumstatus_contrato_enumWithAggregatesFilter<"contratolocacao"> | $Enums.status_contrato_enum
     contratoDigitalizado?: BytesNullableWithAggregatesFilter<"contratolocacao"> | Bytes | null
     comissao?: DecimalWithAggregatesFilter<"contratolocacao"> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type reajustecontratoWhereInput = {
+    AND?: reajustecontratoWhereInput | reajustecontratoWhereInput[]
+    OR?: reajustecontratoWhereInput[]
+    NOT?: reajustecontratoWhereInput | reajustecontratoWhereInput[]
+    id?: BigIntFilter<"reajustecontrato"> | bigint | number
+    idContrato?: BigIntFilter<"reajustecontrato"> | bigint | number
+    dataReajuste?: DateTimeFilter<"reajustecontrato"> | Date | string
+    indice?: Enumindice_reajuste_enumFilter<"reajustecontrato"> | $Enums.indice_reajuste_enum
+    percentual?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    observacao?: StringNullableFilter<"reajustecontrato"> | string | null
+    criadoEm?: DateTimeFilter<"reajustecontrato"> | Date | string
+    contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
+  }
+
+  export type reajustecontratoOrderByWithRelationInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    dataReajuste?: SortOrder
+    indice?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+    observacao?: SortOrderInput | SortOrder
+    criadoEm?: SortOrder
+    contratolocacao?: contratolocacaoOrderByWithRelationInput
+    _relevance?: reajustecontratoOrderByRelevanceInput
+  }
+
+  export type reajustecontratoWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: reajustecontratoWhereInput | reajustecontratoWhereInput[]
+    OR?: reajustecontratoWhereInput[]
+    NOT?: reajustecontratoWhereInput | reajustecontratoWhereInput[]
+    idContrato?: BigIntFilter<"reajustecontrato"> | bigint | number
+    dataReajuste?: DateTimeFilter<"reajustecontrato"> | Date | string
+    indice?: Enumindice_reajuste_enumFilter<"reajustecontrato"> | $Enums.indice_reajuste_enum
+    percentual?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    observacao?: StringNullableFilter<"reajustecontrato"> | string | null
+    criadoEm?: DateTimeFilter<"reajustecontrato"> | Date | string
+    contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
+  }, "id">
+
+  export type reajustecontratoOrderByWithAggregationInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    dataReajuste?: SortOrder
+    indice?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+    observacao?: SortOrderInput | SortOrder
+    criadoEm?: SortOrder
+    _count?: reajustecontratoCountOrderByAggregateInput
+    _avg?: reajustecontratoAvgOrderByAggregateInput
+    _max?: reajustecontratoMaxOrderByAggregateInput
+    _min?: reajustecontratoMinOrderByAggregateInput
+    _sum?: reajustecontratoSumOrderByAggregateInput
+  }
+
+  export type reajustecontratoScalarWhereWithAggregatesInput = {
+    AND?: reajustecontratoScalarWhereWithAggregatesInput | reajustecontratoScalarWhereWithAggregatesInput[]
+    OR?: reajustecontratoScalarWhereWithAggregatesInput[]
+    NOT?: reajustecontratoScalarWhereWithAggregatesInput | reajustecontratoScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"reajustecontrato"> | bigint | number
+    idContrato?: BigIntWithAggregatesFilter<"reajustecontrato"> | bigint | number
+    dataReajuste?: DateTimeWithAggregatesFilter<"reajustecontrato"> | Date | string
+    indice?: Enumindice_reajuste_enumWithAggregatesFilter<"reajustecontrato"> | $Enums.indice_reajuste_enum
+    percentual?: DecimalWithAggregatesFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalWithAggregatesFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalWithAggregatesFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    observacao?: StringNullableWithAggregatesFilter<"reajustecontrato"> | string | null
+    criadoEm?: DateTimeWithAggregatesFilter<"reajustecontrato"> | Date | string
+  }
+
+  export type memoriacalculoWhereInput = {
+    AND?: memoriacalculoWhereInput | memoriacalculoWhereInput[]
+    OR?: memoriacalculoWhereInput[]
+    NOT?: memoriacalculoWhereInput | memoriacalculoWhereInput[]
+    id?: IntFilter<"memoriacalculo"> | number
+    idContrato?: BigIntFilter<"memoriacalculo"> | bigint | number
+    idImovel?: IntFilter<"memoriacalculo"> | number
+    competencia?: DateTimeFilter<"memoriacalculo"> | Date | string
+    valorAluguelBase?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: IntNullableFilter<"memoriacalculo"> | number | null
+    contaDescricao?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaBanco?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaAgencia?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaNumero?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTipoChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaDocumentoTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    reajusteIndice?: Enumindice_reajuste_enumNullableFilter<"memoriacalculo"> | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFilter<"memoriacalculo"> | number
+    criadoEm?: DateTimeFilter<"memoriacalculo"> | Date | string
+    contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
+    imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
+    itens?: MemoriacalculoitemListRelationFilter
+  }
+
+  export type memoriacalculoOrderByWithRelationInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    competencia?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrderInput | SortOrder
+    contaDescricao?: SortOrderInput | SortOrder
+    contaBanco?: SortOrderInput | SortOrder
+    contaAgencia?: SortOrderInput | SortOrder
+    contaNumero?: SortOrderInput | SortOrder
+    contaTipoChavePix?: SortOrderInput | SortOrder
+    contaChavePix?: SortOrderInput | SortOrder
+    contaTitular?: SortOrderInput | SortOrder
+    contaDocumentoTitular?: SortOrderInput | SortOrder
+    reajusteIndice?: SortOrderInput | SortOrder
+    reajustePercentual?: SortOrderInput | SortOrder
+    reajusteValorAnterior?: SortOrderInput | SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+    criadoEm?: SortOrder
+    contratolocacao?: contratolocacaoOrderByWithRelationInput
+    imovel?: imovelOrderByWithRelationInput
+    itens?: memoriacalculoitemOrderByRelationAggregateInput
+    _relevance?: memoriacalculoOrderByRelevanceInput
+  }
+
+  export type memoriacalculoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    idContrato_competencia?: memoriacalculoIdContratoCompetenciaCompoundUniqueInput
+    AND?: memoriacalculoWhereInput | memoriacalculoWhereInput[]
+    OR?: memoriacalculoWhereInput[]
+    NOT?: memoriacalculoWhereInput | memoriacalculoWhereInput[]
+    idContrato?: BigIntFilter<"memoriacalculo"> | bigint | number
+    idImovel?: IntFilter<"memoriacalculo"> | number
+    competencia?: DateTimeFilter<"memoriacalculo"> | Date | string
+    valorAluguelBase?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: IntNullableFilter<"memoriacalculo"> | number | null
+    contaDescricao?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaBanco?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaAgencia?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaNumero?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTipoChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaDocumentoTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    reajusteIndice?: Enumindice_reajuste_enumNullableFilter<"memoriacalculo"> | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFilter<"memoriacalculo"> | number
+    criadoEm?: DateTimeFilter<"memoriacalculo"> | Date | string
+    contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
+    imovel?: XOR<ImovelScalarRelationFilter, imovelWhereInput>
+    itens?: MemoriacalculoitemListRelationFilter
+  }, "id" | "idContrato_competencia">
+
+  export type memoriacalculoOrderByWithAggregationInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    competencia?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrderInput | SortOrder
+    contaDescricao?: SortOrderInput | SortOrder
+    contaBanco?: SortOrderInput | SortOrder
+    contaAgencia?: SortOrderInput | SortOrder
+    contaNumero?: SortOrderInput | SortOrder
+    contaTipoChavePix?: SortOrderInput | SortOrder
+    contaChavePix?: SortOrderInput | SortOrder
+    contaTitular?: SortOrderInput | SortOrder
+    contaDocumentoTitular?: SortOrderInput | SortOrder
+    reajusteIndice?: SortOrderInput | SortOrder
+    reajustePercentual?: SortOrderInput | SortOrder
+    reajusteValorAnterior?: SortOrderInput | SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+    criadoEm?: SortOrder
+    _count?: memoriacalculoCountOrderByAggregateInput
+    _avg?: memoriacalculoAvgOrderByAggregateInput
+    _max?: memoriacalculoMaxOrderByAggregateInput
+    _min?: memoriacalculoMinOrderByAggregateInput
+    _sum?: memoriacalculoSumOrderByAggregateInput
+  }
+
+  export type memoriacalculoScalarWhereWithAggregatesInput = {
+    AND?: memoriacalculoScalarWhereWithAggregatesInput | memoriacalculoScalarWhereWithAggregatesInput[]
+    OR?: memoriacalculoScalarWhereWithAggregatesInput[]
+    NOT?: memoriacalculoScalarWhereWithAggregatesInput | memoriacalculoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"memoriacalculo"> | number
+    idContrato?: BigIntWithAggregatesFilter<"memoriacalculo"> | bigint | number
+    idImovel?: IntWithAggregatesFilter<"memoriacalculo"> | number
+    competencia?: DateTimeWithAggregatesFilter<"memoriacalculo"> | Date | string
+    valorAluguelBase?: DecimalWithAggregatesFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: IntNullableWithAggregatesFilter<"memoriacalculo"> | number | null
+    contaDescricao?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaBanco?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaAgencia?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaNumero?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaTipoChavePix?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaChavePix?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaTitular?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    contaDocumentoTitular?: StringNullableWithAggregatesFilter<"memoriacalculo"> | string | null
+    reajusteIndice?: Enumindice_reajuste_enumNullableWithAggregatesFilter<"memoriacalculo"> | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: DecimalNullableWithAggregatesFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: DecimalNullableWithAggregatesFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalWithAggregatesFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntWithAggregatesFilter<"memoriacalculo"> | number
+    criadoEm?: DateTimeWithAggregatesFilter<"memoriacalculo"> | Date | string
+  }
+
+  export type memoriacalculoitemWhereInput = {
+    AND?: memoriacalculoitemWhereInput | memoriacalculoitemWhereInput[]
+    OR?: memoriacalculoitemWhereInput[]
+    NOT?: memoriacalculoitemWhereInput | memoriacalculoitemWhereInput[]
+    id?: IntFilter<"memoriacalculoitem"> | number
+    idMemoriaCalculo?: IntFilter<"memoriacalculoitem"> | number
+    idLocador?: BigIntFilter<"memoriacalculoitem"> | bigint | number
+    nomeLocador?: StringFilter<"memoriacalculoitem"> | string
+    documentoLocador?: StringNullableFilter<"memoriacalculoitem"> | string | null
+    percentualParticipacao?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: JsonNullableFilter<"memoriacalculoitem">
+    memoriacalculo?: XOR<MemoriacalculoScalarRelationFilter, memoriacalculoWhereInput>
+  }
+
+  export type memoriacalculoitemOrderByWithRelationInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    nomeLocador?: SortOrder
+    documentoLocador?: SortOrderInput | SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+    detalhesExtras?: SortOrderInput | SortOrder
+    memoriacalculo?: memoriacalculoOrderByWithRelationInput
+    _relevance?: memoriacalculoitemOrderByRelevanceInput
+  }
+
+  export type memoriacalculoitemWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: memoriacalculoitemWhereInput | memoriacalculoitemWhereInput[]
+    OR?: memoriacalculoitemWhereInput[]
+    NOT?: memoriacalculoitemWhereInput | memoriacalculoitemWhereInput[]
+    idMemoriaCalculo?: IntFilter<"memoriacalculoitem"> | number
+    idLocador?: BigIntFilter<"memoriacalculoitem"> | bigint | number
+    nomeLocador?: StringFilter<"memoriacalculoitem"> | string
+    documentoLocador?: StringNullableFilter<"memoriacalculoitem"> | string | null
+    percentualParticipacao?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: JsonNullableFilter<"memoriacalculoitem">
+    memoriacalculo?: XOR<MemoriacalculoScalarRelationFilter, memoriacalculoWhereInput>
+  }, "id">
+
+  export type memoriacalculoitemOrderByWithAggregationInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    nomeLocador?: SortOrder
+    documentoLocador?: SortOrderInput | SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+    detalhesExtras?: SortOrderInput | SortOrder
+    _count?: memoriacalculoitemCountOrderByAggregateInput
+    _avg?: memoriacalculoitemAvgOrderByAggregateInput
+    _max?: memoriacalculoitemMaxOrderByAggregateInput
+    _min?: memoriacalculoitemMinOrderByAggregateInput
+    _sum?: memoriacalculoitemSumOrderByAggregateInput
+  }
+
+  export type memoriacalculoitemScalarWhereWithAggregatesInput = {
+    AND?: memoriacalculoitemScalarWhereWithAggregatesInput | memoriacalculoitemScalarWhereWithAggregatesInput[]
+    OR?: memoriacalculoitemScalarWhereWithAggregatesInput[]
+    NOT?: memoriacalculoitemScalarWhereWithAggregatesInput | memoriacalculoitemScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"memoriacalculoitem"> | number
+    idMemoriaCalculo?: IntWithAggregatesFilter<"memoriacalculoitem"> | number
+    idLocador?: BigIntWithAggregatesFilter<"memoriacalculoitem"> | bigint | number
+    nomeLocador?: StringWithAggregatesFilter<"memoriacalculoitem"> | string
+    documentoLocador?: StringNullableWithAggregatesFilter<"memoriacalculoitem"> | string | null
+    percentualParticipacao?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalWithAggregatesFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: JsonNullableWithAggregatesFilter<"memoriacalculoitem">
   }
 
   export type despesaWhereInput = {
@@ -9691,6 +13872,7 @@ export namespace Prisma {
     endereco: enderecoCreateNestedOneWithoutImovelInput
     contratolocacao?: contratolocacaoCreateNestedManyWithoutImovelInput
     propriedadeimovel?: propriedadeimovelCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutImovelInput
   }
 
   export type imovelUncheckedCreateInput = {
@@ -9705,6 +13887,7 @@ export namespace Prisma {
     status: $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedCreateNestedManyWithoutImovelInput
     propriedadeimovel?: propriedadeimovelUncheckedCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutImovelInput
   }
 
   export type imovelUpdateInput = {
@@ -9718,6 +13901,7 @@ export namespace Prisma {
     endereco?: enderecoUpdateOneRequiredWithoutImovelNestedInput
     contratolocacao?: contratolocacaoUpdateManyWithoutImovelNestedInput
     propriedadeimovel?: propriedadeimovelUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelUncheckedUpdateInput = {
@@ -9732,6 +13916,7 @@ export namespace Prisma {
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedUpdateManyWithoutImovelNestedInput
     propriedadeimovel?: propriedadeimovelUncheckedUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelCreateManyInput = {
@@ -9826,6 +14011,8 @@ export namespace Prisma {
     comissao: Decimal | DecimalJsLike | number | string
     imovel: imovelCreateNestedOneWithoutContratolocacaoInput
     despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoUncheckedCreateInput = {
@@ -9841,6 +14028,8 @@ export namespace Prisma {
     contratoDigitalizado?: Bytes | null
     comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoUncheckedCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoUpdateInput = {
@@ -9856,6 +14045,8 @@ export namespace Prisma {
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
     despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type contratolocacaoUncheckedUpdateInput = {
@@ -9871,6 +14062,8 @@ export namespace Prisma {
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type contratolocacaoCreateManyInput = {
@@ -9912,6 +14105,357 @@ export namespace Prisma {
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type reajustecontratoCreateInput = {
+    id?: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+    contratolocacao: contratolocacaoCreateNestedOneWithoutReajustecontratoInput
+  }
+
+  export type reajustecontratoUncheckedCreateInput = {
+    id?: bigint | number
+    idContrato: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+  }
+
+  export type reajustecontratoUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    contratolocacao?: contratolocacaoUpdateOneRequiredWithoutReajustecontratoNestedInput
+  }
+
+  export type reajustecontratoUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type reajustecontratoCreateManyInput = {
+    id?: bigint | number
+    idContrato: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+  }
+
+  export type reajustecontratoUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type reajustecontratoUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type memoriacalculoCreateInput = {
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    contratolocacao: contratolocacaoCreateNestedOneWithoutMemoriacalculoInput
+    imovel: imovelCreateNestedOneWithoutMemoriacalculoInput
+    itens?: memoriacalculoitemCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoUncheckedCreateInput = {
+    id?: number
+    idContrato: bigint | number
+    idImovel: number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    itens?: memoriacalculoitemUncheckedCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoUpdateInput = {
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    contratolocacao?: contratolocacaoUpdateOneRequiredWithoutMemoriacalculoNestedInput
+    imovel?: imovelUpdateOneRequiredWithoutMemoriacalculoNestedInput
+    itens?: memoriacalculoitemUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoCreateManyInput = {
+    id?: number
+    idContrato: bigint | number
+    idImovel: number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+  }
+
+  export type memoriacalculoUpdateManyMutationInput = {
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type memoriacalculoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type memoriacalculoitemCreateInput = {
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+    memoriacalculo: memoriacalculoCreateNestedOneWithoutItensInput
+  }
+
+  export type memoriacalculoitemUncheckedCreateInput = {
+    id?: number
+    idMemoriaCalculo: number
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUpdateInput = {
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+    memoriacalculo?: memoriacalculoUpdateOneRequiredWithoutItensNestedInput
+  }
+
+  export type memoriacalculoitemUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idMemoriaCalculo?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemCreateManyInput = {
+    id?: number
+    idMemoriaCalculo: number
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUpdateManyMutationInput = {
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idMemoriaCalculo?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type despesaCreateInput = {
@@ -10356,11 +14900,21 @@ export namespace Prisma {
     none?: propriedadeimovelWhereInput
   }
 
+  export type MemoriacalculoListRelationFilter = {
+    every?: memoriacalculoWhereInput
+    some?: memoriacalculoWhereInput
+    none?: memoriacalculoWhereInput
+  }
+
   export type contratolocacaoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type propriedadeimovelOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type memoriacalculoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10585,7 +15139,17 @@ export namespace Prisma {
     none?: despesaWhereInput
   }
 
+  export type ReajustecontratoListRelationFilter = {
+    every?: reajustecontratoWhereInput
+    some?: reajustecontratoWhereInput
+    none?: reajustecontratoWhereInput
+  }
+
   export type despesaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type reajustecontratoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10683,6 +15247,403 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type Enumindice_reajuste_enumFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel>
+    in?: $Enums.indice_reajuste_enum[]
+    notIn?: $Enums.indice_reajuste_enum[]
+    not?: NestedEnumindice_reajuste_enumFilter<$PrismaModel> | $Enums.indice_reajuste_enum
+  }
+
+  export type ContratolocacaoScalarRelationFilter = {
+    is?: contratolocacaoWhereInput
+    isNot?: contratolocacaoWhereInput
+  }
+
+  export type reajustecontratoOrderByRelevanceInput = {
+    fields: reajustecontratoOrderByRelevanceFieldEnum | reajustecontratoOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type reajustecontratoCountOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    dataReajuste?: SortOrder
+    indice?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+    observacao?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type reajustecontratoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+  }
+
+  export type reajustecontratoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    dataReajuste?: SortOrder
+    indice?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+    observacao?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type reajustecontratoMinOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    dataReajuste?: SortOrder
+    indice?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+    observacao?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type reajustecontratoSumOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    percentual?: SortOrder
+    valorAnterior?: SortOrder
+    valorNovo?: SortOrder
+  }
+
+  export type Enumindice_reajuste_enumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel>
+    in?: $Enums.indice_reajuste_enum[]
+    notIn?: $Enums.indice_reajuste_enum[]
+    not?: NestedEnumindice_reajuste_enumWithAggregatesFilter<$PrismaModel> | $Enums.indice_reajuste_enum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumindice_reajuste_enumFilter<$PrismaModel>
+    _max?: NestedEnumindice_reajuste_enumFilter<$PrismaModel>
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type Enumindice_reajuste_enumNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel> | null
+    in?: $Enums.indice_reajuste_enum[] | null
+    notIn?: $Enums.indice_reajuste_enum[] | null
+    not?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel> | $Enums.indice_reajuste_enum | null
+  }
+
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type MemoriacalculoitemListRelationFilter = {
+    every?: memoriacalculoitemWhereInput
+    some?: memoriacalculoitemWhereInput
+    none?: memoriacalculoitemWhereInput
+  }
+
+  export type memoriacalculoitemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type memoriacalculoOrderByRelevanceInput = {
+    fields: memoriacalculoOrderByRelevanceFieldEnum | memoriacalculoOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type memoriacalculoIdContratoCompetenciaCompoundUniqueInput = {
+    idContrato: bigint | number
+    competencia: Date | string
+  }
+
+  export type memoriacalculoCountOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    competencia?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrder
+    contaDescricao?: SortOrder
+    contaBanco?: SortOrder
+    contaAgencia?: SortOrder
+    contaNumero?: SortOrder
+    contaTipoChavePix?: SortOrder
+    contaChavePix?: SortOrder
+    contaTitular?: SortOrder
+    contaDocumentoTitular?: SortOrder
+    reajusteIndice?: SortOrder
+    reajustePercentual?: SortOrder
+    reajusteValorAnterior?: SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type memoriacalculoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrder
+    reajustePercentual?: SortOrder
+    reajusteValorAnterior?: SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+  }
+
+  export type memoriacalculoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    competencia?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrder
+    contaDescricao?: SortOrder
+    contaBanco?: SortOrder
+    contaAgencia?: SortOrder
+    contaNumero?: SortOrder
+    contaTipoChavePix?: SortOrder
+    contaChavePix?: SortOrder
+    contaTitular?: SortOrder
+    contaDocumentoTitular?: SortOrder
+    reajusteIndice?: SortOrder
+    reajustePercentual?: SortOrder
+    reajusteValorAnterior?: SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type memoriacalculoMinOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    competencia?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrder
+    contaDescricao?: SortOrder
+    contaBanco?: SortOrder
+    contaAgencia?: SortOrder
+    contaNumero?: SortOrder
+    contaTipoChavePix?: SortOrder
+    contaChavePix?: SortOrder
+    contaTitular?: SortOrder
+    contaDocumentoTitular?: SortOrder
+    reajusteIndice?: SortOrder
+    reajustePercentual?: SortOrder
+    reajusteValorAnterior?: SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+    criadoEm?: SortOrder
+  }
+
+  export type memoriacalculoSumOrderByAggregateInput = {
+    id?: SortOrder
+    idContrato?: SortOrder
+    idImovel?: SortOrder
+    valorAluguelBase?: SortOrder
+    idContaBancaria?: SortOrder
+    reajustePercentual?: SortOrder
+    reajusteValorAnterior?: SortOrder
+    totalAPagar?: SortOrder
+    geradoPorUsuarioId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type Enumindice_reajuste_enumNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel> | null
+    in?: $Enums.indice_reajuste_enum[] | null
+    notIn?: $Enums.indice_reajuste_enum[] | null
+    not?: NestedEnumindice_reajuste_enumNullableWithAggregatesFilter<$PrismaModel> | $Enums.indice_reajuste_enum | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel>
+    _max?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type MemoriacalculoScalarRelationFilter = {
+    is?: memoriacalculoWhereInput
+    isNot?: memoriacalculoWhereInput
+  }
+
+  export type memoriacalculoitemOrderByRelevanceInput = {
+    fields: memoriacalculoitemOrderByRelevanceFieldEnum | memoriacalculoitemOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type memoriacalculoitemCountOrderByAggregateInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    nomeLocador?: SortOrder
+    documentoLocador?: SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+    detalhesExtras?: SortOrder
+  }
+
+  export type memoriacalculoitemAvgOrderByAggregateInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+  }
+
+  export type memoriacalculoitemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    nomeLocador?: SortOrder
+    documentoLocador?: SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+  }
+
+  export type memoriacalculoitemMinOrderByAggregateInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    nomeLocador?: SortOrder
+    documentoLocador?: SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+  }
+
+  export type memoriacalculoitemSumOrderByAggregateInput = {
+    id?: SortOrder
+    idMemoriaCalculo?: SortOrder
+    idLocador?: SortOrder
+    percentualParticipacao?: SortOrder
+    valorAluguel?: SortOrder
+    valorReembolsos?: SortOrder
+    valorDescontos?: SortOrder
+    baseCalculoIrrf?: SortOrder
+    valorIrrf?: SortOrder
+    valorAPagar?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
   export type Enumtipo_despesa_enumFilter<$PrismaModel = never> = {
     equals?: $Enums.tipo_despesa_enum | Enumtipo_despesa_enumFieldRefInput<$PrismaModel>
     in?: $Enums.tipo_despesa_enum[]
@@ -10695,11 +15656,6 @@ export namespace Prisma {
     in?: $Enums.status_despesa_enum[]
     notIn?: $Enums.status_despesa_enum[]
     not?: NestedEnumstatus_despesa_enumFilter<$PrismaModel> | $Enums.status_despesa_enum
-  }
-
-  export type ContratolocacaoScalarRelationFilter = {
-    is?: contratolocacaoWhereInput
-    isNot?: contratolocacaoWhereInput
   }
 
   export type despesaOrderByRelevanceInput = {
@@ -10776,17 +15732,6 @@ export namespace Prisma {
     _max?: NestedEnumstatus_despesa_enumFilter<$PrismaModel>
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type FaixairrfListRelationFilter = {
     every?: faixairrfWhereInput
     some?: faixairrfWhereInput
@@ -10858,22 +15803,6 @@ export namespace Prisma {
     redutorLimiteSuperior?: SortOrder
     redutorConstante?: SortOrder
     redutorCoeficiente?: SortOrder
-  }
-
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type TabelairrfScalarRelationFilter = {
@@ -11014,6 +15943,13 @@ export namespace Prisma {
     connect?: propriedadeimovelWhereUniqueInput | propriedadeimovelWhereUniqueInput[]
   }
 
+  export type memoriacalculoCreateNestedManyWithoutImovelInput = {
+    create?: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput> | memoriacalculoCreateWithoutImovelInput[] | memoriacalculoUncheckedCreateWithoutImovelInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutImovelInput | memoriacalculoCreateOrConnectWithoutImovelInput[]
+    createMany?: memoriacalculoCreateManyImovelInputEnvelope
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+  }
+
   export type contratolocacaoUncheckedCreateNestedManyWithoutImovelInput = {
     create?: XOR<contratolocacaoCreateWithoutImovelInput, contratolocacaoUncheckedCreateWithoutImovelInput> | contratolocacaoCreateWithoutImovelInput[] | contratolocacaoUncheckedCreateWithoutImovelInput[]
     connectOrCreate?: contratolocacaoCreateOrConnectWithoutImovelInput | contratolocacaoCreateOrConnectWithoutImovelInput[]
@@ -11026,6 +15962,13 @@ export namespace Prisma {
     connectOrCreate?: propriedadeimovelCreateOrConnectWithoutImovelInput | propriedadeimovelCreateOrConnectWithoutImovelInput[]
     createMany?: propriedadeimovelCreateManyImovelInputEnvelope
     connect?: propriedadeimovelWhereUniqueInput | propriedadeimovelWhereUniqueInput[]
+  }
+
+  export type memoriacalculoUncheckedCreateNestedManyWithoutImovelInput = {
+    create?: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput> | memoriacalculoCreateWithoutImovelInput[] | memoriacalculoUncheckedCreateWithoutImovelInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutImovelInput | memoriacalculoCreateOrConnectWithoutImovelInput[]
+    createMany?: memoriacalculoCreateManyImovelInputEnvelope
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -11080,6 +16023,20 @@ export namespace Prisma {
     deleteMany?: propriedadeimovelScalarWhereInput | propriedadeimovelScalarWhereInput[]
   }
 
+  export type memoriacalculoUpdateManyWithoutImovelNestedInput = {
+    create?: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput> | memoriacalculoCreateWithoutImovelInput[] | memoriacalculoUncheckedCreateWithoutImovelInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutImovelInput | memoriacalculoCreateOrConnectWithoutImovelInput[]
+    upsert?: memoriacalculoUpsertWithWhereUniqueWithoutImovelInput | memoriacalculoUpsertWithWhereUniqueWithoutImovelInput[]
+    createMany?: memoriacalculoCreateManyImovelInputEnvelope
+    set?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    disconnect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    delete?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    update?: memoriacalculoUpdateWithWhereUniqueWithoutImovelInput | memoriacalculoUpdateWithWhereUniqueWithoutImovelInput[]
+    updateMany?: memoriacalculoUpdateManyWithWhereWithoutImovelInput | memoriacalculoUpdateManyWithWhereWithoutImovelInput[]
+    deleteMany?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
+  }
+
   export type contratolocacaoUncheckedUpdateManyWithoutImovelNestedInput = {
     create?: XOR<contratolocacaoCreateWithoutImovelInput, contratolocacaoUncheckedCreateWithoutImovelInput> | contratolocacaoCreateWithoutImovelInput[] | contratolocacaoUncheckedCreateWithoutImovelInput[]
     connectOrCreate?: contratolocacaoCreateOrConnectWithoutImovelInput | contratolocacaoCreateOrConnectWithoutImovelInput[]
@@ -11106,6 +16063,20 @@ export namespace Prisma {
     update?: propriedadeimovelUpdateWithWhereUniqueWithoutImovelInput | propriedadeimovelUpdateWithWhereUniqueWithoutImovelInput[]
     updateMany?: propriedadeimovelUpdateManyWithWhereWithoutImovelInput | propriedadeimovelUpdateManyWithWhereWithoutImovelInput[]
     deleteMany?: propriedadeimovelScalarWhereInput | propriedadeimovelScalarWhereInput[]
+  }
+
+  export type memoriacalculoUncheckedUpdateManyWithoutImovelNestedInput = {
+    create?: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput> | memoriacalculoCreateWithoutImovelInput[] | memoriacalculoUncheckedCreateWithoutImovelInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutImovelInput | memoriacalculoCreateOrConnectWithoutImovelInput[]
+    upsert?: memoriacalculoUpsertWithWhereUniqueWithoutImovelInput | memoriacalculoUpsertWithWhereUniqueWithoutImovelInput[]
+    createMany?: memoriacalculoCreateManyImovelInputEnvelope
+    set?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    disconnect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    delete?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    update?: memoriacalculoUpdateWithWhereUniqueWithoutImovelInput | memoriacalculoUpdateWithWhereUniqueWithoutImovelInput[]
+    updateMany?: memoriacalculoUpdateManyWithWhereWithoutImovelInput | memoriacalculoUpdateManyWithWhereWithoutImovelInput[]
+    deleteMany?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
   }
 
   export type imovelCreateNestedOneWithoutPropriedadeimovelInput = {
@@ -11151,11 +16122,39 @@ export namespace Prisma {
     connect?: despesaWhereUniqueInput | despesaWhereUniqueInput[]
   }
 
+  export type reajustecontratoCreateNestedManyWithoutContratolocacaoInput = {
+    create?: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput> | reajustecontratoCreateWithoutContratolocacaoInput[] | reajustecontratoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: reajustecontratoCreateOrConnectWithoutContratolocacaoInput | reajustecontratoCreateOrConnectWithoutContratolocacaoInput[]
+    createMany?: reajustecontratoCreateManyContratolocacaoInputEnvelope
+    connect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+  }
+
+  export type memoriacalculoCreateNestedManyWithoutContratolocacaoInput = {
+    create?: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput> | memoriacalculoCreateWithoutContratolocacaoInput[] | memoriacalculoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutContratolocacaoInput | memoriacalculoCreateOrConnectWithoutContratolocacaoInput[]
+    createMany?: memoriacalculoCreateManyContratolocacaoInputEnvelope
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+  }
+
   export type despesaUncheckedCreateNestedManyWithoutContratolocacaoInput = {
     create?: XOR<despesaCreateWithoutContratolocacaoInput, despesaUncheckedCreateWithoutContratolocacaoInput> | despesaCreateWithoutContratolocacaoInput[] | despesaUncheckedCreateWithoutContratolocacaoInput[]
     connectOrCreate?: despesaCreateOrConnectWithoutContratolocacaoInput | despesaCreateOrConnectWithoutContratolocacaoInput[]
     createMany?: despesaCreateManyContratolocacaoInputEnvelope
     connect?: despesaWhereUniqueInput | despesaWhereUniqueInput[]
+  }
+
+  export type reajustecontratoUncheckedCreateNestedManyWithoutContratolocacaoInput = {
+    create?: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput> | reajustecontratoCreateWithoutContratolocacaoInput[] | reajustecontratoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: reajustecontratoCreateOrConnectWithoutContratolocacaoInput | reajustecontratoCreateOrConnectWithoutContratolocacaoInput[]
+    createMany?: reajustecontratoCreateManyContratolocacaoInputEnvelope
+    connect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+  }
+
+  export type memoriacalculoUncheckedCreateNestedManyWithoutContratolocacaoInput = {
+    create?: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput> | memoriacalculoCreateWithoutContratolocacaoInput[] | memoriacalculoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutContratolocacaoInput | memoriacalculoCreateOrConnectWithoutContratolocacaoInput[]
+    createMany?: memoriacalculoCreateManyContratolocacaoInputEnvelope
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -11192,6 +16191,34 @@ export namespace Prisma {
     deleteMany?: despesaScalarWhereInput | despesaScalarWhereInput[]
   }
 
+  export type reajustecontratoUpdateManyWithoutContratolocacaoNestedInput = {
+    create?: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput> | reajustecontratoCreateWithoutContratolocacaoInput[] | reajustecontratoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: reajustecontratoCreateOrConnectWithoutContratolocacaoInput | reajustecontratoCreateOrConnectWithoutContratolocacaoInput[]
+    upsert?: reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput | reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput[]
+    createMany?: reajustecontratoCreateManyContratolocacaoInputEnvelope
+    set?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    disconnect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    delete?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    connect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    update?: reajustecontratoUpdateWithWhereUniqueWithoutContratolocacaoInput | reajustecontratoUpdateWithWhereUniqueWithoutContratolocacaoInput[]
+    updateMany?: reajustecontratoUpdateManyWithWhereWithoutContratolocacaoInput | reajustecontratoUpdateManyWithWhereWithoutContratolocacaoInput[]
+    deleteMany?: reajustecontratoScalarWhereInput | reajustecontratoScalarWhereInput[]
+  }
+
+  export type memoriacalculoUpdateManyWithoutContratolocacaoNestedInput = {
+    create?: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput> | memoriacalculoCreateWithoutContratolocacaoInput[] | memoriacalculoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutContratolocacaoInput | memoriacalculoCreateOrConnectWithoutContratolocacaoInput[]
+    upsert?: memoriacalculoUpsertWithWhereUniqueWithoutContratolocacaoInput | memoriacalculoUpsertWithWhereUniqueWithoutContratolocacaoInput[]
+    createMany?: memoriacalculoCreateManyContratolocacaoInputEnvelope
+    set?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    disconnect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    delete?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    update?: memoriacalculoUpdateWithWhereUniqueWithoutContratolocacaoInput | memoriacalculoUpdateWithWhereUniqueWithoutContratolocacaoInput[]
+    updateMany?: memoriacalculoUpdateManyWithWhereWithoutContratolocacaoInput | memoriacalculoUpdateManyWithWhereWithoutContratolocacaoInput[]
+    deleteMany?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
+  }
+
   export type despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput = {
     create?: XOR<despesaCreateWithoutContratolocacaoInput, despesaUncheckedCreateWithoutContratolocacaoInput> | despesaCreateWithoutContratolocacaoInput[] | despesaUncheckedCreateWithoutContratolocacaoInput[]
     connectOrCreate?: despesaCreateOrConnectWithoutContratolocacaoInput | despesaCreateOrConnectWithoutContratolocacaoInput[]
@@ -11204,6 +16231,156 @@ export namespace Prisma {
     update?: despesaUpdateWithWhereUniqueWithoutContratolocacaoInput | despesaUpdateWithWhereUniqueWithoutContratolocacaoInput[]
     updateMany?: despesaUpdateManyWithWhereWithoutContratolocacaoInput | despesaUpdateManyWithWhereWithoutContratolocacaoInput[]
     deleteMany?: despesaScalarWhereInput | despesaScalarWhereInput[]
+  }
+
+  export type reajustecontratoUncheckedUpdateManyWithoutContratolocacaoNestedInput = {
+    create?: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput> | reajustecontratoCreateWithoutContratolocacaoInput[] | reajustecontratoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: reajustecontratoCreateOrConnectWithoutContratolocacaoInput | reajustecontratoCreateOrConnectWithoutContratolocacaoInput[]
+    upsert?: reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput | reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput[]
+    createMany?: reajustecontratoCreateManyContratolocacaoInputEnvelope
+    set?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    disconnect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    delete?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    connect?: reajustecontratoWhereUniqueInput | reajustecontratoWhereUniqueInput[]
+    update?: reajustecontratoUpdateWithWhereUniqueWithoutContratolocacaoInput | reajustecontratoUpdateWithWhereUniqueWithoutContratolocacaoInput[]
+    updateMany?: reajustecontratoUpdateManyWithWhereWithoutContratolocacaoInput | reajustecontratoUpdateManyWithWhereWithoutContratolocacaoInput[]
+    deleteMany?: reajustecontratoScalarWhereInput | reajustecontratoScalarWhereInput[]
+  }
+
+  export type memoriacalculoUncheckedUpdateManyWithoutContratolocacaoNestedInput = {
+    create?: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput> | memoriacalculoCreateWithoutContratolocacaoInput[] | memoriacalculoUncheckedCreateWithoutContratolocacaoInput[]
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutContratolocacaoInput | memoriacalculoCreateOrConnectWithoutContratolocacaoInput[]
+    upsert?: memoriacalculoUpsertWithWhereUniqueWithoutContratolocacaoInput | memoriacalculoUpsertWithWhereUniqueWithoutContratolocacaoInput[]
+    createMany?: memoriacalculoCreateManyContratolocacaoInputEnvelope
+    set?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    disconnect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    delete?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    connect?: memoriacalculoWhereUniqueInput | memoriacalculoWhereUniqueInput[]
+    update?: memoriacalculoUpdateWithWhereUniqueWithoutContratolocacaoInput | memoriacalculoUpdateWithWhereUniqueWithoutContratolocacaoInput[]
+    updateMany?: memoriacalculoUpdateManyWithWhereWithoutContratolocacaoInput | memoriacalculoUpdateManyWithWhereWithoutContratolocacaoInput[]
+    deleteMany?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
+  }
+
+  export type contratolocacaoCreateNestedOneWithoutReajustecontratoInput = {
+    create?: XOR<contratolocacaoCreateWithoutReajustecontratoInput, contratolocacaoUncheckedCreateWithoutReajustecontratoInput>
+    connectOrCreate?: contratolocacaoCreateOrConnectWithoutReajustecontratoInput
+    connect?: contratolocacaoWhereUniqueInput
+  }
+
+  export type Enumindice_reajuste_enumFieldUpdateOperationsInput = {
+    set?: $Enums.indice_reajuste_enum
+  }
+
+  export type contratolocacaoUpdateOneRequiredWithoutReajustecontratoNestedInput = {
+    create?: XOR<contratolocacaoCreateWithoutReajustecontratoInput, contratolocacaoUncheckedCreateWithoutReajustecontratoInput>
+    connectOrCreate?: contratolocacaoCreateOrConnectWithoutReajustecontratoInput
+    upsert?: contratolocacaoUpsertWithoutReajustecontratoInput
+    connect?: contratolocacaoWhereUniqueInput
+    update?: XOR<XOR<contratolocacaoUpdateToOneWithWhereWithoutReajustecontratoInput, contratolocacaoUpdateWithoutReajustecontratoInput>, contratolocacaoUncheckedUpdateWithoutReajustecontratoInput>
+  }
+
+  export type contratolocacaoCreateNestedOneWithoutMemoriacalculoInput = {
+    create?: XOR<contratolocacaoCreateWithoutMemoriacalculoInput, contratolocacaoUncheckedCreateWithoutMemoriacalculoInput>
+    connectOrCreate?: contratolocacaoCreateOrConnectWithoutMemoriacalculoInput
+    connect?: contratolocacaoWhereUniqueInput
+  }
+
+  export type imovelCreateNestedOneWithoutMemoriacalculoInput = {
+    create?: XOR<imovelCreateWithoutMemoriacalculoInput, imovelUncheckedCreateWithoutMemoriacalculoInput>
+    connectOrCreate?: imovelCreateOrConnectWithoutMemoriacalculoInput
+    connect?: imovelWhereUniqueInput
+  }
+
+  export type memoriacalculoitemCreateNestedManyWithoutMemoriacalculoInput = {
+    create?: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput> | memoriacalculoitemCreateWithoutMemoriacalculoInput[] | memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput[]
+    connectOrCreate?: memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput | memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput[]
+    createMany?: memoriacalculoitemCreateManyMemoriacalculoInputEnvelope
+    connect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+  }
+
+  export type memoriacalculoitemUncheckedCreateNestedManyWithoutMemoriacalculoInput = {
+    create?: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput> | memoriacalculoitemCreateWithoutMemoriacalculoInput[] | memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput[]
+    connectOrCreate?: memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput | memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput[]
+    createMany?: memoriacalculoitemCreateManyMemoriacalculoInputEnvelope
+    connect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableEnumindice_reajuste_enumFieldUpdateOperationsInput = {
+    set?: $Enums.indice_reajuste_enum | null
+  }
+
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type contratolocacaoUpdateOneRequiredWithoutMemoriacalculoNestedInput = {
+    create?: XOR<contratolocacaoCreateWithoutMemoriacalculoInput, contratolocacaoUncheckedCreateWithoutMemoriacalculoInput>
+    connectOrCreate?: contratolocacaoCreateOrConnectWithoutMemoriacalculoInput
+    upsert?: contratolocacaoUpsertWithoutMemoriacalculoInput
+    connect?: contratolocacaoWhereUniqueInput
+    update?: XOR<XOR<contratolocacaoUpdateToOneWithWhereWithoutMemoriacalculoInput, contratolocacaoUpdateWithoutMemoriacalculoInput>, contratolocacaoUncheckedUpdateWithoutMemoriacalculoInput>
+  }
+
+  export type imovelUpdateOneRequiredWithoutMemoriacalculoNestedInput = {
+    create?: XOR<imovelCreateWithoutMemoriacalculoInput, imovelUncheckedCreateWithoutMemoriacalculoInput>
+    connectOrCreate?: imovelCreateOrConnectWithoutMemoriacalculoInput
+    upsert?: imovelUpsertWithoutMemoriacalculoInput
+    connect?: imovelWhereUniqueInput
+    update?: XOR<XOR<imovelUpdateToOneWithWhereWithoutMemoriacalculoInput, imovelUpdateWithoutMemoriacalculoInput>, imovelUncheckedUpdateWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemUpdateManyWithoutMemoriacalculoNestedInput = {
+    create?: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput> | memoriacalculoitemCreateWithoutMemoriacalculoInput[] | memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput[]
+    connectOrCreate?: memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput | memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput[]
+    upsert?: memoriacalculoitemUpsertWithWhereUniqueWithoutMemoriacalculoInput | memoriacalculoitemUpsertWithWhereUniqueWithoutMemoriacalculoInput[]
+    createMany?: memoriacalculoitemCreateManyMemoriacalculoInputEnvelope
+    set?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    disconnect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    delete?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    connect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    update?: memoriacalculoitemUpdateWithWhereUniqueWithoutMemoriacalculoInput | memoriacalculoitemUpdateWithWhereUniqueWithoutMemoriacalculoInput[]
+    updateMany?: memoriacalculoitemUpdateManyWithWhereWithoutMemoriacalculoInput | memoriacalculoitemUpdateManyWithWhereWithoutMemoriacalculoInput[]
+    deleteMany?: memoriacalculoitemScalarWhereInput | memoriacalculoitemScalarWhereInput[]
+  }
+
+  export type memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoNestedInput = {
+    create?: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput> | memoriacalculoitemCreateWithoutMemoriacalculoInput[] | memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput[]
+    connectOrCreate?: memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput | memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput[]
+    upsert?: memoriacalculoitemUpsertWithWhereUniqueWithoutMemoriacalculoInput | memoriacalculoitemUpsertWithWhereUniqueWithoutMemoriacalculoInput[]
+    createMany?: memoriacalculoitemCreateManyMemoriacalculoInputEnvelope
+    set?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    disconnect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    delete?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    connect?: memoriacalculoitemWhereUniqueInput | memoriacalculoitemWhereUniqueInput[]
+    update?: memoriacalculoitemUpdateWithWhereUniqueWithoutMemoriacalculoInput | memoriacalculoitemUpdateWithWhereUniqueWithoutMemoriacalculoInput[]
+    updateMany?: memoriacalculoitemUpdateManyWithWhereWithoutMemoriacalculoInput | memoriacalculoitemUpdateManyWithWhereWithoutMemoriacalculoInput[]
+    deleteMany?: memoriacalculoitemScalarWhereInput | memoriacalculoitemScalarWhereInput[]
+  }
+
+  export type memoriacalculoCreateNestedOneWithoutItensInput = {
+    create?: XOR<memoriacalculoCreateWithoutItensInput, memoriacalculoUncheckedCreateWithoutItensInput>
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutItensInput
+    connect?: memoriacalculoWhereUniqueInput
+  }
+
+  export type memoriacalculoUpdateOneRequiredWithoutItensNestedInput = {
+    create?: XOR<memoriacalculoCreateWithoutItensInput, memoriacalculoUncheckedCreateWithoutItensInput>
+    connectOrCreate?: memoriacalculoCreateOrConnectWithoutItensInput
+    upsert?: memoriacalculoUpsertWithoutItensInput
+    connect?: memoriacalculoWhereUniqueInput
+    update?: XOR<XOR<memoriacalculoUpdateToOneWithWhereWithoutItensInput, memoriacalculoUpdateWithoutItensInput>, memoriacalculoUncheckedUpdateWithoutItensInput>
   }
 
   export type contratolocacaoCreateNestedOneWithoutDespesaInput = {
@@ -11240,14 +16417,6 @@ export namespace Prisma {
     connectOrCreate?: faixairrfCreateOrConnectWithoutTabelairrfInput | faixairrfCreateOrConnectWithoutTabelairrfInput[]
     createMany?: faixairrfCreateManyTabelairrfInputEnvelope
     connect?: faixairrfWhereUniqueInput | faixairrfWhereUniqueInput[]
-  }
-
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type faixairrfUpdateManyWithoutTabelairrfNestedInput = {
@@ -11596,6 +16765,117 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumindice_reajuste_enumFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel>
+    in?: $Enums.indice_reajuste_enum[]
+    notIn?: $Enums.indice_reajuste_enum[]
+    not?: NestedEnumindice_reajuste_enumFilter<$PrismaModel> | $Enums.indice_reajuste_enum
+  }
+
+  export type NestedEnumindice_reajuste_enumWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel>
+    in?: $Enums.indice_reajuste_enum[]
+    notIn?: $Enums.indice_reajuste_enum[]
+    not?: NestedEnumindice_reajuste_enumWithAggregatesFilter<$PrismaModel> | $Enums.indice_reajuste_enum
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumindice_reajuste_enumFilter<$PrismaModel>
+    _max?: NestedEnumindice_reajuste_enumFilter<$PrismaModel>
+  }
+
+  export type NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel> | null
+    in?: $Enums.indice_reajuste_enum[] | null
+    notIn?: $Enums.indice_reajuste_enum[] | null
+    not?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel> | $Enums.indice_reajuste_enum | null
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumindice_reajuste_enumNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.indice_reajuste_enum | Enumindice_reajuste_enumFieldRefInput<$PrismaModel> | null
+    in?: $Enums.indice_reajuste_enum[] | null
+    notIn?: $Enums.indice_reajuste_enum[] | null
+    not?: NestedEnumindice_reajuste_enumNullableWithAggregatesFilter<$PrismaModel> | $Enums.indice_reajuste_enum | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel>
+    _max?: NestedEnumindice_reajuste_enumNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type NestedEnumtipo_despesa_enumFilter<$PrismaModel = never> = {
     equals?: $Enums.tipo_despesa_enum | Enumtipo_despesa_enumFieldRefInput<$PrismaModel>
     in?: $Enums.tipo_despesa_enum[]
@@ -11630,33 +16910,6 @@ export namespace Prisma {
     _max?: NestedEnumstatus_despesa_enumFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
-  }
-
   export type imovelCreateWithoutEnderecoInput = {
     inscricaoIPTU?: string | null
     inscricaoBombeiro?: string | null
@@ -11667,6 +16920,7 @@ export namespace Prisma {
     status: $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoCreateNestedManyWithoutImovelInput
     propriedadeimovel?: propriedadeimovelCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutImovelInput
   }
 
   export type imovelUncheckedCreateWithoutEnderecoInput = {
@@ -11680,6 +16934,7 @@ export namespace Prisma {
     status: $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedCreateNestedManyWithoutImovelInput
     propriedadeimovel?: propriedadeimovelUncheckedCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutImovelInput
   }
 
   export type imovelCreateOrConnectWithoutEnderecoInput = {
@@ -11759,6 +17014,8 @@ export namespace Prisma {
     contratoDigitalizado?: Bytes | null
     comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoUncheckedCreateWithoutImovelInput = {
@@ -11773,6 +17030,8 @@ export namespace Prisma {
     contratoDigitalizado?: Bytes | null
     comissao: Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoUncheckedCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoCreateOrConnectWithoutImovelInput = {
@@ -11803,6 +17062,61 @@ export namespace Prisma {
 
   export type propriedadeimovelCreateManyImovelInputEnvelope = {
     data: propriedadeimovelCreateManyImovelInput | propriedadeimovelCreateManyImovelInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type memoriacalculoCreateWithoutImovelInput = {
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    contratolocacao: contratolocacaoCreateNestedOneWithoutMemoriacalculoInput
+    itens?: memoriacalculoitemCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoUncheckedCreateWithoutImovelInput = {
+    id?: number
+    idContrato: bigint | number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    itens?: memoriacalculoitemUncheckedCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoCreateOrConnectWithoutImovelInput = {
+    where: memoriacalculoWhereUniqueInput
+    create: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput>
+  }
+
+  export type memoriacalculoCreateManyImovelInputEnvelope = {
+    data: memoriacalculoCreateManyImovelInput | memoriacalculoCreateManyImovelInput[]
     skipDuplicates?: boolean
   }
 
@@ -11895,6 +17209,48 @@ export namespace Prisma {
     percentualParticipacao?: DecimalFilter<"propriedadeimovel"> | Decimal | DecimalJsLike | number | string
   }
 
+  export type memoriacalculoUpsertWithWhereUniqueWithoutImovelInput = {
+    where: memoriacalculoWhereUniqueInput
+    update: XOR<memoriacalculoUpdateWithoutImovelInput, memoriacalculoUncheckedUpdateWithoutImovelInput>
+    create: XOR<memoriacalculoCreateWithoutImovelInput, memoriacalculoUncheckedCreateWithoutImovelInput>
+  }
+
+  export type memoriacalculoUpdateWithWhereUniqueWithoutImovelInput = {
+    where: memoriacalculoWhereUniqueInput
+    data: XOR<memoriacalculoUpdateWithoutImovelInput, memoriacalculoUncheckedUpdateWithoutImovelInput>
+  }
+
+  export type memoriacalculoUpdateManyWithWhereWithoutImovelInput = {
+    where: memoriacalculoScalarWhereInput
+    data: XOR<memoriacalculoUpdateManyMutationInput, memoriacalculoUncheckedUpdateManyWithoutImovelInput>
+  }
+
+  export type memoriacalculoScalarWhereInput = {
+    AND?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
+    OR?: memoriacalculoScalarWhereInput[]
+    NOT?: memoriacalculoScalarWhereInput | memoriacalculoScalarWhereInput[]
+    id?: IntFilter<"memoriacalculo"> | number
+    idContrato?: BigIntFilter<"memoriacalculo"> | bigint | number
+    idImovel?: IntFilter<"memoriacalculo"> | number
+    competencia?: DateTimeFilter<"memoriacalculo"> | Date | string
+    valorAluguelBase?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: IntNullableFilter<"memoriacalculo"> | number | null
+    contaDescricao?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaBanco?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaAgencia?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaNumero?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTipoChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaChavePix?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    contaDocumentoTitular?: StringNullableFilter<"memoriacalculo"> | string | null
+    reajusteIndice?: Enumindice_reajuste_enumNullableFilter<"memoriacalculo"> | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: DecimalNullableFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFilter<"memoriacalculo"> | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFilter<"memoriacalculo"> | number
+    criadoEm?: DateTimeFilter<"memoriacalculo"> | Date | string
+  }
+
   export type imovelCreateWithoutPropriedadeimovelInput = {
     inscricaoIPTU?: string | null
     inscricaoBombeiro?: string | null
@@ -11905,6 +17261,7 @@ export namespace Prisma {
     status: $Enums.status_imovel_enum
     endereco: enderecoCreateNestedOneWithoutImovelInput
     contratolocacao?: contratolocacaoCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutImovelInput
   }
 
   export type imovelUncheckedCreateWithoutPropriedadeimovelInput = {
@@ -11918,6 +17275,7 @@ export namespace Prisma {
     tipologia: $Enums.tipologia_enum
     status: $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutImovelInput
   }
 
   export type imovelCreateOrConnectWithoutPropriedadeimovelInput = {
@@ -11946,6 +17304,7 @@ export namespace Prisma {
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     endereco?: enderecoUpdateOneRequiredWithoutImovelNestedInput
     contratolocacao?: contratolocacaoUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelUncheckedUpdateWithoutPropriedadeimovelInput = {
@@ -11959,6 +17318,7 @@ export namespace Prisma {
     tipologia?: Enumtipologia_enumFieldUpdateOperationsInput | $Enums.tipologia_enum
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelCreateWithoutContratolocacaoInput = {
@@ -11971,6 +17331,7 @@ export namespace Prisma {
     status: $Enums.status_imovel_enum
     endereco: enderecoCreateNestedOneWithoutImovelInput
     propriedadeimovel?: propriedadeimovelCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutImovelInput
   }
 
   export type imovelUncheckedCreateWithoutContratolocacaoInput = {
@@ -11984,6 +17345,7 @@ export namespace Prisma {
     tipologia: $Enums.tipologia_enum
     status: $Enums.status_imovel_enum
     propriedadeimovel?: propriedadeimovelUncheckedCreateNestedManyWithoutImovelInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutImovelInput
   }
 
   export type imovelCreateOrConnectWithoutContratolocacaoInput = {
@@ -12023,6 +17385,93 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type reajustecontratoCreateWithoutContratolocacaoInput = {
+    id?: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+  }
+
+  export type reajustecontratoUncheckedCreateWithoutContratolocacaoInput = {
+    id?: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+  }
+
+  export type reajustecontratoCreateOrConnectWithoutContratolocacaoInput = {
+    where: reajustecontratoWhereUniqueInput
+    create: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput>
+  }
+
+  export type reajustecontratoCreateManyContratolocacaoInputEnvelope = {
+    data: reajustecontratoCreateManyContratolocacaoInput | reajustecontratoCreateManyContratolocacaoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type memoriacalculoCreateWithoutContratolocacaoInput = {
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    imovel: imovelCreateNestedOneWithoutMemoriacalculoInput
+    itens?: memoriacalculoitemCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoUncheckedCreateWithoutContratolocacaoInput = {
+    id?: number
+    idImovel: number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    itens?: memoriacalculoitemUncheckedCreateNestedManyWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoCreateOrConnectWithoutContratolocacaoInput = {
+    where: memoriacalculoWhereUniqueInput
+    create: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput>
+  }
+
+  export type memoriacalculoCreateManyContratolocacaoInputEnvelope = {
+    data: memoriacalculoCreateManyContratolocacaoInput | memoriacalculoCreateManyContratolocacaoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type imovelUpsertWithoutContratolocacaoInput = {
     update: XOR<imovelUpdateWithoutContratolocacaoInput, imovelUncheckedUpdateWithoutContratolocacaoInput>
     create: XOR<imovelCreateWithoutContratolocacaoInput, imovelUncheckedCreateWithoutContratolocacaoInput>
@@ -12044,6 +17493,7 @@ export namespace Prisma {
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     endereco?: enderecoUpdateOneRequiredWithoutImovelNestedInput
     propriedadeimovel?: propriedadeimovelUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelUncheckedUpdateWithoutContratolocacaoInput = {
@@ -12057,6 +17507,7 @@ export namespace Prisma {
     tipologia?: Enumtipologia_enumFieldUpdateOperationsInput | $Enums.tipologia_enum
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     propriedadeimovel?: propriedadeimovelUncheckedUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutImovelNestedInput
   }
 
   export type despesaUpsertWithWhereUniqueWithoutContratolocacaoInput = {
@@ -12090,6 +17541,463 @@ export namespace Prisma {
     comprovantePagamento?: BytesNullableFilter<"despesa"> | Bytes | null
   }
 
+  export type reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput = {
+    where: reajustecontratoWhereUniqueInput
+    update: XOR<reajustecontratoUpdateWithoutContratolocacaoInput, reajustecontratoUncheckedUpdateWithoutContratolocacaoInput>
+    create: XOR<reajustecontratoCreateWithoutContratolocacaoInput, reajustecontratoUncheckedCreateWithoutContratolocacaoInput>
+  }
+
+  export type reajustecontratoUpdateWithWhereUniqueWithoutContratolocacaoInput = {
+    where: reajustecontratoWhereUniqueInput
+    data: XOR<reajustecontratoUpdateWithoutContratolocacaoInput, reajustecontratoUncheckedUpdateWithoutContratolocacaoInput>
+  }
+
+  export type reajustecontratoUpdateManyWithWhereWithoutContratolocacaoInput = {
+    where: reajustecontratoScalarWhereInput
+    data: XOR<reajustecontratoUpdateManyMutationInput, reajustecontratoUncheckedUpdateManyWithoutContratolocacaoInput>
+  }
+
+  export type reajustecontratoScalarWhereInput = {
+    AND?: reajustecontratoScalarWhereInput | reajustecontratoScalarWhereInput[]
+    OR?: reajustecontratoScalarWhereInput[]
+    NOT?: reajustecontratoScalarWhereInput | reajustecontratoScalarWhereInput[]
+    id?: BigIntFilter<"reajustecontrato"> | bigint | number
+    idContrato?: BigIntFilter<"reajustecontrato"> | bigint | number
+    dataReajuste?: DateTimeFilter<"reajustecontrato"> | Date | string
+    indice?: Enumindice_reajuste_enumFilter<"reajustecontrato"> | $Enums.indice_reajuste_enum
+    percentual?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFilter<"reajustecontrato"> | Decimal | DecimalJsLike | number | string
+    observacao?: StringNullableFilter<"reajustecontrato"> | string | null
+    criadoEm?: DateTimeFilter<"reajustecontrato"> | Date | string
+  }
+
+  export type memoriacalculoUpsertWithWhereUniqueWithoutContratolocacaoInput = {
+    where: memoriacalculoWhereUniqueInput
+    update: XOR<memoriacalculoUpdateWithoutContratolocacaoInput, memoriacalculoUncheckedUpdateWithoutContratolocacaoInput>
+    create: XOR<memoriacalculoCreateWithoutContratolocacaoInput, memoriacalculoUncheckedCreateWithoutContratolocacaoInput>
+  }
+
+  export type memoriacalculoUpdateWithWhereUniqueWithoutContratolocacaoInput = {
+    where: memoriacalculoWhereUniqueInput
+    data: XOR<memoriacalculoUpdateWithoutContratolocacaoInput, memoriacalculoUncheckedUpdateWithoutContratolocacaoInput>
+  }
+
+  export type memoriacalculoUpdateManyWithWhereWithoutContratolocacaoInput = {
+    where: memoriacalculoScalarWhereInput
+    data: XOR<memoriacalculoUpdateManyMutationInput, memoriacalculoUncheckedUpdateManyWithoutContratolocacaoInput>
+  }
+
+  export type contratolocacaoCreateWithoutReajustecontratoInput = {
+    id?: bigint | number
+    idLocador: bigint | number
+    idLocatario: bigint | number
+    dataInicio: Date | string
+    dataFim?: Date | string | null
+    dataReajuste?: Date | string | null
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    status?: $Enums.status_contrato_enum
+    contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
+    imovel: imovelCreateNestedOneWithoutContratolocacaoInput
+    despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutContratolocacaoInput
+  }
+
+  export type contratolocacaoUncheckedCreateWithoutReajustecontratoInput = {
+    id?: bigint | number
+    idImovel: number
+    idLocador: bigint | number
+    idLocatario: bigint | number
+    dataInicio: Date | string
+    dataFim?: Date | string | null
+    dataReajuste?: Date | string | null
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    status?: $Enums.status_contrato_enum
+    contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
+    despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutContratolocacaoInput
+  }
+
+  export type contratolocacaoCreateOrConnectWithoutReajustecontratoInput = {
+    where: contratolocacaoWhereUniqueInput
+    create: XOR<contratolocacaoCreateWithoutReajustecontratoInput, contratolocacaoUncheckedCreateWithoutReajustecontratoInput>
+  }
+
+  export type contratolocacaoUpsertWithoutReajustecontratoInput = {
+    update: XOR<contratolocacaoUpdateWithoutReajustecontratoInput, contratolocacaoUncheckedUpdateWithoutReajustecontratoInput>
+    create: XOR<contratolocacaoCreateWithoutReajustecontratoInput, contratolocacaoUncheckedCreateWithoutReajustecontratoInput>
+    where?: contratolocacaoWhereInput
+  }
+
+  export type contratolocacaoUpdateToOneWithWhereWithoutReajustecontratoInput = {
+    where?: contratolocacaoWhereInput
+    data: XOR<contratolocacaoUpdateWithoutReajustecontratoInput, contratolocacaoUncheckedUpdateWithoutReajustecontratoInput>
+  }
+
+  export type contratolocacaoUpdateWithoutReajustecontratoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataFim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dataReajuste?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
+    contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
+    despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutContratolocacaoNestedInput
+  }
+
+  export type contratolocacaoUncheckedUpdateWithoutReajustecontratoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataFim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dataReajuste?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
+    contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutContratolocacaoNestedInput
+  }
+
+  export type contratolocacaoCreateWithoutMemoriacalculoInput = {
+    id?: bigint | number
+    idLocador: bigint | number
+    idLocatario: bigint | number
+    dataInicio: Date | string
+    dataFim?: Date | string | null
+    dataReajuste?: Date | string | null
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    status?: $Enums.status_contrato_enum
+    contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
+    imovel: imovelCreateNestedOneWithoutContratolocacaoInput
+    despesa?: despesaCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoCreateNestedManyWithoutContratolocacaoInput
+  }
+
+  export type contratolocacaoUncheckedCreateWithoutMemoriacalculoInput = {
+    id?: bigint | number
+    idImovel: number
+    idLocador: bigint | number
+    idLocatario: bigint | number
+    dataInicio: Date | string
+    dataFim?: Date | string | null
+    dataReajuste?: Date | string | null
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    status?: $Enums.status_contrato_enum
+    contratoDigitalizado?: Bytes | null
+    comissao: Decimal | DecimalJsLike | number | string
+    despesa?: despesaUncheckedCreateNestedManyWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoUncheckedCreateNestedManyWithoutContratolocacaoInput
+  }
+
+  export type contratolocacaoCreateOrConnectWithoutMemoriacalculoInput = {
+    where: contratolocacaoWhereUniqueInput
+    create: XOR<contratolocacaoCreateWithoutMemoriacalculoInput, contratolocacaoUncheckedCreateWithoutMemoriacalculoInput>
+  }
+
+  export type imovelCreateWithoutMemoriacalculoInput = {
+    inscricaoIPTU?: string | null
+    inscricaoBombeiro?: string | null
+    metragem?: string | null
+    dataCadastro?: Date | string
+    classificacao: $Enums.classificacao_enum
+    tipologia: $Enums.tipologia_enum
+    status: $Enums.status_imovel_enum
+    endereco: enderecoCreateNestedOneWithoutImovelInput
+    contratolocacao?: contratolocacaoCreateNestedManyWithoutImovelInput
+    propriedadeimovel?: propriedadeimovelCreateNestedManyWithoutImovelInput
+  }
+
+  export type imovelUncheckedCreateWithoutMemoriacalculoInput = {
+    id?: number
+    idEndereco: number
+    inscricaoIPTU?: string | null
+    inscricaoBombeiro?: string | null
+    metragem?: string | null
+    dataCadastro?: Date | string
+    classificacao: $Enums.classificacao_enum
+    tipologia: $Enums.tipologia_enum
+    status: $Enums.status_imovel_enum
+    contratolocacao?: contratolocacaoUncheckedCreateNestedManyWithoutImovelInput
+    propriedadeimovel?: propriedadeimovelUncheckedCreateNestedManyWithoutImovelInput
+  }
+
+  export type imovelCreateOrConnectWithoutMemoriacalculoInput = {
+    where: imovelWhereUniqueInput
+    create: XOR<imovelCreateWithoutMemoriacalculoInput, imovelUncheckedCreateWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemCreateWithoutMemoriacalculoInput = {
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput = {
+    id?: number
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemCreateOrConnectWithoutMemoriacalculoInput = {
+    where: memoriacalculoitemWhereUniqueInput
+    create: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemCreateManyMemoriacalculoInputEnvelope = {
+    data: memoriacalculoitemCreateManyMemoriacalculoInput | memoriacalculoitemCreateManyMemoriacalculoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type contratolocacaoUpsertWithoutMemoriacalculoInput = {
+    update: XOR<contratolocacaoUpdateWithoutMemoriacalculoInput, contratolocacaoUncheckedUpdateWithoutMemoriacalculoInput>
+    create: XOR<contratolocacaoCreateWithoutMemoriacalculoInput, contratolocacaoUncheckedCreateWithoutMemoriacalculoInput>
+    where?: contratolocacaoWhereInput
+  }
+
+  export type contratolocacaoUpdateToOneWithWhereWithoutMemoriacalculoInput = {
+    where?: contratolocacaoWhereInput
+    data: XOR<contratolocacaoUpdateWithoutMemoriacalculoInput, contratolocacaoUncheckedUpdateWithoutMemoriacalculoInput>
+  }
+
+  export type contratolocacaoUpdateWithoutMemoriacalculoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataFim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dataReajuste?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
+    contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
+    despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUpdateManyWithoutContratolocacaoNestedInput
+  }
+
+  export type contratolocacaoUncheckedUpdateWithoutMemoriacalculoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataFim?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dataReajuste?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
+    contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUncheckedUpdateManyWithoutContratolocacaoNestedInput
+  }
+
+  export type imovelUpsertWithoutMemoriacalculoInput = {
+    update: XOR<imovelUpdateWithoutMemoriacalculoInput, imovelUncheckedUpdateWithoutMemoriacalculoInput>
+    create: XOR<imovelCreateWithoutMemoriacalculoInput, imovelUncheckedCreateWithoutMemoriacalculoInput>
+    where?: imovelWhereInput
+  }
+
+  export type imovelUpdateToOneWithWhereWithoutMemoriacalculoInput = {
+    where?: imovelWhereInput
+    data: XOR<imovelUpdateWithoutMemoriacalculoInput, imovelUncheckedUpdateWithoutMemoriacalculoInput>
+  }
+
+  export type imovelUpdateWithoutMemoriacalculoInput = {
+    inscricaoIPTU?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricaoBombeiro?: NullableStringFieldUpdateOperationsInput | string | null
+    metragem?: NullableStringFieldUpdateOperationsInput | string | null
+    dataCadastro?: DateTimeFieldUpdateOperationsInput | Date | string
+    classificacao?: Enumclassificacao_enumFieldUpdateOperationsInput | $Enums.classificacao_enum
+    tipologia?: Enumtipologia_enumFieldUpdateOperationsInput | $Enums.tipologia_enum
+    status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
+    endereco?: enderecoUpdateOneRequiredWithoutImovelNestedInput
+    contratolocacao?: contratolocacaoUpdateManyWithoutImovelNestedInput
+    propriedadeimovel?: propriedadeimovelUpdateManyWithoutImovelNestedInput
+  }
+
+  export type imovelUncheckedUpdateWithoutMemoriacalculoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idEndereco?: IntFieldUpdateOperationsInput | number
+    inscricaoIPTU?: NullableStringFieldUpdateOperationsInput | string | null
+    inscricaoBombeiro?: NullableStringFieldUpdateOperationsInput | string | null
+    metragem?: NullableStringFieldUpdateOperationsInput | string | null
+    dataCadastro?: DateTimeFieldUpdateOperationsInput | Date | string
+    classificacao?: Enumclassificacao_enumFieldUpdateOperationsInput | $Enums.classificacao_enum
+    tipologia?: Enumtipologia_enumFieldUpdateOperationsInput | $Enums.tipologia_enum
+    status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
+    contratolocacao?: contratolocacaoUncheckedUpdateManyWithoutImovelNestedInput
+    propriedadeimovel?: propriedadeimovelUncheckedUpdateManyWithoutImovelNestedInput
+  }
+
+  export type memoriacalculoitemUpsertWithWhereUniqueWithoutMemoriacalculoInput = {
+    where: memoriacalculoitemWhereUniqueInput
+    update: XOR<memoriacalculoitemUpdateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedUpdateWithoutMemoriacalculoInput>
+    create: XOR<memoriacalculoitemCreateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedCreateWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemUpdateWithWhereUniqueWithoutMemoriacalculoInput = {
+    where: memoriacalculoitemWhereUniqueInput
+    data: XOR<memoriacalculoitemUpdateWithoutMemoriacalculoInput, memoriacalculoitemUncheckedUpdateWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemUpdateManyWithWhereWithoutMemoriacalculoInput = {
+    where: memoriacalculoitemScalarWhereInput
+    data: XOR<memoriacalculoitemUpdateManyMutationInput, memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoInput>
+  }
+
+  export type memoriacalculoitemScalarWhereInput = {
+    AND?: memoriacalculoitemScalarWhereInput | memoriacalculoitemScalarWhereInput[]
+    OR?: memoriacalculoitemScalarWhereInput[]
+    NOT?: memoriacalculoitemScalarWhereInput | memoriacalculoitemScalarWhereInput[]
+    id?: IntFilter<"memoriacalculoitem"> | number
+    idMemoriaCalculo?: IntFilter<"memoriacalculoitem"> | number
+    idLocador?: BigIntFilter<"memoriacalculoitem"> | bigint | number
+    nomeLocador?: StringFilter<"memoriacalculoitem"> | string
+    documentoLocador?: StringNullableFilter<"memoriacalculoitem"> | string | null
+    percentualParticipacao?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFilter<"memoriacalculoitem"> | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: JsonNullableFilter<"memoriacalculoitem">
+  }
+
+  export type memoriacalculoCreateWithoutItensInput = {
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+    contratolocacao: contratolocacaoCreateNestedOneWithoutMemoriacalculoInput
+    imovel: imovelCreateNestedOneWithoutMemoriacalculoInput
+  }
+
+  export type memoriacalculoUncheckedCreateWithoutItensInput = {
+    id?: number
+    idContrato: bigint | number
+    idImovel: number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+  }
+
+  export type memoriacalculoCreateOrConnectWithoutItensInput = {
+    where: memoriacalculoWhereUniqueInput
+    create: XOR<memoriacalculoCreateWithoutItensInput, memoriacalculoUncheckedCreateWithoutItensInput>
+  }
+
+  export type memoriacalculoUpsertWithoutItensInput = {
+    update: XOR<memoriacalculoUpdateWithoutItensInput, memoriacalculoUncheckedUpdateWithoutItensInput>
+    create: XOR<memoriacalculoCreateWithoutItensInput, memoriacalculoUncheckedCreateWithoutItensInput>
+    where?: memoriacalculoWhereInput
+  }
+
+  export type memoriacalculoUpdateToOneWithWhereWithoutItensInput = {
+    where?: memoriacalculoWhereInput
+    data: XOR<memoriacalculoUpdateWithoutItensInput, memoriacalculoUncheckedUpdateWithoutItensInput>
+  }
+
+  export type memoriacalculoUpdateWithoutItensInput = {
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    contratolocacao?: contratolocacaoUpdateOneRequiredWithoutMemoriacalculoNestedInput
+    imovel?: imovelUpdateOneRequiredWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateWithoutItensInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type contratolocacaoCreateWithoutDespesaInput = {
     id?: bigint | number
     idLocador: bigint | number
@@ -12102,6 +18010,8 @@ export namespace Prisma {
     contratoDigitalizado?: Bytes | null
     comissao: Decimal | DecimalJsLike | number | string
     imovel: imovelCreateNestedOneWithoutContratolocacaoInput
+    reajustecontrato?: reajustecontratoCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoUncheckedCreateWithoutDespesaInput = {
@@ -12116,6 +18026,8 @@ export namespace Prisma {
     status?: $Enums.status_contrato_enum
     contratoDigitalizado?: Bytes | null
     comissao: Decimal | DecimalJsLike | number | string
+    reajustecontrato?: reajustecontratoUncheckedCreateNestedManyWithoutContratolocacaoInput
+    memoriacalculo?: memoriacalculoUncheckedCreateNestedManyWithoutContratolocacaoInput
   }
 
   export type contratolocacaoCreateOrConnectWithoutDespesaInput = {
@@ -12146,6 +18058,8 @@ export namespace Prisma {
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     imovel?: imovelUpdateOneRequiredWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type contratolocacaoUncheckedUpdateWithoutDespesaInput = {
@@ -12160,6 +18074,8 @@ export namespace Prisma {
     status?: Enumstatus_contrato_enumFieldUpdateOperationsInput | $Enums.status_contrato_enum
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    reajustecontrato?: reajustecontratoUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type faixairrfCreateWithoutTabelairrfInput = {
@@ -12305,6 +18221,7 @@ export namespace Prisma {
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUpdateManyWithoutImovelNestedInput
     propriedadeimovel?: propriedadeimovelUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelUncheckedUpdateWithoutEnderecoInput = {
@@ -12318,6 +18235,7 @@ export namespace Prisma {
     status?: Enumstatus_imovel_enumFieldUpdateOperationsInput | $Enums.status_imovel_enum
     contratolocacao?: contratolocacaoUncheckedUpdateManyWithoutImovelNestedInput
     propriedadeimovel?: propriedadeimovelUncheckedUpdateManyWithoutImovelNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutImovelNestedInput
   }
 
   export type imovelUncheckedUpdateManyWithoutEnderecoInput = {
@@ -12350,6 +18268,28 @@ export namespace Prisma {
     percentualParticipacao: Decimal | DecimalJsLike | number | string
   }
 
+  export type memoriacalculoCreateManyImovelInput = {
+    id?: number
+    idContrato: bigint | number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
+  }
+
   export type contratolocacaoUpdateWithoutImovelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -12362,6 +18302,8 @@ export namespace Prisma {
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type contratolocacaoUncheckedUpdateWithoutImovelInput = {
@@ -12376,6 +18318,8 @@ export namespace Prisma {
     contratoDigitalizado?: NullableBytesFieldUpdateOperationsInput | Bytes | null
     comissao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     despesa?: despesaUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    reajustecontrato?: reajustecontratoUncheckedUpdateManyWithoutContratolocacaoNestedInput
+    memoriacalculo?: memoriacalculoUncheckedUpdateManyWithoutContratolocacaoNestedInput
   }
 
   export type contratolocacaoUncheckedUpdateManyWithoutImovelInput = {
@@ -12408,6 +18352,73 @@ export namespace Prisma {
     percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
+  export type memoriacalculoUpdateWithoutImovelInput = {
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    contratolocacao?: contratolocacaoUpdateOneRequiredWithoutMemoriacalculoNestedInput
+    itens?: memoriacalculoitemUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateWithoutImovelInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateManyWithoutImovelInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idContrato?: BigIntFieldUpdateOperationsInput | bigint | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type despesaCreateManyContratolocacaoInput = {
     id?: bigint | number
     descricao: string
@@ -12417,6 +18428,39 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+  }
+
+  export type reajustecontratoCreateManyContratolocacaoInput = {
+    id?: bigint | number
+    dataReajuste: Date | string
+    indice: $Enums.indice_reajuste_enum
+    percentual: Decimal | DecimalJsLike | number | string
+    valorAnterior: Decimal | DecimalJsLike | number | string
+    valorNovo: Decimal | DecimalJsLike | number | string
+    observacao?: string | null
+    criadoEm?: Date | string
+  }
+
+  export type memoriacalculoCreateManyContratolocacaoInput = {
+    id?: number
+    idImovel: number
+    competencia: Date | string
+    valorAluguelBase: Decimal | DecimalJsLike | number | string
+    idContaBancaria?: number | null
+    contaDescricao?: string | null
+    contaBanco?: string | null
+    contaAgencia?: string | null
+    contaNumero?: string | null
+    contaTipoChavePix?: string | null
+    contaChavePix?: string | null
+    contaTitular?: string | null
+    contaDocumentoTitular?: string | null
+    reajusteIndice?: $Enums.indice_reajuste_enum | null
+    reajustePercentual?: Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: Decimal | DecimalJsLike | number | string | null
+    totalAPagar: Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId: number
+    criadoEm?: Date | string
   }
 
   export type despesaUpdateWithoutContratolocacaoInput = {
@@ -12450,6 +18494,165 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+  }
+
+  export type reajustecontratoUpdateWithoutContratolocacaoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type reajustecontratoUncheckedUpdateWithoutContratolocacaoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type reajustecontratoUncheckedUpdateManyWithoutContratolocacaoInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    dataReajuste?: DateTimeFieldUpdateOperationsInput | Date | string
+    indice?: Enumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum
+    percentual?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAnterior?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorNovo?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    observacao?: NullableStringFieldUpdateOperationsInput | string | null
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type memoriacalculoUpdateWithoutContratolocacaoInput = {
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    imovel?: imovelUpdateOneRequiredWithoutMemoriacalculoNestedInput
+    itens?: memoriacalculoitemUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateWithoutContratolocacaoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+    itens?: memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoNestedInput
+  }
+
+  export type memoriacalculoUncheckedUpdateManyWithoutContratolocacaoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idImovel?: IntFieldUpdateOperationsInput | number
+    competencia?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorAluguelBase?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    idContaBancaria?: NullableIntFieldUpdateOperationsInput | number | null
+    contaDescricao?: NullableStringFieldUpdateOperationsInput | string | null
+    contaBanco?: NullableStringFieldUpdateOperationsInput | string | null
+    contaAgencia?: NullableStringFieldUpdateOperationsInput | string | null
+    contaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTipoChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaChavePix?: NullableStringFieldUpdateOperationsInput | string | null
+    contaTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    contaDocumentoTitular?: NullableStringFieldUpdateOperationsInput | string | null
+    reajusteIndice?: NullableEnumindice_reajuste_enumFieldUpdateOperationsInput | $Enums.indice_reajuste_enum | null
+    reajustePercentual?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    reajusteValorAnterior?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    totalAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    geradoPorUsuarioId?: IntFieldUpdateOperationsInput | number
+    criadoEm?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type memoriacalculoitemCreateManyMemoriacalculoInput = {
+    id?: number
+    idLocador: bigint | number
+    nomeLocador: string
+    documentoLocador?: string | null
+    percentualParticipacao: Decimal | DecimalJsLike | number | string
+    valorAluguel: Decimal | DecimalJsLike | number | string
+    valorReembolsos?: Decimal | DecimalJsLike | number | string
+    valorDescontos?: Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf: Decimal | DecimalJsLike | number | string
+    valorIrrf: Decimal | DecimalJsLike | number | string
+    valorAPagar: Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUpdateWithoutMemoriacalculoInput = {
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUncheckedUpdateWithoutMemoriacalculoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type memoriacalculoitemUncheckedUpdateManyWithoutMemoriacalculoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
+    nomeLocador?: StringFieldUpdateOperationsInput | string
+    documentoLocador?: NullableStringFieldUpdateOperationsInput | string | null
+    percentualParticipacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAluguel?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorReembolsos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorDescontos?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    baseCalculoIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorIrrf?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valorAPagar?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    detalhesExtras?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type faixairrfCreateManyTabelairrfInput = {
