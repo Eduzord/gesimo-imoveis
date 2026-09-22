@@ -224,7 +224,13 @@ export class MemoriaCalculoService {
             throw new BadRequestException(erro.message);
         }
 
-        //IRRF por proprietário (a competência decide qual versão da tabela vale — nunca a data de hoje)
+        //IRRF por proprietário (a competência decide qual versão da tabela vale — nunca a data de hoje).
+        //IMPORTANTE: esta Memória de Cálculo é o aviso de cobrança que vai para o LOCATÁRIO — o valor que
+        //ele deve depositar não pode ser reduzido pelo IRRF de cada locador, porque essa retenção só ocorre
+        //depois, no REPASSE da imobiliária ao locador (que ainda não tem um documento próprio no sistema).
+        //Por isso "valorIrrf" é calculado e persistido aqui (é a competência correta para decidir a tabela
+        //e o dado fica disponível para auditoria e para o futuro recibo de repasse), mas "valorAPagar" —
+        //o valor cobrado do locatário — NÃO o subtrai.
         const itensComIrrf = await Promise.all(
             itensRateio.map(async (item) => {
                 const info = infoPorLocador.get(item.idLocador)!;
@@ -234,7 +240,7 @@ export class MemoriaCalculoService {
                     numeroDependentes: info.numeroDependentes ?? 0,
                 });
 
-                const valorAPagar = Math.round((item.valorAluguel + item.valorReembolsos - item.valorDescontos - resultadoIrrf.valorIrrf) * 100) / 100;
+                const valorAPagar = Math.round((item.valorAluguel + item.valorReembolsos - item.valorDescontos) * 100) / 100;
 
                 return {
                     idLocador: BigInt(item.idLocador),
@@ -252,6 +258,7 @@ export class MemoriaCalculoService {
             }),
         );
 
+        //Total bruto cobrado do locatário (soma dos valorAPagar, já sem IRRF — ver o comentário acima)
         const totalAPagar = Math.round(itensComIrrf.reduce((soma, item) => soma + item.valorAPagar, 0) * 100) / 100;
 
         const dadosMemoria = {

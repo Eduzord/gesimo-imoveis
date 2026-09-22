@@ -186,6 +186,9 @@ model memoriacalculo {
   reajustePercentual    Decimal?             @db.Decimal(7, 4)
   reajusteValorAnterior Decimal?             @db.Decimal(10, 2)
 
+  // Total BRUTO cobrado do locatário (soma de memoriacalculoitem.valorAPagar). Este documento é o aviso
+  // de cobrança ao locatário: o IRRF de cada locador NÃO reduz este total — ele só é retido depois, no
+  // repasse da imobiliária ao locador (ver memoriacalculoitem.valorIrrf).
   totalAPagar           Decimal              @db.Decimal(10, 2)
   geradoPorUsuarioId    Int
   criadoEm              DateTime             @default(now()) @db.DateTime(0)
@@ -210,7 +213,11 @@ model memoriacalculoitem {
   valorReembolsos        Decimal        @default(0) @db.Decimal(10, 2) // despesas extras atribuídas a este locador
   valorDescontos         Decimal        @default(0) @db.Decimal(10, 2)
   baseCalculoIrrf        Decimal        @db.Decimal(10, 2)
+  // IRRF deste locador sobre a sua parte do aluguel (calculado com a tabela vigente na competência).
+  // É informativo/para auditoria e para o futuro recibo de repasse ao locador — NÃO é subtraído de
+  // valorAPagar, porque a retenção só ocorre no repasse, não na cobrança ao locatário.
   valorIrrf              Decimal        @db.Decimal(10, 2)
+  // Valor BRUTO devido pelo locatário referente a este locador: valorAluguel + valorReembolsos − valorDescontos.
   valorAPagar            Decimal        @db.Decimal(10, 2)
   // Lista curta {idDespesa?, tipo, descricao, valor, aplicacao} das despesas extras atribuídas a este
   // locador, só para exibição/auditoria — os valores oficiais já estão persistidos nas colunas acima.

@@ -88,7 +88,7 @@ describe('MemoriaCalculoService', () => {
         ).rejects.toThrow('proprietário 20');
     });
 
-    it('rateia o aluguel, calcula o IRRF por proprietário e persiste', async () => {
+    it('rateia o aluguel, calcula o IRRF por proprietário e persiste (sem descontar o IRRF do valor cobrado do locatário)', async () => {
         irrfService.calcular.mockResolvedValueOnce({ valorIrrf: 100 }).mockResolvedValueOnce({ valorIrrf: 0 });
 
         const resultado = await service.gerar(dtoBase, 42);
@@ -98,9 +98,11 @@ describe('MemoriaCalculoService', () => {
             dataCompetencia: new Date(Date.UTC(2026, 6, 1)),
             numeroDependentes: 0,
         });
-        expect(resultado.itens[0]).toMatchObject({ idLocador: '10', valorAluguel: 6000, valorIrrf: 100, valorAPagar: 5900 });
+        // Este documento é o aviso de cobrança ao locatário: valorAPagar é o valor BRUTO (o IRRF de 100
+        // fica só registrado em valorIrrf, para o futuro repasse — não reduz o que é cobrado do locatário).
+        expect(resultado.itens[0]).toMatchObject({ idLocador: '10', valorAluguel: 6000, valorIrrf: 100, valorAPagar: 6000 });
         expect(resultado.itens[1]).toMatchObject({ idLocador: '20', valorAluguel: 4000, valorIrrf: 0, valorAPagar: 4000 });
-        expect(resultado.totalAPagar).toBe(9900);
+        expect(resultado.totalAPagar).toBe(10000);
         expect(resultado.geradoPorUsuarioId).toBe(42);
     });
 
