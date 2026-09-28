@@ -329,7 +329,8 @@ exports.tipologia_enum = exports.$Enums.tipologia_enum = {
   APARTAMENTO: 'APARTAMENTO',
   TERRENO: 'TERRENO',
   SALA_COMERCIAL: 'SALA_COMERCIAL',
-  GALPAO: 'GALPAO'
+  GALPAO: 'GALPAO',
+  LOJA: 'LOJA'
 };
 
 exports.status_imovel_enum = exports.$Enums.status_imovel_enum = {

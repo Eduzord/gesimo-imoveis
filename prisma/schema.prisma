@@ -27,6 +27,7 @@ enum tipologia_enum {
   TERRENO
   SALA_COMERCIAL
   GALPAO
+  LOJA
 }
 
 enum status_imovel_enum {

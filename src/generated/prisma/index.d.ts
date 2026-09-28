@@ -83,7 +83,8 @@ export const tipologia_enum: {
   APARTAMENTO: 'APARTAMENTO',
   TERRENO: 'TERRENO',
   SALA_COMERCIAL: 'SALA_COMERCIAL',
-  GALPAO: 'GALPAO'
+  GALPAO: 'GALPAO',
+  LOJA: 'LOJA'
 };
 
 export type tipologia_enum = (typeof tipologia_enum)[keyof typeof tipologia_enum]
