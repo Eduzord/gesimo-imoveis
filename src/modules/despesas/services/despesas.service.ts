@@ -1,7 +1,26 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+import { randomUUID } from 'crypto';
 import { PrismaService } from '../../../database/prisma.service';
 import { CriarDespesaDto } from '../dto/criar-despesa.dto';
+import { CriarDespesaParceladaDto } from '../dto/criar-despesa-parcelada.dto';
+import { dividirEmParcelas } from '../calculo/dividir-parcelas';
 import 'multer';
+
+// Campos devolvidos ao front em toda listagem/consulta de despesa — centralizado aqui para as
+// colunas de parcelamento (adicionadas numa única leva) não ficarem esquecidas numa das consultas.
+const CAMPOS_DESPESA = {
+    id: true,
+    idContratoLocacao: true,
+    descricao: true,
+    valor: true,
+    tipo: true,
+    status: true,
+    dataVencimento: true,
+    dataPagamento: true,
+    grupoParcelamento: true,
+    numeroParcela: true,
+    totalParcelas: true,
+} as const;
 
 @Injectable()
 export class DespesasService {
@@ -42,6 +61,47 @@ export class DespesasService {
         return this.formatarDespesa(novaDespesa);
     }
 
+    //Lança um valor total já dividido em parcelas (ex.: IPTU em 10x). Cada parcela nasce como uma
+    //despesa EM_ABERTO independente, pronta para ser paga e incluída na Memória de Cálculo do mês em
+    //que vencer — sem nenhuma diferença de tratamento frente a uma despesa avulsa comum.
+    async criarParcelada(dados: CriarDespesaParceladaDto) {
+        const contrato = await this.prisma.contratolocacao.findUnique({
+            where: { id: BigInt(dados.idContratoLocacao) },
+        });
+
+        if (!contrato) {
+            throw new NotFoundException(`Impossível lançar despesa. Contrato de locação com ID ${dados.idContratoLocacao} não encontrado.`);
+        }
+
+        const parcelas = dividirEmParcelas(dados.valorTotal, dados.numeroParcelas, dados.dataPrimeiraParcela);
+
+        //Todas as parcelas pertencem ao mesmo lançamento — esse ID é o que permite, no futuro,
+        //localizar "todas as parcelas deste IPTU" sem depender de interpretar a descrição.
+        const grupoParcelamento = randomUUID();
+
+        //Gravação atômica: ou o parcelamento inteiro é lançado, ou nenhuma parcela é criada. Um
+        //lançamento "pela metade" (ex.: 10 parcelas pedidas, só 6 gravadas por uma falha no meio do
+        //caminho) seria um erro contábil silencioso — pior do que simplesmente falhar por completo.
+        const despesasCriadas = await this.prisma.$transaction(
+            parcelas.map((parcela) =>
+                this.prisma.despesa.create({
+                    data: {
+                        idContratoLocacao: BigInt(dados.idContratoLocacao),
+                        descricao: `${dados.descricao} (${parcela.numero}/${dados.numeroParcelas})`,
+                        valor: parcela.valor,
+                        tipo: dados.tipo,
+                        dataVencimento: parcela.dataVencimento,
+                        grupoParcelamento,
+                        numeroParcela: parcela.numero,
+                        totalParcelas: dados.numeroParcelas,
+                    },
+                }),
+            ),
+        );
+
+        return despesasCriadas.map((despesa) => this.formatarDespesa(despesa));
+    }
+
     async liquidarDespesa(id: number, dataPagamento: Date, arquivo: Express.Multer.File) {
         //Primeiro a "trava de segurança" do arquivo
         if (!arquivo) {
@@ -78,16 +138,7 @@ export class DespesasService {
     async buscarPorId(id: number) {
         const despesa = await this.prisma.despesa.findUnique({
             where: { id: BigInt(id) },
-            select: {
-                id: true,
-                idContratoLocacao: true,
-                descricao: true,
-                valor: true,
-                tipo: true,
-                status: true,
-                dataVencimento: true,
-                dataPagamento: true,
-            },
+            select: CAMPOS_DESPESA,
         });
 
         if (!despesa) {
@@ -103,18 +154,8 @@ export class DespesasService {
 
         const despesas = await this.prisma.despesa.findMany({
             where: condicao,
-            //A "mágica" para o Swagger não travar: selecionamos apenas os campos de texto
-            select: {
-                id: true,
-                idContratoLocacao: true,
-                descricao: true,
-                valor: true,
-                tipo: true,
-                status: true,
-                dataVencimento: true,
-                dataPagamento: true,
-                //comprovantePagamento: omitido propositalmente
-            },
+            //comprovantePagamento (Bytes) é omitido propositalmente — ver CAMPOS_DESPESA
+            select: CAMPOS_DESPESA,
             orderBy: {
                 dataVencimento: 'asc' //Ordena das mais antigas para as mais novas
             }
@@ -145,16 +186,7 @@ export class DespesasService {
                     OR: [{ status: 'EM_ABERTO' }, { status: 'PAGA', comprovantePagamento: null }],
                 }),
             },
-            select: {
-                id: true,
-                idContratoLocacao: true,
-                descricao: true,
-                valor: true,
-                tipo: true,
-                status: true,
-                dataVencimento: true,
-                dataPagamento: true,
-            },
+            select: CAMPOS_DESPESA,
             orderBy: { dataVencimento: 'asc' },
         });
 

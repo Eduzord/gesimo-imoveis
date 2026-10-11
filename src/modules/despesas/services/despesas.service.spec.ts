@@ -86,3 +86,66 @@ describe('DespesasService - buscarPorId e listarPorImovel', () => {
         expect(args.where.OR).toBeUndefined();
     });
 });
+
+describe('DespesasService - criarParcelada', () => {
+    let service: DespesasService;
+    let prisma: any;
+
+    const dtoBase = {
+        idContratoLocacao: 10,
+        descricao: 'IPTU 2026',
+        valorTotal: 1000,
+        tipo: 'IPTU',
+        numeroParcelas: 3,
+        dataPrimeiraParcela: new Date(Date.UTC(2026, 0, 10)),
+    };
+
+    beforeEach(() => {
+        prisma = {
+            contratolocacao: { findUnique: jest.fn().mockResolvedValue({ id: BigInt(10) }) },
+            despesa: {
+                // Cada chamada de create() devolve a própria linha que recebeu, já com um ID fake
+                create: jest.fn((args: any) => Promise.resolve({ id: BigInt(args.data.numeroParcela), ...args.data })),
+            },
+            // Forma "array de operações" do $transaction, igual à usada pelo service de reajuste
+            $transaction: jest.fn((operacoes: any[]) => Promise.all(operacoes)),
+        };
+        service = new DespesasService(prisma);
+    });
+
+    it('rejeita quando o contrato informado não existe', async () => {
+        prisma.contratolocacao.findUnique.mockResolvedValue(null);
+
+        await expect(service.criarParcelada(dtoBase as any)).rejects.toThrow(NotFoundException);
+        expect(prisma.despesa.create).not.toHaveBeenCalled();
+    });
+
+    it('cria uma despesa por parcela, todas com o mesmo grupoParcelamento', async () => {
+        const resultado = await service.criarParcelada(dtoBase as any);
+
+        expect(resultado).toHaveLength(3);
+        expect(prisma.despesa.create).toHaveBeenCalledTimes(3);
+
+        const gruposGerados = new Set(resultado.map((d: any) => d.grupoParcelamento));
+        expect(gruposGerados.size).toBe(1); // todas as 3 parcelas compartilham o mesmo grupo
+    });
+
+    it('numera as parcelas na descrição e preenche numeroParcela/totalParcelas', async () => {
+        const resultado = await service.criarParcelada(dtoBase as any);
+
+        expect(resultado.map((d: any) => d.descricao)).toEqual([
+            'IPTU 2026 (1/3)',
+            'IPTU 2026 (2/3)',
+            'IPTU 2026 (3/3)',
+        ]);
+        expect(resultado.map((d: any) => d.numeroParcela)).toEqual([1, 2, 3]);
+        expect(resultado.every((d: any) => d.totalParcelas === 3)).toBe(true);
+    });
+
+    it('a soma das parcelas criadas bate exatamente com o valor total informado', async () => {
+        const resultado = await service.criarParcelada(dtoBase as any);
+
+        const soma = resultado.reduce((total: number, d: any) => total + d.valor, 0);
+        expect(Math.round(soma * 100) / 100).toBe(dtoBase.valorTotal);
+    });
+});

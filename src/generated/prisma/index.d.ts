@@ -9458,12 +9458,16 @@ export namespace Prisma {
     id: number | null
     idContratoLocacao: number | null
     valor: Decimal | null
+    numeroParcela: number | null
+    totalParcelas: number | null
   }
 
   export type DespesaSumAggregateOutputType = {
     id: bigint | null
     idContratoLocacao: bigint | null
     valor: Decimal | null
+    numeroParcela: number | null
+    totalParcelas: number | null
   }
 
   export type DespesaMinAggregateOutputType = {
@@ -9476,6 +9480,9 @@ export namespace Prisma {
     dataPagamento: Date | null
     status: $Enums.status_despesa_enum | null
     comprovantePagamento: Bytes | null
+    grupoParcelamento: string | null
+    numeroParcela: number | null
+    totalParcelas: number | null
   }
 
   export type DespesaMaxAggregateOutputType = {
@@ -9488,6 +9495,9 @@ export namespace Prisma {
     dataPagamento: Date | null
     status: $Enums.status_despesa_enum | null
     comprovantePagamento: Bytes | null
+    grupoParcelamento: string | null
+    numeroParcela: number | null
+    totalParcelas: number | null
   }
 
   export type DespesaCountAggregateOutputType = {
@@ -9500,6 +9510,9 @@ export namespace Prisma {
     dataPagamento: number
     status: number
     comprovantePagamento: number
+    grupoParcelamento: number
+    numeroParcela: number
+    totalParcelas: number
     _all: number
   }
 
@@ -9508,12 +9521,16 @@ export namespace Prisma {
     id?: true
     idContratoLocacao?: true
     valor?: true
+    numeroParcela?: true
+    totalParcelas?: true
   }
 
   export type DespesaSumAggregateInputType = {
     id?: true
     idContratoLocacao?: true
     valor?: true
+    numeroParcela?: true
+    totalParcelas?: true
   }
 
   export type DespesaMinAggregateInputType = {
@@ -9526,6 +9543,9 @@ export namespace Prisma {
     dataPagamento?: true
     status?: true
     comprovantePagamento?: true
+    grupoParcelamento?: true
+    numeroParcela?: true
+    totalParcelas?: true
   }
 
   export type DespesaMaxAggregateInputType = {
@@ -9538,6 +9558,9 @@ export namespace Prisma {
     dataPagamento?: true
     status?: true
     comprovantePagamento?: true
+    grupoParcelamento?: true
+    numeroParcela?: true
+    totalParcelas?: true
   }
 
   export type DespesaCountAggregateInputType = {
@@ -9550,6 +9573,9 @@ export namespace Prisma {
     dataPagamento?: true
     status?: true
     comprovantePagamento?: true
+    grupoParcelamento?: true
+    numeroParcela?: true
+    totalParcelas?: true
     _all?: true
   }
 
@@ -9649,6 +9675,9 @@ export namespace Prisma {
     dataPagamento: Date | null
     status: $Enums.status_despesa_enum
     comprovantePagamento: Bytes | null
+    grupoParcelamento: string | null
+    numeroParcela: number | null
+    totalParcelas: number | null
     _count: DespesaCountAggregateOutputType | null
     _avg: DespesaAvgAggregateOutputType | null
     _sum: DespesaSumAggregateOutputType | null
@@ -9680,6 +9709,9 @@ export namespace Prisma {
     dataPagamento?: boolean
     status?: boolean
     comprovantePagamento?: boolean
+    grupoParcelamento?: boolean
+    numeroParcela?: boolean
+    totalParcelas?: boolean
     contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["despesa"]>
 
@@ -9695,9 +9727,12 @@ export namespace Prisma {
     dataPagamento?: boolean
     status?: boolean
     comprovantePagamento?: boolean
+    grupoParcelamento?: boolean
+    numeroParcela?: boolean
+    totalParcelas?: boolean
   }
 
-  export type despesaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idContratoLocacao" | "descricao" | "valor" | "tipo" | "dataVencimento" | "dataPagamento" | "status" | "comprovantePagamento", ExtArgs["result"]["despesa"]>
+  export type despesaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idContratoLocacao" | "descricao" | "valor" | "tipo" | "dataVencimento" | "dataPagamento" | "status" | "comprovantePagamento" | "grupoParcelamento" | "numeroParcela" | "totalParcelas", ExtArgs["result"]["despesa"]>
   export type despesaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contratolocacao?: boolean | contratolocacaoDefaultArgs<ExtArgs>
   }
@@ -9717,6 +9752,9 @@ export namespace Prisma {
       dataPagamento: Date | null
       status: $Enums.status_despesa_enum
       comprovantePagamento: Prisma.Bytes | null
+      grupoParcelamento: string | null
+      numeroParcela: number | null
+      totalParcelas: number | null
     }, ExtArgs["result"]["despesa"]>
     composites: {}
   }
@@ -10096,6 +10134,9 @@ export namespace Prisma {
     readonly dataPagamento: FieldRef<"despesa", 'DateTime'>
     readonly status: FieldRef<"despesa", 'status_despesa_enum'>
     readonly comprovantePagamento: FieldRef<"despesa", 'Bytes'>
+    readonly grupoParcelamento: FieldRef<"despesa", 'String'>
+    readonly numeroParcela: FieldRef<"despesa", 'Int'>
+    readonly totalParcelas: FieldRef<"despesa", 'Int'>
   }
     
 
@@ -12683,7 +12724,10 @@ export namespace Prisma {
     dataVencimento: 'dataVencimento',
     dataPagamento: 'dataPagamento',
     status: 'status',
-    comprovantePagamento: 'comprovantePagamento'
+    comprovantePagamento: 'comprovantePagamento',
+    grupoParcelamento: 'grupoParcelamento',
+    numeroParcela: 'numeroParcela',
+    totalParcelas: 'totalParcelas'
   };
 
   export type DespesaScalarFieldEnum = (typeof DespesaScalarFieldEnum)[keyof typeof DespesaScalarFieldEnum]
@@ -12810,7 +12854,8 @@ export namespace Prisma {
 
 
   export const despesaOrderByRelevanceFieldEnum: {
-    descricao: 'descricao'
+    descricao: 'descricao',
+    grupoParcelamento: 'grupoParcelamento'
   };
 
   export type despesaOrderByRelevanceFieldEnum = (typeof despesaOrderByRelevanceFieldEnum)[keyof typeof despesaOrderByRelevanceFieldEnum]
@@ -13575,6 +13620,9 @@ export namespace Prisma {
     dataPagamento?: DateTimeNullableFilter<"despesa"> | Date | string | null
     status?: Enumstatus_despesa_enumFilter<"despesa"> | $Enums.status_despesa_enum
     comprovantePagamento?: BytesNullableFilter<"despesa"> | Bytes | null
+    grupoParcelamento?: StringNullableFilter<"despesa"> | string | null
+    numeroParcela?: IntNullableFilter<"despesa"> | number | null
+    totalParcelas?: IntNullableFilter<"despesa"> | number | null
     contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
   }
 
@@ -13588,6 +13636,9 @@ export namespace Prisma {
     dataPagamento?: SortOrderInput | SortOrder
     status?: SortOrder
     comprovantePagamento?: SortOrderInput | SortOrder
+    grupoParcelamento?: SortOrderInput | SortOrder
+    numeroParcela?: SortOrderInput | SortOrder
+    totalParcelas?: SortOrderInput | SortOrder
     contratolocacao?: contratolocacaoOrderByWithRelationInput
     _relevance?: despesaOrderByRelevanceInput
   }
@@ -13605,6 +13656,9 @@ export namespace Prisma {
     dataPagamento?: DateTimeNullableFilter<"despesa"> | Date | string | null
     status?: Enumstatus_despesa_enumFilter<"despesa"> | $Enums.status_despesa_enum
     comprovantePagamento?: BytesNullableFilter<"despesa"> | Bytes | null
+    grupoParcelamento?: StringNullableFilter<"despesa"> | string | null
+    numeroParcela?: IntNullableFilter<"despesa"> | number | null
+    totalParcelas?: IntNullableFilter<"despesa"> | number | null
     contratolocacao?: XOR<ContratolocacaoScalarRelationFilter, contratolocacaoWhereInput>
   }, "id">
 
@@ -13618,6 +13672,9 @@ export namespace Prisma {
     dataPagamento?: SortOrderInput | SortOrder
     status?: SortOrder
     comprovantePagamento?: SortOrderInput | SortOrder
+    grupoParcelamento?: SortOrderInput | SortOrder
+    numeroParcela?: SortOrderInput | SortOrder
+    totalParcelas?: SortOrderInput | SortOrder
     _count?: despesaCountOrderByAggregateInput
     _avg?: despesaAvgOrderByAggregateInput
     _max?: despesaMaxOrderByAggregateInput
@@ -13638,6 +13695,9 @@ export namespace Prisma {
     dataPagamento?: DateTimeNullableWithAggregatesFilter<"despesa"> | Date | string | null
     status?: Enumstatus_despesa_enumWithAggregatesFilter<"despesa"> | $Enums.status_despesa_enum
     comprovantePagamento?: BytesNullableWithAggregatesFilter<"despesa"> | Bytes | null
+    grupoParcelamento?: StringNullableWithAggregatesFilter<"despesa"> | string | null
+    numeroParcela?: IntNullableWithAggregatesFilter<"despesa"> | number | null
+    totalParcelas?: IntNullableWithAggregatesFilter<"despesa"> | number | null
   }
 
   export type tabelairrfWhereInput = {
@@ -14468,6 +14528,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
     contratolocacao: contratolocacaoCreateNestedOneWithoutDespesaInput
   }
 
@@ -14481,6 +14544,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
   }
 
   export type despesaUpdateInput = {
@@ -14492,6 +14558,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
     contratolocacao?: contratolocacaoUpdateOneRequiredWithoutDespesaNestedInput
   }
 
@@ -14505,6 +14574,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type despesaCreateManyInput = {
@@ -14517,6 +14589,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
   }
 
   export type despesaUpdateManyMutationInput = {
@@ -14528,6 +14603,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type despesaUncheckedUpdateManyInput = {
@@ -14540,6 +14618,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type tabelairrfCreateInput = {
@@ -15675,12 +15756,17 @@ export namespace Prisma {
     dataPagamento?: SortOrder
     status?: SortOrder
     comprovantePagamento?: SortOrder
+    grupoParcelamento?: SortOrder
+    numeroParcela?: SortOrder
+    totalParcelas?: SortOrder
   }
 
   export type despesaAvgOrderByAggregateInput = {
     id?: SortOrder
     idContratoLocacao?: SortOrder
     valor?: SortOrder
+    numeroParcela?: SortOrder
+    totalParcelas?: SortOrder
   }
 
   export type despesaMaxOrderByAggregateInput = {
@@ -15693,6 +15779,9 @@ export namespace Prisma {
     dataPagamento?: SortOrder
     status?: SortOrder
     comprovantePagamento?: SortOrder
+    grupoParcelamento?: SortOrder
+    numeroParcela?: SortOrder
+    totalParcelas?: SortOrder
   }
 
   export type despesaMinOrderByAggregateInput = {
@@ -15705,12 +15794,17 @@ export namespace Prisma {
     dataPagamento?: SortOrder
     status?: SortOrder
     comprovantePagamento?: SortOrder
+    grupoParcelamento?: SortOrder
+    numeroParcela?: SortOrder
+    totalParcelas?: SortOrder
   }
 
   export type despesaSumOrderByAggregateInput = {
     id?: SortOrder
     idContratoLocacao?: SortOrder
     valor?: SortOrder
+    numeroParcela?: SortOrder
+    totalParcelas?: SortOrder
   }
 
   export type Enumtipo_despesa_enumWithAggregatesFilter<$PrismaModel = never> = {
@@ -17363,6 +17457,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
   }
 
   export type despesaUncheckedCreateWithoutContratolocacaoInput = {
@@ -17374,6 +17471,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
   }
 
   export type despesaCreateOrConnectWithoutContratolocacaoInput = {
@@ -17540,6 +17640,9 @@ export namespace Prisma {
     dataPagamento?: DateTimeNullableFilter<"despesa"> | Date | string | null
     status?: Enumstatus_despesa_enumFilter<"despesa"> | $Enums.status_despesa_enum
     comprovantePagamento?: BytesNullableFilter<"despesa"> | Bytes | null
+    grupoParcelamento?: StringNullableFilter<"despesa"> | string | null
+    numeroParcela?: IntNullableFilter<"despesa"> | number | null
+    totalParcelas?: IntNullableFilter<"despesa"> | number | null
   }
 
   export type reajustecontratoUpsertWithWhereUniqueWithoutContratolocacaoInput = {
@@ -18429,6 +18532,9 @@ export namespace Prisma {
     dataPagamento?: Date | string | null
     status?: $Enums.status_despesa_enum
     comprovantePagamento?: Bytes | null
+    grupoParcelamento?: string | null
+    numeroParcela?: number | null
+    totalParcelas?: number | null
   }
 
   export type reajustecontratoCreateManyContratolocacaoInput = {
@@ -18473,6 +18579,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type despesaUncheckedUpdateWithoutContratolocacaoInput = {
@@ -18484,6 +18593,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type despesaUncheckedUpdateManyWithoutContratolocacaoInput = {
@@ -18495,6 +18607,9 @@ export namespace Prisma {
     dataPagamento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: Enumstatus_despesa_enumFieldUpdateOperationsInput | $Enums.status_despesa_enum
     comprovantePagamento?: NullableBytesFieldUpdateOperationsInput | Bytes | null
+    grupoParcelamento?: NullableStringFieldUpdateOperationsInput | string | null
+    numeroParcela?: NullableIntFieldUpdateOperationsInput | number | null
+    totalParcelas?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type reajustecontratoUpdateWithoutContratolocacaoInput = {

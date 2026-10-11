@@ -223,7 +223,10 @@ exports.Prisma.DespesaScalarFieldEnum = {
   dataVencimento: 'dataVencimento',
   dataPagamento: 'dataPagamento',
   status: 'status',
-  comprovantePagamento: 'comprovantePagamento'
+  comprovantePagamento: 'comprovantePagamento',
+  grupoParcelamento: 'grupoParcelamento',
+  numeroParcela: 'numeroParcela',
+  totalParcelas: 'totalParcelas'
 };
 
 exports.Prisma.TabelairrfScalarFieldEnum = {
@@ -311,7 +314,8 @@ exports.Prisma.memoriacalculoitemOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.despesaOrderByRelevanceFieldEnum = {
-  descricao: 'descricao'
+  descricao: 'descricao',
+  grupoParcelamento: 'grupoParcelamento'
 };
 
 exports.Prisma.tabelairrfOrderByRelevanceFieldEnum = {

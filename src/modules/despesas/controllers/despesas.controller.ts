@@ -2,6 +2,7 @@ import { Body, Controller, Param, ParseIntPipe, Patch, Post, Get, Delete, Query,
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { DespesasService } from '../services/despesas.service';
 import { CriarDespesaDto } from '../dto/criar-despesa.dto';
+import { CriarDespesaParceladaDto } from '../dto/criar-despesa-parcelada.dto';
 import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../common/guards/roles.guard';
 import { Roles } from '../../../common/decorators/roles.decorator';
@@ -45,6 +46,15 @@ export class DespesasController {
     @ApiResponse({ status: 404, description: 'O ID do contrato informado não existe' })
     async cadastrarDespesa(@Body() criarDespesaDto: CriarDespesaDto) {
         return await this.despesasService.criarAvulsa(criarDespesaDto);
+    }
+
+    @Post('parceladas')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({ summary: 'Lançar um valor total já dividido em várias parcelas (ex.: IPTU em 10x), cada uma com seu vencimento' })
+    @ApiResponse({ status: 201, description: 'Todas as parcelas foram lançadas, cada uma como uma despesa EM_ABERTO independente.' })
+    @ApiResponse({ status: 404, description: 'O ID do contrato informado não existe' })
+    async cadastrarDespesaParcelada(@Body() dto: CriarDespesaParceladaDto) {
+        return await this.despesasService.criarParcelada(dto);
     }
 
     @Patch(':id/pagamento')

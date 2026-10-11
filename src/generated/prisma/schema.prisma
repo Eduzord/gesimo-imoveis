@@ -239,9 +239,16 @@ model despesa {
   dataPagamento        DateTime?           @db.Date
   status               status_despesa_enum @default(EM_ABERTO)
   comprovantePagamento Bytes?
+  // Metadados de parcelamento (ex.: IPTU em 10x) — nulos para uma despesa avulsa comum.
+  // "grupoParcelamento" é o mesmo UUID em todas as parcelas de um mesmo lançamento: é o que permite,
+  // no futuro, localizar/auditar "todas as parcelas deste IPTU" sem precisar interpretar a descrição.
+  grupoParcelamento    String?             @db.VarChar(36)
+  numeroParcela        Int?
+  totalParcelas        Int?
   contratolocacao      contratolocacao     @relation(fields: [idContratoLocacao], references: [id], onDelete: Cascade, onUpdate: Restrict)
 
   @@index([idContratoLocacao], map: "idContratoLocacao")
+  @@index([grupoParcelamento], map: "idx_despesa_grupoParcelamento")
 }
 
 model tabelairrf {
