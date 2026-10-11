@@ -119,8 +119,10 @@ export class DespesasService {
             throw new NotFoundException(`Despesa com ID ${id} não encontrada.`);
         }
 
-        //Aqui iremos "evitar" o que já foi pago
-        if (despesa.status === 'PAGA') {
+        //Bloqueia só quando já está PAGA *e com comprovante* — uma despesa PAGA sem comprovante (dado
+        //importado/editado por fora, sem ter passado por este método) precisa poder anexar o arquivo
+        //que falta, e não ficar travada para sempre sem conseguir corrigir a pendência.
+        if (despesa.status === 'PAGA' && despesa.comprovantePagamento) {
             throw new BadRequestException(`Esta despesa já foi liquidada anteriormente.`);
         }
 

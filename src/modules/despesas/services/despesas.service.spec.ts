@@ -164,3 +164,51 @@ describe('DespesasService - criarParcelada', () => {
         expect(resultado.every((d: any) => d.totalParcelas === 2)).toBe(true);
     });
 });
+
+describe('DespesasService - liquidarDespesa', () => {
+    let service: DespesasService;
+    let prisma: any;
+    const arquivoFake: any = { buffer: Buffer.from('conteudo-fake') };
+
+    beforeEach(() => {
+        prisma = {
+            despesa: { findUnique: jest.fn(), update: jest.fn((args: any) => Promise.resolve({ id: BigInt(1), idContratoLocacao: BigInt(10), ...args.data })) },
+        };
+        service = new DespesasService(prisma);
+    });
+
+    it('exige o arquivo do comprovante', async () => {
+        await expect(service.liquidarDespesa(1, new Date(), undefined as any)).rejects.toThrow('comprovante é obrigatório');
+        expect(prisma.despesa.findUnique).not.toHaveBeenCalled();
+    });
+
+    it('404 quando a despesa não existe', async () => {
+        prisma.despesa.findUnique.mockResolvedValue(null);
+
+        await expect(service.liquidarDespesa(1, new Date(), arquivoFake)).rejects.toThrow(NotFoundException);
+    });
+
+    it('bloqueia quando já está PAGA *e com comprovante* (liquidada de verdade)', async () => {
+        prisma.despesa.findUnique.mockResolvedValue({ id: BigInt(1), status: 'PAGA', comprovantePagamento: Buffer.from('ja-tem') });
+
+        await expect(service.liquidarDespesa(1, new Date(), arquivoFake)).rejects.toThrow('já foi liquidada');
+        expect(prisma.despesa.update).not.toHaveBeenCalled();
+    });
+
+    it('permite anexar o comprovante numa despesa PAGA mas SEM comprovante (dado importado por fora)', async () => {
+        prisma.despesa.findUnique.mockResolvedValue({ id: BigInt(1), status: 'PAGA', comprovantePagamento: null });
+
+        await expect(service.liquidarDespesa(1, new Date('2026-03-08'), arquivoFake)).resolves.toBeDefined();
+        expect(prisma.despesa.update).toHaveBeenCalledWith(
+            expect.objectContaining({ data: expect.objectContaining({ status: 'PAGA' }) }),
+        );
+    });
+
+    it('liquida normalmente uma despesa EM_ABERTO', async () => {
+        prisma.despesa.findUnique.mockResolvedValue({ id: BigInt(1), status: 'EM_ABERTO', comprovantePagamento: null });
+
+        const resultado = await service.liquidarDespesa(1, new Date('2026-03-08'), arquivoFake);
+
+        expect(resultado.status).toBe('PAGA');
+    });
+});
