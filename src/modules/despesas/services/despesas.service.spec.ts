@@ -91,13 +91,17 @@ describe('DespesasService - criarParcelada', () => {
     let service: DespesasService;
     let prisma: any;
 
+    // A divisão em partes iguais é feita no FRONT (só para sugerir); o service recebe sempre a lista
+    // já definida — por isso o teste usa valores deliberadamente desiguais, como um usuário editaria.
     const dtoBase = {
         idContratoLocacao: 10,
         descricao: 'IPTU 2026',
-        valorTotal: 1000,
         tipo: 'IPTU',
-        numeroParcelas: 3,
-        dataPrimeiraParcela: new Date(Date.UTC(2026, 0, 10)),
+        parcelas: [
+            { valor: 333.33, dataVencimento: new Date(Date.UTC(2026, 0, 10)) },
+            { valor: 333.33, dataVencimento: new Date(Date.UTC(2026, 1, 10)) },
+            { valor: 333.34, dataVencimento: new Date(Date.UTC(2026, 2, 10)) },
+        ],
     };
 
     beforeEach(() => {
@@ -142,10 +146,21 @@ describe('DespesasService - criarParcelada', () => {
         expect(resultado.every((d: any) => d.totalParcelas === 3)).toBe(true);
     });
 
-    it('a soma das parcelas criadas bate exatamente com o valor total informado', async () => {
-        const resultado = await service.criarParcelada(dtoBase as any);
+    it('persiste exatamente o valor e o vencimento de cada parcela, sem recalcular nada', async () => {
+        // Parcelas com valores desiguais, como se o usuário tivesse editado a sugestão do front
+        const dtoComEdicao = {
+            ...dtoBase,
+            parcelas: [
+                { valor: 100, dataVencimento: new Date(Date.UTC(2026, 0, 5)) },
+                { valor: 250.75, dataVencimento: new Date(Date.UTC(2026, 2, 20)) },
+            ],
+        };
 
-        const soma = resultado.reduce((total: number, d: any) => total + d.valor, 0);
-        expect(Math.round(soma * 100) / 100).toBe(dtoBase.valorTotal);
+        const resultado = await service.criarParcelada(dtoComEdicao as any);
+
+        expect(resultado.map((d: any) => d.valor)).toEqual([100, 250.75]);
+        expect(resultado.map((d: any) => d.dataVencimento)).toEqual(dtoComEdicao.parcelas.map((p) => p.dataVencimento));
+        expect(resultado.map((d: any) => d.numeroParcela)).toEqual([1, 2]);
+        expect(resultado.every((d: any) => d.totalParcelas === 2)).toBe(true);
     });
 });

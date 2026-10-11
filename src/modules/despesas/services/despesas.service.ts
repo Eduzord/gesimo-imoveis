@@ -3,7 +3,6 @@ import { randomUUID } from 'crypto';
 import { PrismaService } from '../../../database/prisma.service';
 import { CriarDespesaDto } from '../dto/criar-despesa.dto';
 import { CriarDespesaParceladaDto } from '../dto/criar-despesa-parcelada.dto';
-import { dividirEmParcelas } from '../calculo/dividir-parcelas';
 import 'multer';
 
 // Campos devolvidos ao front em toda listagem/consulta de despesa — centralizado aqui para as
@@ -61,9 +60,12 @@ export class DespesasService {
         return this.formatarDespesa(novaDespesa);
     }
 
-    //Lança um valor total já dividido em parcelas (ex.: IPTU em 10x). Cada parcela nasce como uma
-    //despesa EM_ABERTO independente, pronta para ser paga e incluída na Memória de Cálculo do mês em
-    //que vencer — sem nenhuma diferença de tratamento frente a uma despesa avulsa comum.
+    //Lança um conjunto de parcelas já definidas (ex.: IPTU em 10x). O front sugere a divisão (valor
+    //total ÷ quantidade, com a sobra de centavos na última) mas o usuário pode ajustar qualquer
+    //parcela antes de confirmar — por isso aqui só persistimos o que já chegou decidido, nunca
+    //recalculamos. Cada parcela nasce como uma despesa EM_ABERTO independente, pronta para ser paga e
+    //incluída na Memória de Cálculo do mês em que vencer — sem nenhuma diferença de tratamento frente
+    //a uma despesa avulsa comum.
     async criarParcelada(dados: CriarDespesaParceladaDto) {
         const contrato = await this.prisma.contratolocacao.findUnique({
             where: { id: BigInt(dados.idContratoLocacao) },
@@ -73,7 +75,7 @@ export class DespesasService {
             throw new NotFoundException(`Impossível lançar despesa. Contrato de locação com ID ${dados.idContratoLocacao} não encontrado.`);
         }
 
-        const parcelas = dividirEmParcelas(dados.valorTotal, dados.numeroParcelas, dados.dataPrimeiraParcela);
+        const totalParcelas = dados.parcelas.length;
 
         //Todas as parcelas pertencem ao mesmo lançamento — esse ID é o que permite, no futuro,
         //localizar "todas as parcelas deste IPTU" sem depender de interpretar a descrição.
@@ -83,17 +85,17 @@ export class DespesasService {
         //lançamento "pela metade" (ex.: 10 parcelas pedidas, só 6 gravadas por uma falha no meio do
         //caminho) seria um erro contábil silencioso — pior do que simplesmente falhar por completo.
         const despesasCriadas = await this.prisma.$transaction(
-            parcelas.map((parcela) =>
+            dados.parcelas.map((parcela, indice) =>
                 this.prisma.despesa.create({
                     data: {
                         idContratoLocacao: BigInt(dados.idContratoLocacao),
-                        descricao: `${dados.descricao} (${parcela.numero}/${dados.numeroParcelas})`,
+                        descricao: `${dados.descricao} (${indice + 1}/${totalParcelas})`,
                         valor: parcela.valor,
                         tipo: dados.tipo,
                         dataVencimento: parcela.dataVencimento,
                         grupoParcelamento,
-                        numeroParcela: parcela.numero,
-                        totalParcelas: dados.numeroParcelas,
+                        numeroParcela: indice + 1,
+                        totalParcelas,
                     },
                 }),
             ),
