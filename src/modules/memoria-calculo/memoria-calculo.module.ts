@@ -13,5 +13,6 @@ import { IrrfModule } from '../irrf/irrf.module';
     imports: [ImoveisModule, ContratosModule, DespesasModule, IrrfModule],
     controllers: [MemoriaCalculoController],
     providers: [MemoriaCalculoService],
+    exports: [MemoriaCalculoService], //o módulo de informe de rendimentos reaproveita as memórias já geradas
 })
 export class MemoriaCalculoModule {}
