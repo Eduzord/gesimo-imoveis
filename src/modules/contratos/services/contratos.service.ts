@@ -3,6 +3,7 @@ import { PrismaService } from '../../../database/prisma.service'
 import { CriarContratoDto } from '../dto/criar-contrato.dto';
 import { AtualizarContratoDto } from '../dto/atualizar-contrato.dto';
 import { AplicarReajusteDto } from '../dto/aplicar-reajuste.dto';
+import { RenomearContratoDto } from '../dto/renomear-contrato.dto';
 
 @Injectable()
 export class ContratosService {
@@ -55,6 +56,7 @@ export class ContratosService {
             const novoContrato = await prisma.contratolocacao.create({
                 data: {
                     idImovel: dados.idImovel,
+                    nome: dados.nome,
                     //Transformando o Number que vem do JSON para BigInt
                     idLocador: BigInt(dados.idLocador),
                     idLocatario: BigInt(dados.idLocatario),
@@ -140,6 +142,25 @@ export class ContratosService {
         const contratoAtualizado = await this.prisma.contratolocacao.update({
             where: {id: BigInt(id)},
             data: dadosAtualizacao
+        });
+
+        return this.formatarContrato(contratoAtualizado);
+    }
+
+    //Renomear é um rótulo de identificação, não um termo financeiro do contrato — por isso fica
+    //disponível em QUALQUER status (inclusive ENCERRADO/CANCELADO), diferente de atualizarDados.
+    async renomear(id: number, dados: RenomearContratoDto) {
+        const contratoOriginal = await this.prisma.contratolocacao.findUnique({
+            where: { id: BigInt(id) },
+        });
+
+        if (!contratoOriginal) {
+            throw new NotFoundException(`Contrato com ID ${id} não encontrado para renomear.`);
+        }
+
+        const contratoAtualizado = await this.prisma.contratolocacao.update({
+            where: { id: BigInt(id) },
+            data: { nome: dados.nome },
         });
 
         return this.formatarContrato(contratoAtualizado);

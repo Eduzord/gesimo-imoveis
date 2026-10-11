@@ -5019,6 +5019,7 @@ export namespace Prisma {
 
   export type ContratolocacaoMinAggregateOutputType = {
     id: bigint | null
+    nome: string | null
     idImovel: number | null
     idLocador: bigint | null
     idLocatario: bigint | null
@@ -5033,6 +5034,7 @@ export namespace Prisma {
 
   export type ContratolocacaoMaxAggregateOutputType = {
     id: bigint | null
+    nome: string | null
     idImovel: number | null
     idLocador: bigint | null
     idLocatario: bigint | null
@@ -5047,6 +5049,7 @@ export namespace Prisma {
 
   export type ContratolocacaoCountAggregateOutputType = {
     id: number
+    nome: number
     idImovel: number
     idLocador: number
     idLocatario: number
@@ -5081,6 +5084,7 @@ export namespace Prisma {
 
   export type ContratolocacaoMinAggregateInputType = {
     id?: true
+    nome?: true
     idImovel?: true
     idLocador?: true
     idLocatario?: true
@@ -5095,6 +5099,7 @@ export namespace Prisma {
 
   export type ContratolocacaoMaxAggregateInputType = {
     id?: true
+    nome?: true
     idImovel?: true
     idLocador?: true
     idLocatario?: true
@@ -5109,6 +5114,7 @@ export namespace Prisma {
 
   export type ContratolocacaoCountAggregateInputType = {
     id?: true
+    nome?: true
     idImovel?: true
     idLocador?: true
     idLocatario?: true
@@ -5210,6 +5216,7 @@ export namespace Prisma {
 
   export type ContratolocacaoGroupByOutputType = {
     id: bigint
+    nome: string | null
     idImovel: number
     idLocador: bigint
     idLocatario: bigint
@@ -5243,6 +5250,7 @@ export namespace Prisma {
 
   export type contratolocacaoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    nome?: boolean
     idImovel?: boolean
     idLocador?: boolean
     idLocatario?: boolean
@@ -5264,6 +5272,7 @@ export namespace Prisma {
 
   export type contratolocacaoSelectScalar = {
     id?: boolean
+    nome?: boolean
     idImovel?: boolean
     idLocador?: boolean
     idLocatario?: boolean
@@ -5276,7 +5285,7 @@ export namespace Prisma {
     comissao?: boolean
   }
 
-  export type contratolocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idImovel" | "idLocador" | "idLocatario" | "dataInicio" | "dataFim" | "dataReajuste" | "valorAluguel" | "status" | "contratoDigitalizado" | "comissao", ExtArgs["result"]["contratolocacao"]>
+  export type contratolocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "idImovel" | "idLocador" | "idLocatario" | "dataInicio" | "dataFim" | "dataReajuste" | "valorAluguel" | "status" | "contratoDigitalizado" | "comissao", ExtArgs["result"]["contratolocacao"]>
   export type contratolocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     imovel?: boolean | imovelDefaultArgs<ExtArgs>
     despesa?: boolean | contratolocacao$despesaArgs<ExtArgs>
@@ -5295,6 +5304,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
+      nome: string | null
       idImovel: number
       idLocador: bigint
       idLocatario: bigint
@@ -5679,6 +5689,7 @@ export namespace Prisma {
    */
   interface contratolocacaoFieldRefs {
     readonly id: FieldRef<"contratolocacao", 'BigInt'>
+    readonly nome: FieldRef<"contratolocacao", 'String'>
     readonly idImovel: FieldRef<"contratolocacao", 'Int'>
     readonly idLocador: FieldRef<"contratolocacao", 'BigInt'>
     readonly idLocatario: FieldRef<"contratolocacao", 'BigInt'>
@@ -12640,6 +12651,7 @@ export namespace Prisma {
 
   export const ContratolocacaoScalarFieldEnum: {
     id: 'id',
+    nome: 'nome',
     idImovel: 'idImovel',
     idLocador: 'idLocador',
     idLocatario: 'idLocatario',
@@ -12805,6 +12817,13 @@ export namespace Prisma {
   };
 
   export type imovelOrderByRelevanceFieldEnum = (typeof imovelOrderByRelevanceFieldEnum)[keyof typeof imovelOrderByRelevanceFieldEnum]
+
+
+  export const contratolocacaoOrderByRelevanceFieldEnum: {
+    nome: 'nome'
+  };
+
+  export type contratolocacaoOrderByRelevanceFieldEnum = (typeof contratolocacaoOrderByRelevanceFieldEnum)[keyof typeof contratolocacaoOrderByRelevanceFieldEnum]
 
 
   export const reajustecontratoOrderByRelevanceFieldEnum: {
@@ -13200,6 +13219,7 @@ export namespace Prisma {
     OR?: contratolocacaoWhereInput[]
     NOT?: contratolocacaoWhereInput | contratolocacaoWhereInput[]
     id?: BigIntFilter<"contratolocacao"> | bigint | number
+    nome?: StringNullableFilter<"contratolocacao"> | string | null
     idImovel?: IntFilter<"contratolocacao"> | number
     idLocador?: BigIntFilter<"contratolocacao"> | bigint | number
     idLocatario?: BigIntFilter<"contratolocacao"> | bigint | number
@@ -13218,6 +13238,7 @@ export namespace Prisma {
 
   export type contratolocacaoOrderByWithRelationInput = {
     id?: SortOrder
+    nome?: SortOrderInput | SortOrder
     idImovel?: SortOrder
     idLocador?: SortOrder
     idLocatario?: SortOrder
@@ -13232,6 +13253,7 @@ export namespace Prisma {
     despesa?: despesaOrderByRelationAggregateInput
     reajustecontrato?: reajustecontratoOrderByRelationAggregateInput
     memoriacalculo?: memoriacalculoOrderByRelationAggregateInput
+    _relevance?: contratolocacaoOrderByRelevanceInput
   }
 
   export type contratolocacaoWhereUniqueInput = Prisma.AtLeast<{
@@ -13239,6 +13261,7 @@ export namespace Prisma {
     AND?: contratolocacaoWhereInput | contratolocacaoWhereInput[]
     OR?: contratolocacaoWhereInput[]
     NOT?: contratolocacaoWhereInput | contratolocacaoWhereInput[]
+    nome?: StringNullableFilter<"contratolocacao"> | string | null
     idImovel?: IntFilter<"contratolocacao"> | number
     idLocador?: BigIntFilter<"contratolocacao"> | bigint | number
     idLocatario?: BigIntFilter<"contratolocacao"> | bigint | number
@@ -13257,6 +13280,7 @@ export namespace Prisma {
 
   export type contratolocacaoOrderByWithAggregationInput = {
     id?: SortOrder
+    nome?: SortOrderInput | SortOrder
     idImovel?: SortOrder
     idLocador?: SortOrder
     idLocatario?: SortOrder
@@ -13279,6 +13303,7 @@ export namespace Prisma {
     OR?: contratolocacaoScalarWhereWithAggregatesInput[]
     NOT?: contratolocacaoScalarWhereWithAggregatesInput | contratolocacaoScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"contratolocacao"> | bigint | number
+    nome?: StringNullableWithAggregatesFilter<"contratolocacao"> | string | null
     idImovel?: IntWithAggregatesFilter<"contratolocacao"> | number
     idLocador?: BigIntWithAggregatesFilter<"contratolocacao"> | bigint | number
     idLocatario?: BigIntWithAggregatesFilter<"contratolocacao"> | bigint | number
@@ -14061,6 +14086,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -14078,6 +14104,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedCreateInput = {
     id?: bigint | number
+    nome?: string | null
     idImovel: number
     idLocador: bigint | number
     idLocatario: bigint | number
@@ -14095,6 +14122,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14112,6 +14140,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idImovel?: IntFieldUpdateOperationsInput | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -14129,6 +14158,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateManyInput = {
     id?: bigint | number
+    nome?: string | null
     idImovel: number
     idLocador: bigint | number
     idLocatario: bigint | number
@@ -14143,6 +14173,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14156,6 +14187,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idImovel?: IntFieldUpdateOperationsInput | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -15235,8 +15267,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type contratolocacaoOrderByRelevanceInput = {
+    fields: contratolocacaoOrderByRelevanceFieldEnum | contratolocacaoOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type contratolocacaoCountOrderByAggregateInput = {
     id?: SortOrder
+    nome?: SortOrder
     idImovel?: SortOrder
     idLocador?: SortOrder
     idLocatario?: SortOrder
@@ -15260,6 +15299,7 @@ export namespace Prisma {
 
   export type contratolocacaoMaxOrderByAggregateInput = {
     id?: SortOrder
+    nome?: SortOrder
     idImovel?: SortOrder
     idLocador?: SortOrder
     idLocatario?: SortOrder
@@ -15274,6 +15314,7 @@ export namespace Prisma {
 
   export type contratolocacaoMinOrderByAggregateInput = {
     id?: SortOrder
+    nome?: SortOrder
     idImovel?: SortOrder
     idLocador?: SortOrder
     idLocatario?: SortOrder
@@ -17099,6 +17140,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateWithoutImovelInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -17115,6 +17157,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedCreateWithoutImovelInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -17266,6 +17309,7 @@ export namespace Prisma {
     OR?: contratolocacaoScalarWhereInput[]
     NOT?: contratolocacaoScalarWhereInput | contratolocacaoScalarWhereInput[]
     id?: BigIntFilter<"contratolocacao"> | bigint | number
+    nome?: StringNullableFilter<"contratolocacao"> | string | null
     idImovel?: IntFilter<"contratolocacao"> | number
     idLocador?: BigIntFilter<"contratolocacao"> | bigint | number
     idLocatario?: BigIntFilter<"contratolocacao"> | bigint | number
@@ -17694,6 +17738,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateWithoutReajustecontratoInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -17710,6 +17755,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedCreateWithoutReajustecontratoInput = {
     id?: bigint | number
+    nome?: string | null
     idImovel: number
     idLocador: bigint | number
     idLocatario: bigint | number
@@ -17742,6 +17788,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateWithoutReajustecontratoInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17758,6 +17805,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateWithoutReajustecontratoInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idImovel?: IntFieldUpdateOperationsInput | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -17774,6 +17822,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateWithoutMemoriacalculoInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -17790,6 +17839,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedCreateWithoutMemoriacalculoInput = {
     id?: bigint | number
+    nome?: string | null
     idImovel: number
     idLocador: bigint | number
     idLocatario: bigint | number
@@ -17893,6 +17943,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateWithoutMemoriacalculoInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17909,6 +17960,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateWithoutMemoriacalculoInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idImovel?: IntFieldUpdateOperationsInput | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -18104,6 +18156,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateWithoutDespesaInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -18120,6 +18173,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedCreateWithoutDespesaInput = {
     id?: bigint | number
+    nome?: string | null
     idImovel: number
     idLocador: bigint | number
     idLocatario: bigint | number
@@ -18152,6 +18206,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateWithoutDespesaInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18168,6 +18223,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateWithoutDespesaInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idImovel?: IntFieldUpdateOperationsInput | number
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -18355,6 +18411,7 @@ export namespace Prisma {
 
   export type contratolocacaoCreateManyImovelInput = {
     id?: bigint | number
+    nome?: string | null
     idLocador: bigint | number
     idLocatario: bigint | number
     dataInicio: Date | string
@@ -18396,6 +18453,7 @@ export namespace Prisma {
 
   export type contratolocacaoUpdateWithoutImovelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18412,6 +18470,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateWithoutImovelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18428,6 +18487,7 @@ export namespace Prisma {
 
   export type contratolocacaoUncheckedUpdateManyWithoutImovelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
     idLocador?: BigIntFieldUpdateOperationsInput | bigint | number
     idLocatario?: BigIntFieldUpdateOperationsInput | bigint | number
     dataInicio?: DateTimeFieldUpdateOperationsInput | Date | string

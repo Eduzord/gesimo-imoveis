@@ -5,6 +5,7 @@ import { ContratosService } from '../services/contratos.service';
 import { CriarContratoDto } from '../dto/criar-contrato.dto';
 import { AtualizarContratoDto } from '../dto/atualizar-contrato.dto';
 import { AplicarReajusteDto } from '../dto/aplicar-reajuste.dto';
+import { RenomearContratoDto } from '../dto/renomear-contrato.dto';
 import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../../common/guards/roles.guard';
 import { Roles } from '../../../common/decorators/roles.decorator';
@@ -82,6 +83,17 @@ export class ContratosController{
         @Body() atualizarContratoDto: AtualizarContratoDto
     ) {
         return await this.contratosService.atualizarDados(id, atualizarContratoDto)
+    }
+
+    @Patch(':id/nome')
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({summary: 'Renomear um contrato', description: 'Disponível em qualquer status — é só um rótulo de identificação, não um termo financeiro do contrato.'})
+    @ApiResponse({status: 200, description: 'Contrato renomeado com sucesso.'})
+    async renomearContrato(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() renomearContratoDto: RenomearContratoDto,
+    ) {
+        return await this.contratosService.renomear(id, renomearContratoDto);
     }
 
     @Patch(':id/rescisao')

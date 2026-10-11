@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional, ApiPropertyOptions } from "@nestjs/swagger";
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive, Max, Min } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, Max, MaxLength, Min } from 'class-validator';
 import { inspect } from "util";
 
 export class CriarContratoDto {
@@ -8,6 +8,12 @@ export class CriarContratoDto {
     @IsNumber()
     @IsNotEmpty()
     idImovel: number;
+
+    @ApiProperty({ example: 'Contrato Rua Buenos Aires, 113', description: 'Nome amigável do contrato, para identificá-lo em telas como o lançamento de despesas (sugestão: "Contrato <endereço/nome do imóvel>")' })
+    @IsString()
+    @IsNotEmpty()
+    @MaxLength(150)
+    nome: string;
 
     @ApiProperty({ example: 5, description: 'ID do Locador'})
     @IsNumber()

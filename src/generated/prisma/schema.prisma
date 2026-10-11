@@ -124,6 +124,11 @@ model contratolocacao {
   // Tipifiquei o contratoDigitalizado como Bytes (LONGBLOB no MySQL) para suportar
   // os uploads de PDF que passaremos através do FileInterceptor.
   id                   BigInt               @id @default(autoincrement())
+  // Nome amigável do contrato (ex.: "Contrato Rua Buenos Aires, 113"), sugerido pelo front na
+  // criação e editável depois a qualquer momento — identifica o contrato em telas como o dropdown de
+  // lançamento de despesas, onde "Contrato #7" não diz nada ao usuário. Nulo só em contratos criados
+  // antes deste campo existir; contratos novos sempre recebem um nome.
+  nome                 String?              @db.VarChar(150)
   idImovel             Int
   idLocador            BigInt
   idLocatario          BigInt

@@ -8,6 +8,7 @@ describe('ContratosService - vínculo com a posse do imóvel', () => {
 
     const dto: any = {
         idImovel: 1,
+        nome: 'Contrato Rua Teste, 10',
         idLocador: 10,
         idLocatario: 20,
         dataInicio: new Date('2026-01-01'),
@@ -183,4 +184,48 @@ describe('ContratosService - reajuste', () => {
             orderBy: { dataReajuste: 'desc' },
         });
     });
+});
+
+describe('ContratosService - renomear', () => {
+    let service: ContratosService;
+    let prisma: any;
+
+    beforeEach(() => {
+        prisma = {
+            contratolocacao: {
+                findUnique: jest.fn(),
+                update: jest.fn(),
+            },
+        };
+        service = new ContratosService(prisma);
+    });
+
+    it('404 quando o contrato não existe', async () => {
+        prisma.contratolocacao.findUnique.mockResolvedValue(null);
+
+        await expect(service.renomear(99, { nome: 'Novo nome' })).rejects.toThrow(NotFoundException);
+        expect(prisma.contratolocacao.update).not.toHaveBeenCalled();
+    });
+
+    it.each(['ATIVO', 'ENCERRADO', 'CANCELADO'])(
+        'permite renomear um contrato com status %s (é só um rótulo, não um termo financeiro)',
+        async (status) => {
+            prisma.contratolocacao.findUnique.mockResolvedValue({ id: BigInt(5), status });
+            prisma.contratolocacao.update.mockResolvedValue({
+                id: BigInt(5),
+                idImovel: 1,
+                idLocador: BigInt(10),
+                idLocatario: BigInt(20),
+                nome: 'Contrato Rua Teste, 10',
+            });
+
+            const resultado = await service.renomear(5, { nome: 'Contrato Rua Teste, 10' });
+
+            expect(prisma.contratolocacao.update).toHaveBeenCalledWith({
+                where: { id: BigInt(5) },
+                data: { nome: 'Contrato Rua Teste, 10' },
+            });
+            expect(resultado.nome).toBe('Contrato Rua Teste, 10');
+        },
+    );
 });

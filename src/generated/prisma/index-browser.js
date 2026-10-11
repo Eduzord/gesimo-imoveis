@@ -151,6 +151,7 @@ exports.Prisma.PropriedadeimovelScalarFieldEnum = {
 
 exports.Prisma.ContratolocacaoScalarFieldEnum = {
   id: 'id',
+  nome: 'nome',
   idImovel: 'idImovel',
   idLocador: 'idLocador',
   idLocatario: 'idLocatario',
@@ -280,6 +281,10 @@ exports.Prisma.imovelOrderByRelevanceFieldEnum = {
   inscricaoIPTU: 'inscricaoIPTU',
   inscricaoBombeiro: 'inscricaoBombeiro',
   metragem: 'metragem'
+};
+
+exports.Prisma.contratolocacaoOrderByRelevanceFieldEnum = {
+  nome: 'nome'
 };
 
 exports.Prisma.reajustecontratoOrderByRelevanceFieldEnum = {
