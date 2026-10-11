@@ -38,6 +38,24 @@ export class MemoriaCalculoController {
         return await this.memoriaCalculoService.listarPorImovel(idImovel);
     }
 
+    @Get()
+    @Roles('USER', 'ADMIN')
+    @ApiOperation({
+        summary: 'Listar as memórias de cálculo já geradas, de todos os imóveis',
+        description: 'Para a tela de consulta geral. Aceita filtros opcionais por competência (mês) e por imóvel.',
+    })
+    @ApiQuery({name: 'competencia', required: false, example: '2026-07-01'})
+    @ApiQuery({name: 'idImovel', required: false, type: Number})
+    async listarTodas(
+        @Query('competencia') competencia?: string,
+        @Query('idImovel', new ParseIntPipe({optional: true})) idImovel?: number,
+    ) {
+        return await this.memoriaCalculoService.listarTodas({
+            idImovel,
+            ...(competencia && { competencia: new Date(competencia) }),
+        });
+    }
+
     @Post()
     @Roles('USER', 'ADMIN')
     @ApiOperation({

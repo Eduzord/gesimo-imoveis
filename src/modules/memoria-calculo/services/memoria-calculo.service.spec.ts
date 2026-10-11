@@ -55,6 +55,7 @@ describe('MemoriaCalculoService', () => {
         prisma = {
             memoriacalculo: {
                 findUnique: jest.fn().mockResolvedValue(null),
+                findMany: jest.fn().mockResolvedValue([]),
                 create: jest.fn().mockImplementation(({ data }: any) => ({
                     id: 1,
                     ...data,
@@ -204,5 +205,46 @@ describe('MemoriaCalculoService', () => {
         const resultado = await service.montarPreparacao(1, new Date('2026-07-01'));
 
         expect(resultado.contratoAtivo).toBeNull();
+    });
+
+    describe('listarTodas', () => {
+        const memoriaComImovel = {
+            ...memoriaPersistidaFake(),
+            imovel: { endereco: { rua: 'Rua Buenos Aires', numero: '113', bairro: 'Centro' } },
+        };
+
+        it('resolve o endereço do imóvel em cada memória (a tabela só guarda o idImovel)', async () => {
+            prisma.memoriacalculo.findMany.mockResolvedValue([memoriaComImovel]);
+
+            const resultado = await service.listarTodas();
+
+            expect(resultado[0].imovelEndereco).toBe('Rua Buenos Aires, 113 — Centro');
+        });
+
+        it('sem filtros, não restringe a busca', async () => {
+            await service.listarTodas();
+
+            expect(prisma.memoriacalculo.findMany).toHaveBeenCalledWith(
+                expect.objectContaining({ where: {} }),
+            );
+        });
+
+        it('filtra por idImovel e por competência (normalizada para o 1º dia do mês)', async () => {
+            await service.listarTodas({ idImovel: 7, competencia: new Date('2026-07-15') });
+
+            expect(prisma.memoriacalculo.findMany).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    where: { idImovel: 7, competencia: new Date(Date.UTC(2026, 6, 1)) },
+                }),
+            );
+        });
+
+        it('ordena da competência mais recente para a mais antiga', async () => {
+            await service.listarTodas();
+
+            expect(prisma.memoriacalculo.findMany).toHaveBeenCalledWith(
+                expect.objectContaining({ orderBy: [{ competencia: 'desc' }, { criadoEm: 'desc' }] }),
+            );
+        });
     });
 });

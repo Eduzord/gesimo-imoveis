@@ -97,6 +97,28 @@ export class MemoriaCalculoService {
         return memorias.map((m) => this.formatar(m));
     }
 
+    //Consulta geral (todos os imóveis) para a tela "Memórias de Cálculo": lista o que já foi gerado,
+    //com o endereço do imóvel resolvido (a memória só guarda o idImovel) e sem os itens por locador —
+    //desnecessários numa listagem e mais pesados de trazer para cada linha. "competencia" filtra pelo
+    //mês (qualquer dia do mês serve, só mês/ano são usados); sem filtro, traz todas as competências.
+    async listarTodas(filtros: { idImovel?: number; competencia?: Date } = {}) {
+        const memorias = await this.prisma.memoriacalculo.findMany({
+            where: {
+                ...(filtros.idImovel !== undefined && { idImovel: filtros.idImovel }),
+                ...(filtros.competencia !== undefined && { competencia: primeiroDiaDoMes(filtros.competencia) }),
+            },
+            orderBy: [{ competencia: 'desc' }, { criadoEm: 'desc' }],
+            include: { imovel: { include: { endereco: true } } },
+        });
+
+        return memorias.map((m: any) => ({
+            ...this.formatar(m),
+            imovelEndereco: m.imovel?.endereco
+                ? `${m.imovel.endereco.rua}, ${m.imovel.endereco.numero ?? 'S/N'} — ${m.imovel.endereco.bairro}`
+                : `Imóvel ${m.idImovel}`,
+        }));
+    }
+
     //Tudo que o modal de "Gerar Memória de Cálculo" precisa para se popular numa única chamada: o
     //contrato ativo, os proprietários (com percentual, sem nome — o front resolve o nome), as despesas
     //em aberto deste imóvel e se já existe uma memória gerada para o mês pedido.
