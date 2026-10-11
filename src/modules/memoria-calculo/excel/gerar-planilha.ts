@@ -1,4 +1,6 @@
 import ExcelJS from 'exceljs';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 //Gera a Memória de Cálculo em Excel a partir de um registro já persistido (o número que aparece na
 //planilha é sempre o que foi gravado no banco no momento da geração — este arquivo só desenha).
@@ -14,6 +16,14 @@ const MESES = [
     'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro',
 ];
+
+//Logomarca da imobiliária, desenhada no topo de toda Memória de Cálculo gerada, acima de todo o
+//conteúdo dinâmico. "assets/" é copiado para dist/ no build via nest-cli.json ("compilerOptions.assets"),
+//então o mesmo caminho relativo funciona tanto rodando de src/ (ts-node) quanto de dist/ (compilado).
+const CAMINHO_LOGO = join(__dirname, '..', 'assets', 'logo-estilo-imoveis.jpg');
+const LOGO_LARGURA_PX = 160;
+const LOGO_ALTURA_PX = 133; // mantém a proporção original da imagem (455x379)
+const LOGO_LINHAS_RESERVADAS = 7; // altura padrão de uma linha (~20px) × 7 ≈ cobre os 133px da logo
 
 const AZUL_ESCURO = 'FF1F2937';
 const CINZA_CLARO = 'FFF3F4F6';
@@ -73,7 +83,15 @@ export async function gerarPlanilhaMemoriaCalculo(dados: DadosPlanilhaMemoria): 
         { key: 'd', width: 34 },
     ];
 
-    let linha = 1;
+    //Logomarca no topo, acima de todo o conteúdo gerado dinamicamente abaixo
+    const logoBuffer = readFileSync(CAMINHO_LOGO);
+    const logoId = workbook.addImage({ buffer: logoBuffer as any, extension: 'jpeg' });
+    sheet.addImage(logoId, {
+        tl: { col: 0, row: 0 } as any,
+        ext: { width: LOGO_LARGURA_PX, height: LOGO_ALTURA_PX },
+    });
+
+    let linha = LOGO_LINHAS_RESERVADAS + 2; // + 1 linha em branco de respiro antes do cabeçalho
 
     const escrever = (
         texto: string,
