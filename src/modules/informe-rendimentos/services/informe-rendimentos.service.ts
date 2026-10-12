@@ -1,8 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ImoveisService } from '../../imoveis/services/imoveis.service';
 import { ContratosService } from '../../contratos/services/contratos.service';
+import { DespesasService } from '../../despesas/services/despesas.service';
 import { MemoriaCalculoService } from '../../memoria-calculo/services/memoria-calculo.service';
 import { montarLinhasAnuais, ItemMemoriaParaInforme } from '../calculo/montar-linhas-anuais';
+import { filtrarItensComAluguelConfirmado, DespesaAluguelPaga } from '../calculo/filtrar-meses-confirmados';
 import { gerarPdfInformeRendimentos, DadosPdfInforme } from '../pdf/gerar-pdf';
 
 export interface PessoaExibicao {
@@ -25,12 +27,14 @@ export class InformeRendimentosService {
     constructor(
         private readonly imoveisService: ImoveisService,
         private readonly contratosService: ContratosService,
+        private readonly despesasService: DespesasService,
         private readonly memoriaCalculoService: MemoriaCalculoService,
     ) {}
 
     //Monta o informe anual (todos os meses, mesmo os sem memória gerada) de UM locador, em UM imóvel,
     //para UM ano-calendário — a partir das Memórias de Cálculo já persistidas desse imóvel. Não soma
-    //dados "inventados": um mês sem memória gerada aparece com os valores zerados.
+    //dados "inventados": um mês sem memória gerada, OU sem o aluguel confirmado como recebido (ver
+    //abaixo), aparece com os valores zerados.
     async montarInforme(idImovel: number, idLocador: number, ano: number) {
         const imovel = await this.imoveisService.buscarPorId(idImovel);
         const memorias = await this.memoriaCalculoService.listarPorImovel(idImovel);
@@ -53,20 +57,42 @@ export class InformeRendimentosService {
             });
         }
 
-        if (itensDoAno.length === 0) {
+        const totalMemoriasDoAno = itensDoAno.length;
+
+        if (totalMemoriasDoAno === 0) {
             throw new NotFoundException(
                 `Nenhuma Memória de Cálculo foi gerada para este locador neste imóvel em ${ano}. Gere as memórias dos meses em que houve aluguel antes de emitir o informe.`,
             );
         }
 
+        //Gerar a Memória de Cálculo é só a COBRANÇA enviada ao locatário — não prova de que o aluguel
+        //foi recebido. A confirmação é uma despesa tipo ALUGUEL, do mesmo contrato e mês, com status
+        //PAGA (decisão do usuário, 12/10/2026: o comprovante NÃO é exigido para essa confirmação, só a
+        //baixa do status). Meses "cobrados" mas sem essa confirmação não entram no informe.
+        const despesasDoImovel = await this.despesasService.listarPorImovel(idImovel);
+        const aluguelPagoPorMes: DespesaAluguelPaga[] = despesasDoImovel
+            .filter((d: any) => d.tipo === 'ALUGUEL' && d.status === 'PAGA')
+            .map((d: any) => ({
+                idContratoLocacao: String(d.idContratoLocacao),
+                anoMes: new Date(d.dataVencimento).toISOString().slice(0, 7),
+            }));
+
+        const itensConfirmados = filtrarItensComAluguelConfirmado(itensDoAno, aluguelPagoPorMes);
+
+        if (itensConfirmados.length === 0) {
+            throw new NotFoundException(
+                `Em ${ano}, este imóvel teve ${totalMemoriasDoAno} Memória(s) de Cálculo gerada(s), mas nenhum mês tem o aluguel confirmado como recebido — lance (ou marque como paga) a despesa tipo "Aluguel" do mês correspondente antes de emitir o informe.`,
+            );
+        }
+
         //Comissão de cada contrato envolvido no ano (normalmente só um; mais de um só se o imóvel
         //trocou de contrato no meio do ano) — cada mês usa a comissão do SEU próprio contrato.
-        const idsContratos = [...new Set(itensDoAno.map((i) => i.idContrato))];
+        const idsContratos = [...new Set(itensConfirmados.map((i) => i.idContrato))];
         const contratos = await Promise.all(idsContratos.map((id) => this.contratosService.buscarPorId(Number(id))));
         const comissaoPorContrato = new Map(contratos.map((c: any) => [c.id, Number(c.comissao)]));
         const contratoPorId = new Map(contratos.map((c: any) => [c.id, c]));
 
-        const { linhas, totais, idContratoMaisRecente } = montarLinhasAnuais(itensDoAno, comissaoPorContrato);
+        const { linhas, totais, idContratoMaisRecente } = montarLinhasAnuais(itensConfirmados, comissaoPorContrato);
         const contratoRepresentativo = idContratoMaisRecente ? contratoPorId.get(idContratoMaisRecente) : null;
 
         return {
